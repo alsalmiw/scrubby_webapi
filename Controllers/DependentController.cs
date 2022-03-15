@@ -28,5 +28,9 @@ namespace scrubby_webapi.Controllers
         {
             return _data.UpdateDependent(dependentUpdate);
         }
+        //    public bool UpdateDependent (DependentModel dependentUpdate)
+        // {
+        //     return _data.UpdateDependent(dependentUpdate);
+        // }
     }
 }

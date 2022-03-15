@@ -35,6 +35,9 @@ namespace scrubby_webapi.Models
         {
             return _data.UpdateUsername(id, username);
         }
+        // public bool UpdateUsername(int id, string username)
+        // {
+        // }
 
 
     }

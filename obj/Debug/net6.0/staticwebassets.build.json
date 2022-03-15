@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "VnUmr/YS/RJQfcBVcA7Btd6l/Ot07EYdq6oVcdfewRg=",
+  "Source": "scrubby_webapi",
+  "BasePath": "_content/scrubby_webapi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

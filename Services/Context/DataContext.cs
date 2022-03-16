@@ -18,5 +18,6 @@ namespace scrubby_webapi.Services.Context
         {
             base.OnModelCreating(builder);
         }
+        
     }
 }

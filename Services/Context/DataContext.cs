@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.Static;
 
 namespace scrubby_webapi.Services.Context
 {
@@ -18,6 +19,30 @@ namespace scrubby_webapi.Services.Context
         {
             base.OnModelCreating(builder);
         }
+
+           private void SeedData(ModelBuilder builder)
+        {
+            var CleaningProducts = new List<CleaningProductsStaticAPIModel>()
+            {
+                    new CleaningProductsStaticAPIModel(){
+                        Id = 1,
+                        ProductName ="",
+                        Instructions ="",
+                        Warnings="",
+                        Tags=""
+                    },
+                     new CleaningProductsStaticAPIModel(){
+                        Id = 1,
+                        ProductName ="",
+                        Instructions ="",
+                        Warnings="",
+                        Tags=""
+                    }
         
+             };
+             builder.Entity<CleaningProductsStaticAPIModel>().HasData(CleaningProducts);
+
+        }
+    
     }
 }

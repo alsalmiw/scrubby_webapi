@@ -123,6 +123,19 @@ namespace scrubby_webapi.Services
             return result;
         }
 
+        public bool DeleteUser(int id)
+        {
+             UserModel foundUser = GetUserByID(id);
+            bool result = false;
+            if(foundUser != null)
+            {
+                //A user was foundUser
+                foundUser.isDeleted = true;
+                _context.Update<UserModel>(foundUser);
+               result =  _context.SaveChanges() != 0;
+            }
+            return result;
+        }
   
         
 

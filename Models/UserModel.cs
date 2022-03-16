@@ -14,6 +14,7 @@ namespace scrubby_webapi.Models
         public int TrackerId { get; set; }
         public string? Photo { get; set; }
         public int Coins { get; set; }
+        public bool isDeleted { get; set; }
         public UserModel(){}
     }
 }

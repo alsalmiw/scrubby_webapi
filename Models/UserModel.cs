@@ -11,7 +11,6 @@ namespace scrubby_webapi.Models
         public string? Username {get; set;}
         public string? Salt {get; set;}
         public string? Hash {get; set;}
-
          public int TrackerId { get; set; }
         //public int UserId { get; set; }
         public string? Photo { get; set; }

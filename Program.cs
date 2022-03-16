@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped <UserService>();
 builder.Services.AddScoped<DependentService>();
+builder.Services.AddScoped<SelectedTaskService>();
 
 var ConnectionString = builder.Configuration.GetConnectionString("MyScrubbyString");
 

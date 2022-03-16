@@ -16,7 +16,7 @@ namespace scrubby_webapi.Controllers
         {
             _data = _dataFromService;
         }
-        [HttpGet("GetSelectedTaskById/{Id}")]
+        [HttpGet("SelectedItemsInSpace/{Id}")]
         public IEnumerable<SelectedTasksModel> GetSelectedTaskByUserId(int id)
         {
            return  _data.GetSelectedTaskUserById(id);

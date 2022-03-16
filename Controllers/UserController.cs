@@ -35,5 +35,12 @@ namespace scrubby_webapi.Models
         {
             return _data.UpdateUsername(id, username);
         }
+
+        [HttpPost("UpdateUserInfo/{id}")]
+
+        public bool DeleteUser(int id)
+        {
+            return _data.DeleteUser(id);
+        }
     }
 }

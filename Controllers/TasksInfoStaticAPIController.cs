@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using scrubby_webapi.Services;
+using scrubby_webapi.Services.Context;
 
 namespace scrubby_webapi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SpaceItemsStaticAPIController : ControllerBase
+    public class TasksInfoStaticAPIController : ControllerBase
     {
-         private readonly SpaceItemsStaticAPIService _data;
+         private readonly  TasksInfoStaticAPIService _data;
 
-        public SpaceItemsStaticAPIController(SpaceItemsStaticAPIService _dataFromService)
+        public TasksInfoStaticAPIController( TasksInfoStaticAPIService _dataFromService)
         {
             _data = _dataFromService;
         }

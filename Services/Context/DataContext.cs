@@ -9,9 +9,9 @@ namespace scrubby_webapi.Services.Context
 {
     public class DataContext: DbContext 
     {
-         public DbSet<UserModel> UserLogin { get; set; }
+         public DbSet<UserModel> UserInfo { get; set; }
          public DbSet<DependentModel> DependentInfo {get; set;}
-         public DbSet<UserInfoModel> UserInfo { get; set; }
+         
         public DataContext(DbContextOptions options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder builder)

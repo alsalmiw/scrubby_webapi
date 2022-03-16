@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped <UserService>();
 builder.Services.AddScoped<DependentService>();
-builder.Services.AddScoped<UserInfoService>();
+
 var ConnectionString = builder.Configuration.GetConnectionString("MyScrubbyString");
 
 builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(ConnectionString));

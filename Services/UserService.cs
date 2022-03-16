@@ -24,17 +24,17 @@ namespace scrubby_webapi.Services
 
         public bool DoesUserExists(string? username)
         {
-            return _context.UserLogin.SingleOrDefault(user => user.Username == username) != null;
+            return _context.UserInfo.SingleOrDefault(user => user.Username == username) != null;
         }
 
          public UserModel GetUserByUserName(string? username)
         {
-            return _context.UserLogin.SingleOrDefault(user => user.Username == username);
+            return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
 
         public UserModel GetUserByID(int ID)
         {
-            return _context.UserLogin.SingleOrDefault(user => user.Id == ID);
+            return _context.UserInfo.SingleOrDefault(user => user.Id == ID);
         }
          public PasswordDTO HashPassword(string? password)
         {

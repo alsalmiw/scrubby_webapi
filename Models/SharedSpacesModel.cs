@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace scrubby_webapi.Models
 {
-    public class SpaceInfoModel
+    public class SharedSpacesModel
     {
         public int Id { get; set; }
-        public string? SpaceName { get; set; }
-        public string? SpaceCategory { get; set; }
         public int UserId { get; set; }
-        public SpaceInfoModel(){}
+        public SharedSpacesModel(){}
     }
 }

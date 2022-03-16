@@ -7,7 +7,7 @@ namespace scrubby_webapi.Models
 {
     public class DependentModel
     {
-        public int DependentId { get; set; }
+        public int Id { get; set; }
         public int UserId { get; set; }
         public string? DependentName { get; set; }
         public int DependentAge { get; set; }

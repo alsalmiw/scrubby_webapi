@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using scrubby_webapi.Models;
 using Microsoft.AspNetCore.Mvc;
+using scrubby_webapi.Services;
 
 namespace scrubby_webapi.Controllers
 {
@@ -11,9 +12,9 @@ namespace scrubby_webapi.Controllers
     [Route("[controller]")]
     public class SelectedTaskController : ControllerBase
     {
-        private readonly UserService _data;
+        private readonly SelectedTasksService _data;
 
-        public UserController(UserService _dataFromService)
+        public SelectedTaskController(SelectedTasksService _dataFromService)
         {
             _data = _dataFromService;
         }
@@ -24,7 +25,7 @@ namespace scrubby_webapi.Controllers
         }
 
         [HttpPost("UpdateSelectedTask")]
-        public bool UpdateSelectedTask(SelectedTaskModel selectedTaskToUpdate)
+        public bool UpdateSelectedTask(SelectedTasksModel selectedTaskToUpdate)
         {
             return UpdateSelectedTask(selectedTaskToUpdate);
         }

@@ -20,7 +20,7 @@ namespace scrubby_webapi.Controllers
         }
 
         [HttpPost("AddNewSpace")]
-        public bool AddNewSpace(SaceInfoModel newSpace)
+        public bool AddNewSpace(SpaceInfoModel newSpace)
         {
             return _data.AddNewSpace(newSpace);
         }

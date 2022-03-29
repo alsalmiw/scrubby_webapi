@@ -8,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped <UserService>();
 builder.Services.AddScoped<DependentService>();
 builder.Services.AddScoped<SelectedTaskService>();
-builder.Services.AddScoped<SpaceInfoService>();
+builder.Services.AddScoped<SelectedItemsInSpaceService>();
+builder.Services.AddScoped<SharedSpacesService>();
+builder.Services.AddScoped<SharedInfoService>();
 
 var ConnectionString = builder.Configuration.GetConnectionString("MyScrubbyString");
 

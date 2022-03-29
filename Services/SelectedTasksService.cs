@@ -20,7 +20,7 @@ namespace scrubby_webapi.Services
         }
         public bool UpdateSelectedTask(SelectedTasksModel selectedTaskToUpdate)
         {
-            return UpdateSelectedTask(selectedTaskToUpdate);
+            return false;
         }
     }
 }

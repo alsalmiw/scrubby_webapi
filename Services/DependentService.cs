@@ -17,16 +17,16 @@ namespace scrubby_webapi.Services
 
         public bool AddDependent(DependentModel newDependent)
         {
-            _context.Add(newDependent);
-            return _context.SaveChanges() !=0;
-            //return false;
+            // _context.Add(newDependent);
+            // return _context.SaveChanges() !=0;
+            return false;
             
         }                                                               
         public bool UpdateDependent(DependentModel dependentUpdate)
         {
-            _context.Update<DependentModel>(DependentUpdate);
-            return _context.SaveChanges() != 0;
-            //return false;
+            // _context.Update<DependentModel>(DependentUpdate);
+            // return _context.SaveChanges() != 0;
+            return false;
         }
     }
 }

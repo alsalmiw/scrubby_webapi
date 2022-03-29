@@ -17,7 +17,7 @@ namespace scrubby_webapi.Services
         
         public IEnumerable<SelectedItemsInSpaceModel> GetSelectedTaskByUserId(int id)
         {
-           return  _context.DataContext.Where(SelectedItemInSpaceService => item.Id == id);
+           return  _context.SelectedItemsInSpaceInfo.Where(item => item.Id == id);
         }
     }
 }

@@ -19,20 +19,43 @@ namespace scrubby_webapi.Services
             _context.Add(newCreatedAssignedTaskChild);
             return _context.SaveChanges() !=0;
         }
-        // public bool UpdateAssignedTasksChildById(int AssignedTaskId)
-        // {
-        //     return _data.
-        // }
+
+        //update date completed
+        public bool UpdateAssignedTasksChildByIdAndDateCom(int AssignedTaskId, string? DateCompleted)
+        {
+            bool result =false;
+            AssignedTasksChildModel AssignedTasks = GetAssignedTasksChildById(AssignedTaskId);
+            if(AssignedTasks != null)
+            {
+                AssignedTasks.DateCompleted = DateCompleted;
+                _context.Update<AssignedTasksChildModel>(AssignedTasks);
+                result = _context.SaveChanges()!=0;
+            }
+            return result;
+        }
+        //update repeat
+        public bool UpdateRepeatAssignedTasksChildByIdAndRepeat(int AssignedTaskId, int Repeat)
+        {
+            bool result =false;
+            AssignedTasksChildModel AssignedTasks = GetAssignedTasksChildById(AssignedTaskId);
+            if(AssignedTasks != null)
+            {
+                AssignedTasks.Repeat = Repeat;
+                _context.Update<AssignedTasksChildModel>(AssignedTasks);
+                result = _context.SaveChanges()!=0;
+            }
+            return result;
+        }
         public AssignedTasksChildModel GetAssignedTasksChildById(int AssignedTaskId)
         {
             return _context.AssignedTasksChildInfo.SingleOrDefault(item => item.Id == AssignedTaskId);
         }
-        public AssignedTasksChildModel GetAssignedTasksChildByUserId(int UserId)
+        public IEnumerable<AssignedTasksChildModel> GetAssignedTasksChildByUserId(int UserId)
         {
             return _context.AssignedTasksChildInfo.Where(item => item.Id == UserId);
         }
 
-        
+
         public bool DeletedAssignedTasksChildById(int AssignedTaskId)
         {
             AssignedTasksChildModel AssignedTasksChild = GetAssignedTasksChildById(AssignedTaskId);

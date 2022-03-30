@@ -25,11 +25,18 @@ namespace scrubby_webapi.Controllers
             return _data.CreateAssignedTasksChild(AssignedTasksChildToCreate);
         }
         
-        // [HttpPost("UpdateAssignedTasksChildById/{AssignedTaskId}")]
-        // public bool UpdateAssignedTasksChildById(int AssignedTaskId)
-        // {
-        //     return _data.UpdateAssignedTasksChildById(AssignedTaskId);
-        // }
+        //update datecompleted
+        [HttpPost("UpdateAssignedTasksChildByIdAndDateCom/{AssignedTaskId}/{DateCompleted}")]
+        public bool UpdateAssignedTasksChildByIdAndDateCom(int AssignedTaskId, string? DateCompleted)
+        {
+            return _data.UpdateAssignedTasksChildByIdAndDateCom(AssignedTaskId, DateCompleted);
+        }
+        //update repeat
+        [HttpPost("UpdateRepeatAssignedTasksChildByIdAndRepeat/{AssignedTaskId}/{Repeat}")]
+        public bool UpdateRepeatAssignedTasksChildByIdAndRepeat(int AssignedTaskId, int Repeat)
+        {
+            return _data.UpdateRepeatAssignedTasksChildByIdAndRepeat(AssignedTaskId, Repeat);
+        }
 
         [HttpGet("GetAssignedTasksChildById/{AssignedTaskId}")]
         public AssignedTasksChildModel GetAssignedTasksChildById(int AssignedTaskId)

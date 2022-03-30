@@ -40,5 +40,12 @@ namespace scrubby_webapi.Controllers
             return _data.DeleteSpaceCollectionByCollectionId(CollectionId);
         }
 
+        [HttpPost("UpdateSpaceCollectionNameByUserId/{UserId}/{CollectionName}")]
+        public bool UpdateSpaceCollectionNameByUserId(int UserId, string CollectionName)
+        {
+            return _data.UpdateSpaceCollectionNameByUserId(UserId, CollectionName);
+        }
+
+
     }
 }

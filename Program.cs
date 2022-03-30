@@ -11,6 +11,9 @@ builder.Services.AddScoped<SelectedTaskService>();
 builder.Services.AddScoped<SelectedItemsInSpaceService>();
 builder.Services.AddScoped<SharedSpacesService>();
 builder.Services.AddScoped<SharedInfoService>();
+builder.Services.AddScoped<SpaceCollectionService>();
+builder.Services.AddScoped<AssignedTasksChildService>();
+
 
 var ConnectionString = builder.Configuration.GetConnectionString("MyScrubbyString");
 

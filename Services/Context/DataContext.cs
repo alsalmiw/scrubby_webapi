@@ -15,6 +15,8 @@ namespace scrubby_webapi.Services.Context
          public DBSet<SelectedItemsInSpaceModel> SelectedItemsInSpaceInfo {get; set;}
          public DbSet<SpaceInfoModel> SpaceInfo { get; set; }
          public DbSet<SharedSpacesModel> SharedSpacesInfo { get; set; }
+         public DbSet<SpaceCollectionModel> SpaceCollectionInfo {get; set;}
+         public DbSet<AssignedTasksChildModel> AssignedTasksChildInfo {get; set;}
          
         public DataContext(DbContextOptions options) : base(options) {}
 

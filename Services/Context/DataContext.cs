@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.Static;
 
 namespace scrubby_webapi.Services.Context
 {

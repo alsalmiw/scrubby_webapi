@@ -307,22 +307,22 @@ namespace scrubby_webapi.Services.Context
                 },
                 new CleaningProductsStaticAPIModel(){
                     Id=2,
-                    ProductName="Window Wipers",
-                    Instructions="Spray compound onto window and wipe with a clean towel",
+                    ProductName="Bleach",
+                    Instructions="Spray compound onto surface and scurb with a sponge",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
-                    TasksTags="Window, Mirror"
+                    TasksTags="Toilet, Shower, Bathtub"
                 },
                 new CleaningProductsStaticAPIModel(){
                     Id=3,
-                    ProductName="Window Wipers",
-                    Instructions="Spray compound onto window and wipe with a clean towel",
+                    ProductName="Dish Detergents",
+                    Instructions="Squeeze onto a sponge",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
-                    TasksTags="Window, Mirror"
+                    TasksTags="Dishes"
                 },
                 new CleaningProductsStaticAPIModel(){
                     Id=4,
-                    ProductName="Window Wipers",
-                    Instructions="Spray compound onto window and wipe with a clean towel",
+                    ProductName="Floor Detergents",
+                    Instructions="Pour into a bucket of warm water and stir until product is mixed",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
                     TasksTags="Window, Mirror"
                 },
@@ -335,6 +335,8 @@ namespace scrubby_webapi.Services.Context
                 },
             };
             builder.Entity<CleaningProductsStaticAPIModel>().HasData(cleaningProductsStaticAPIData);
+
+            var
         }
         
     }

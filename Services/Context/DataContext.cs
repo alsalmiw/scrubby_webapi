@@ -390,8 +390,8 @@ namespace scrubby_webapi.Services.Context
             var AssignedTasksChildData = new List<AssignedTasksChildModel>(){
                 new AssignedTasksChildModel(){
                     Id=1,
-                    UserIdTasked=4,
-                    UserIdOwner=4,
+                    UserIdTasked=1,
+                    UserIdOwner=1,
                     SelectedTasksId=5,
                     DateCreated="4-21-2022",
                     DateCompleted="4-22-2022",
@@ -399,8 +399,8 @@ namespace scrubby_webapi.Services.Context
                 },
                 new AssignedTasksChildModel(){
                     Id=2,
-                    UserIdTasked=3,
-                    UserIdOwner=3,
+                    UserIdTasked=2,
+                    UserIdOwner=2,
                     SelectedTasksId=3,
                     DateCreated="4-10-2022",
                     DateCompleted="4-12-2022",
@@ -408,8 +408,8 @@ namespace scrubby_webapi.Services.Context
                 },
                 new AssignedTasksChildModel(){
                     Id=3,
-                    UserIdTasked=1,
-                    UserIdOwner=1,
+                    UserIdTasked=3,
+                    UserIdOwner=3,
                     SelectedTasksId=2,
                     DateCreated="4-1-2022",
                     DateCompleted="4-3-2022",
@@ -417,8 +417,8 @@ namespace scrubby_webapi.Services.Context
                 },
                 new AssignedTasksChildModel(){
                     Id=4,
-                    UserIdTasked=2,
-                    UserIdOwner=2,
+                    UserIdTasked=4,
+                    UserIdOwner=4,
                     SelectedTasksId=4,
                     DateCreated="4-20-2022",
                     DateCompleted="4-20-2022",
@@ -426,8 +426,8 @@ namespace scrubby_webapi.Services.Context
                 },
                 new AssignedTasksChildModel(){
                     Id=5,
-                    UserIdTasked=2,
-                    UserIdOwner=2,
+                    UserIdTasked=5,
+                    UserIdOwner=5,
                     SelectedTasksId=1,
                     DateCreated="3-30-2022",
                     DateCompleted="3-31-2022",

@@ -21,6 +21,11 @@ namespace scrubby_webapi.Services.Context
 
          public DbSet<AssignedTasksUsersModel> AssignedTasksUsersInfo { get; set; }
          public DbSet<CleaningProductsStaticAPIModel> CleaningProductsStaticAPIInfo { get; set; }
+
+         public DbSet<SpaceItemsStaticAPIModel> SpaceItemsStaticAPIInfo { get; set; }
+         public DbSet<TasksInfoStaticAPIModel> TasksInfoStaticAPIInfo { get; set; }
+
+         
          
         public DataContext(DbContextOptions options) : base(options) {}
 
@@ -338,7 +343,135 @@ namespace scrubby_webapi.Services.Context
             };
             builder.Entity<CleaningProductsStaticAPIModel>().HasData(cleaningProductsStaticAPIData);
 
+            var assignedTasksChildData = new List<AssignedTasksChildModel>() {
+                new AssignedTasksChildModel() {
+                    Id=1,
+                    UserId=1,
+                    SelectedTasksId=1,
+                    DateCreated="03/30/2022",
+                    DateCompleted="04/02/2022",
+                    IsDeleted=false,
+                    Repeat= false
+                },
+                new AssignedTasksChildModel() {
+                    Id=2,
+                    UserId=2,
+                    SelectedTasksId=2,
+                    DateCreated="03/31/2022",
+                    DateCompleted="04/03/2022",
+                    IsDeleted=false,
+                    Repeat= false
+                },
+                new AssignedTasksChildModel() {
+                    Id=3,
+                    UserId=3,
+                    SelectedTasksId=3,
+                    DateCreated="04/01/2022",
+                    DateCompleted="04/04/2022",
+                    IsDeleted=false,
+                    Repeat= false
+                },
+                new AssignedTasksChildModel() {
+                    Id=4,
+                    UserId=4,
+                    SelectedTasksId=4,
+                    DateCreated="04/02/2022",
+                    DateCompleted="04/05/2022",
+                    IsDeleted=false,
+                    Repeat= false
+                },
+                new AssignedTasksChildModel() {
+                    Id=5,
+                    UserId=5,
+                    SelectedTasksId=5,
+                    DateCreated="04/03/2022",
+                    DateCompleted="04/06/2022",
+                    IsDeleted=false,
+                    Repeat= false
+                }
+            };
+            builder.Entity<AssignedTasksChildModel>().HasData(assignedTasksChildData);
             
+            var spaceItemsStaticAPIData = new List<SpaceItemsStaticAPIModel>() {
+                new SpaceItemsStaticAPIModel() {
+                    Id=1,
+                    Name="Chair",
+                    Description="A chair that is brown",
+                    Tags="wood",
+                },
+                new SpaceItemsStaticAPIModel() {
+                    Id=2,
+                    Name="Lamp",
+                    Description="A lamp that is shiny",
+                    Tags="bright, metal",
+                },
+                new SpaceItemsStaticAPIModel() {
+                    Id=3,
+                    Name="Table",
+                    Description="A round table",
+                    Tags="wood",
+                },
+                new SpaceItemsStaticAPIModel() {
+                    Id=4,
+                    Name="Rug",
+                    Description="A rug that is fluffy",
+                    Tags="carpet, fluffy",
+                },
+                new SpaceItemsStaticAPIModel() {
+                    Id=5,
+                    Name="Bed",
+                    Description="A water bed",
+                    Tags="slippery, wet",
+                },
+            };
+            builder.Entity<SpaceItemsStaticAPIModel>().HasData(spaceItemsStaticAPIData);
+
+            var tasksInfoStaticAPIData = new List<TasksInfoStaticAPIModel>() {
+                new TasksInfoStaticAPIModel() {
+                    Id=1,
+                    Name="Clean toilet",
+                    Description="Clean the toilet using wax on and wax off",
+                    Tags="tile, slippery",
+                    Time="3:00pm",
+                    coins=20
+                },
+                new TasksInfoStaticAPIModel() {
+                    Id=2,
+                    Name="Make bed",
+                    Description="Make bed using military style",
+                    Tags="sheets, pillow",
+                    Time="5:00pm",
+                    coins=10
+                },
+                new TasksInfoStaticAPIModel() {
+                    Id=3,
+                    Name="Wash dishes",
+                    Description="Wash dishes by hand",
+                    Tags="soap, water",
+                    Time="6:00pm",
+                    coins=15
+                },
+                new TasksInfoStaticAPIModel() {
+                    Id=4,
+                    Name="Do laundry",
+                    Description="Wash clothes with one batch colors and other batch white",
+                    Tags="tile, slippery",
+                    Time="3:00pm",
+                    coins=20
+                },
+                new TasksInfoStaticAPIModel() {
+                    Id=5,
+                    Name="Dust living room",
+                    Description="Dust living room with swifter",
+                    Tags="dust, swifter",
+                    Time="8:00pm",
+                    coins=5
+                }
+            };
+
+            builder.Entity<TasksInfoStaticAPIModel>().HasData(tasksInfoStaticAPIData);
+
+
         }
         
     }

@@ -14,7 +14,7 @@ namespace scrubby_webapi.Services
         {
             _context = context;
         }
-        public bool CreateSpaceCollection(CreateSpaceCollectionModel SpaceCollectionToCreate)
+        public bool CreateSpaceCollection(SpaceCollectionModel SpaceCollectionToCreate)
         {
             _context.Add(newCreatedAssignedTaskChild);
             return _context.SaveChanges() !=0;

@@ -215,6 +215,126 @@ namespace scrubby_webapi.Services.Context
                 }
             };
             builder.Entity<SelectedTasksModel>().HasData(selectedTasksData);
+
+            var selectedItemsInSpaceData = new List<SelectedItemsInSpaceModel>()
+            {
+                new SelectedItemsInSpaceModel(){
+                    Id=1,
+                    SpaceId=1,
+                    isDeleted=true
+                },
+                new SelectedItemsInSpaceModel(){
+                    Id=2,
+                    SpaceId=2,
+                    isDeleted=false
+                },
+                new SelectedItemsInSpaceModel(){
+                    Id=3,
+                    SpaceId=3,
+                    isDeleted=true
+                },
+                new SelectedItemsInSpaceModel(){
+                    Id=4,
+                    SpaceId=4,
+                    isDeleted=false
+                },
+                new SelectedItemsInSpaceModel(){
+                    Id=5,
+                    SpaceId=5,
+                    isDeleted=true
+                }
+            };
+            builder.Entity<SelectedItemsInSpaceModel>().HasData(selectedItemsInSpaceData);
+
+            var dependentData = new List<DependentModel>(){
+
+                new DependentModel(){
+                    Id=1,
+                    UserId=1,
+                    DependentName="Taylor",
+                    DependentAge=11,
+                    DependentPhoto="",
+                    DependentCoins=5000,
+                    isDeleted=false
+                },
+                new DependentModel(){
+                    Id=2,
+                    UserId=1,
+                    DependentName="Sammy",
+                    DependentAge=8,
+                    DependentPhoto="",
+                    DependentCoins=2000,
+                    isDeleted=false
+                },
+                new DependentModel(){
+                    Id=3,
+                    UserId=1,
+                    DependentName="Jeff",
+                    DependentAge=15,
+                    DependentPhoto="",
+                    DependentCoins=100,
+                    isDeleted=true
+                },
+                new DependentModel(){
+                    Id=4,
+                    UserId=1,
+                    DependentName="Jessica",
+                    DependentAge=8,
+                    DependentPhoto="",
+                    DependentCoins=7000,
+                    isDeleted=false
+                },
+                new DependentModel(){
+                    Id=5,
+                    UserId=1,
+                    DependentName="Tony",
+                    DependentAge=17,
+                    DependentPhoto="",
+                    DependentCoins=4000,
+                    isDeleted=false
+                },
+            };
+            builder.Entity<DependentModel>().HasData(dependentData);
+
+            var cleaningProductsStaticAPIData = new List<CleaningProductsStaticAPIModel>(){
+
+                new CleaningProductsStaticAPIModel(){
+                    Id=1,
+                    ProductName="Window Wipers",
+                    Instructions="Spray compound onto window and wipe with a clean towel",
+                    Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
+                    TasksTags="Window, Mirror"
+                },
+                new CleaningProductsStaticAPIModel(){
+                    Id=2,
+                    ProductName="Window Wipers",
+                    Instructions="Spray compound onto window and wipe with a clean towel",
+                    Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
+                    TasksTags="Window, Mirror"
+                },
+                new CleaningProductsStaticAPIModel(){
+                    Id=3,
+                    ProductName="Window Wipers",
+                    Instructions="Spray compound onto window and wipe with a clean towel",
+                    Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
+                    TasksTags="Window, Mirror"
+                },
+                new CleaningProductsStaticAPIModel(){
+                    Id=4,
+                    ProductName="Window Wipers",
+                    Instructions="Spray compound onto window and wipe with a clean towel",
+                    Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
+                    TasksTags="Window, Mirror"
+                },
+                new CleaningProductsStaticAPIModel(){
+                    Id=5,
+                    ProductName="Window Wipers",
+                    Instructions="Spray compound onto window and wipe with a clean towel",
+                    Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
+                    TasksTags="Window, Mirror"
+                },
+            };
+            builder.Entity<CleaningProductsStaticAPIModel>().HasData(cleaningProductsStaticAPIData);
         }
         
     }

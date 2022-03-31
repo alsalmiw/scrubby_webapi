@@ -14,9 +14,21 @@ namespace scrubby_webapi.Services
         {
             _context = context;
         }
-         public IEnumerable<CleaningProductsStaticAPIModel> GetAllCleaningProductsById(int id) 
+
+        public CleaningProductsStaticAPIModel GetAllCleaningProductsById(int Id)
         {
-            return _context.AssignedTasksUsersInfo.Where(user => user.Id = id);
+            return _context.CleaningProductsStaticAPIInfo.SingleOrDefault(item => item.Id == ID);
         }
+
+        public IEnumerable<CleaningProductsStaticAPIModel> GetCleaningProductsAPIByTags(string Tags)
+        {
+            
+            return _context.CleaningProductsStaticAPIInfo.Where(item => item.Tags.Contains().toLower() == Tags.ToLower());
+        }
+
+
+
+
+
     }
 }

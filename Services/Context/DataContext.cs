@@ -20,6 +20,10 @@ namespace scrubby_webapi.Services.Context
          public DbSet<AssignedTasksChildModel> AssignedTasksChildInfo {get; set;}
 
          public DbSet<AssignedTasksUsersModel> AssignedTasksUsersInfo { get; set; }
+         public DbSet<TasksInfoStaticAPIModel> TasksInfoStaticAPIInfo { get; set; }
+         public DbSet<SpaceItemsStaticAPIModel> SpaceItemsStaticAPIInfo { get; set; }
+         public DbSet<CleaningProductsStaticAPIModel> CleaningProductsStaticAPIInfo { get; set; }
+
          
         public DataContext(DbContextOptions options) : base(options) {}
 

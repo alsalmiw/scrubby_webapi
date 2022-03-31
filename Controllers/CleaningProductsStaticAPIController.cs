@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Services;
+using scrubby_webapi.Models;
 
 namespace scrubby_webapi.Controllers
 {
@@ -14,10 +15,35 @@ namespace scrubby_webapi.Controllers
 
         private readonly CleaningProductsStaticAPIService _data;
 
-        public CleaningProductsStaticAPIController(CleaningProductsStaticAPIService _dataFromService)
+        public CleaningProductsStaticAPIModel(CleaningProductsStaticAPIService _dataFromService)
         {
             _data = _dataFromService;
         }
+
+        [HttpGet("GetCleaningProductsById/{id}")]
+
+        public IEnumerable<CleaningProductsStaticAPIModel> GetAllCleaningProductsById(int id) 
+        {
+            return _data.GetAllCleaningProductsById(id);
+        }
+
+        
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
         
     }
 }

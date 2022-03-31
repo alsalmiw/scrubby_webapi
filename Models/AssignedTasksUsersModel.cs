@@ -18,8 +18,8 @@ namespace scrubby_webapi.Models
         public int UserIdOwner { get; set; }   
         
         public int SelectedTasksId { get; set; } 
-        public Date DateCreated { get; set; }
-        public Date DateCompleted { get; set; }
+        public string? DateCreated { get; set; }
+        public string? DateCompleted { get; set; }
         public int Repeat { get; set; }
 
         public AssignedTasksUsersModel(){}

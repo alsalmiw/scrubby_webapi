@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Services.Context;
+using scrubby_webapi.Models.Static;
 
 namespace scrubby_webapi.Controllers
 {

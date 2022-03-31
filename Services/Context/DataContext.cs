@@ -19,6 +19,7 @@ namespace scrubby_webapi.Services.Context
          public DbSet<AssignedTasksChildModel> AssignedTasksChildInfo {get; set;}
 
          public DbSet<AssignedTasksUsersModel> AssignedTasksUsersInfo { get; set; }
+         public DbSet<CleaningProductsStaticAPIModel> CleaningProductsStaticAPIInfo { get; set; }
          
         public DataContext(DbContextOptions options) : base(options) {}
 
@@ -215,6 +216,12 @@ namespace scrubby_webapi.Services.Context
                 }
             };
             builder.Entity<SelectedTasksModel>().HasData(selectedTasksData);
+
+            
+
+
+
+
         }
         
     }

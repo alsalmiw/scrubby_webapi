@@ -7,7 +7,7 @@ namespace scrubby_webapi.Models
 {
     public class AssignedTasksChildModel
     {
-        public int AssignedTaskId { get; set; }
+        public int Id { get; set; }
         public int UserId { get; set; }
         public int SelectedTasksId { get; set; }
         public string? DateCreated { get; set; }

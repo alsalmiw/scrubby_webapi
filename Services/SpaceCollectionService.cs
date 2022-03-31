@@ -21,18 +21,18 @@ namespace scrubby_webapi.Services
         }
         //edit or update
         
-        public SpaceCollectionModel GetSpaceCollectionById(int CollectionId)
+        public SpaceCollectionModel GetSpaceCollectionById(int Id)
         {
-            return _data.GetSpaceCollectionInfo.SingleOrDefault(item => item.Id == CollectionId);
+            return _data.GetSpaceCollectionInfo.SingleOrDefault(item => item.Id == Id);
         }
 
         public SpaceCollectionModel GetSpaceCollectionByUserId(int UserId)
         {
-            return _data.GetSpaceCollectionInfo.Where(item => item.Id == CollectionId);
+            return _data.GetSpaceCollectionInfo.Where(item => item.Id == UserId);
         }
-        public bool DeleteSpaceCollectionByCollectionId(int CollectionId)
+        public bool DeleteSpaceCollectionById(int Id)
         {
-            SpaceCollectionModel SpaceCollection = GetSpaceCollectionById(CollectionId);
+            SpaceCollectionModel SpaceCollection = GetSpaceCollectionById(Id);
 
             SpaceCollection.IsDeleted = !SpaceCollection.IsDeletedIsDeleted;
             _context.Update<SpaceCollectionModel>(SpaceCollection);

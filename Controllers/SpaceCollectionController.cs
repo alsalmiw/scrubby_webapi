@@ -24,20 +24,20 @@ namespace scrubby_webapi.Controllers
         {
             return _data.CreateSpaceCollection(SpaceCollectionToCreate);
         }
-        [HttpGet("GetSpaceCollectionById/{CollectionId}")]
-        public SpaceCollectionModel GetSpaceCollectionById(int CollectionId)
+        [HttpGet("GetSpaceCollectionById/{Id}")]
+        public SpaceCollectionModel GetSpaceCollectionById(int Id)
         {
-            return _data.GetSpaceCollectionById(CollectionId);
+            return _data.GetSpaceCollectionById(Id);
         }
         [HttpGet("GetSpaceCollectionByUserId/{UserId}")]
         public SpaceCollectionModel GetSpaceCollectionByUserId(int UserId)
         {
             return _data.GetSpaceCollectionByUserId(UserId);
         }
-        [HttpPost("DeleteSpaceCollectionByCollectionId/{CollectionId}")]
-        public bool DeleteSpaceCollectionByCollectionId(int CollectionId)
+        [HttpPost("DeleteSpaceCollectionById/{Id}")]
+        public bool DeleteSpaceCollectionById(int Id)
         {
-            return _data.DeleteSpaceCollectionByCollectionId(CollectionId);
+            return _data.DeleteSpaceCollectionById(Id);
         }
 
         [HttpPost("UpdateSpaceCollectionNameByUserId/{UserId}/{CollectionName}")]

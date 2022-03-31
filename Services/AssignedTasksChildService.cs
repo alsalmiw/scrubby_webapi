@@ -21,10 +21,10 @@ namespace scrubby_webapi.Services
         }
 
         //update date completed
-        public bool UpdateAssignedTasksChildByIdAndDateCom(int AssignedTaskId, string? DateCompleted)
+        public bool UpdateAssignedTasksChildByIdAndDateCom(int Id, string? DateCompleted)
         {
             bool result =false;
-            AssignedTasksChildModel AssignedTasks = GetAssignedTasksChildById(AssignedTaskId);
+            AssignedTasksChildModel AssignedTasks = GetAssignedTasksChildById(Id);
             if(AssignedTasks != null)
             {
                 AssignedTasks.DateCompleted = DateCompleted;
@@ -34,10 +34,10 @@ namespace scrubby_webapi.Services
             return result;
         }
         //update repeat
-        public bool UpdateRepeatAssignedTasksChildByIdAndRepeat(int AssignedTaskId, int Repeat)
+        public bool UpdateRepeatAssignedTasksChildByIdAndRepeat(int Id, int Repeat)
         {
             bool result =false;
-            AssignedTasksChildModel AssignedTasks = GetAssignedTasksChildById(AssignedTaskId);
+            AssignedTasksChildModel AssignedTasks = GetAssignedTasksChildById(Id);
             if(AssignedTasks != null)
             {
                 AssignedTasks.Repeat = Repeat;
@@ -46,9 +46,9 @@ namespace scrubby_webapi.Services
             }
             return result;
         }
-        public AssignedTasksChildModel GetAssignedTasksChildById(int AssignedTaskId)
+        public AssignedTasksChildModel GetAssignedTasksChildById(int Id)
         {
-            return _context.AssignedTasksChildInfo.SingleOrDefault(item => item.Id == AssignedTaskId);
+            return _context.AssignedTasksChildInfo.SingleOrDefault(item => item.Id == Id);
         }
         public IEnumerable<AssignedTasksChildModel> GetAssignedTasksChildByUserId(int UserId)
         {
@@ -56,9 +56,9 @@ namespace scrubby_webapi.Services
         }
 
 
-        public bool DeletedAssignedTasksChildById(int AssignedTaskId)
+        public bool DeletedAssignedTasksChildById(int Id)
         {
-            AssignedTasksChildModel AssignedTasksChild = GetAssignedTasksChildById(AssignedTaskId);
+            AssignedTasksChildModel AssignedTasksChild = GetAssignedTasksChildById(Id);
 
             AssignedTasksChild.IsDeleted = !AssignedTasksChild.IsDeletedIsDeleted;
             _context.Update<AssignedTasksChildModel>(AssignedTasksChild);

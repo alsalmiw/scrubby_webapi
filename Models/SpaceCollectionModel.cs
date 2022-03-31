@@ -7,7 +7,7 @@ namespace scrubby_webapi.Models
 {
     public class SpaceCollectionModel
     {
-        public int CollectionId { get; set; }
+        public int Id { get; set; }
         public string? CollectionName { get; set; }
         public bool IsDeleted { get; set; }
         public int UserId { get; set; }

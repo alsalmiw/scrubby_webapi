@@ -26,22 +26,22 @@ namespace scrubby_webapi.Controllers
         }
         
         //update datecompleted
-        [HttpPost("UpdateAssignedTasksChildByIdAndDateCom/{AssignedTaskId}/{DateCompleted}")]
-        public bool UpdateAssignedTasksChildByIdAndDateCom(int AssignedTaskId, string? DateCompleted)
+        [HttpPost("UpdateAssignedTasksChildByIdAndDateCom/{Id}/{DateCompleted}")]
+        public bool UpdateAssignedTasksChildByIdAndDateCom(int Id, string? DateCompleted)
         {
-            return _data.UpdateAssignedTasksChildByIdAndDateCom(AssignedTaskId, DateCompleted);
+            return _data.UpdateAssignedTasksChildByIdAndDateCom(Id, DateCompleted);
         }
         //update repeat
-        [HttpPost("UpdateRepeatAssignedTasksChildByIdAndRepeat/{AssignedTaskId}/{Repeat}")]
-        public bool UpdateRepeatAssignedTasksChildByIdAndRepeat(int AssignedTaskId, int Repeat)
+        [HttpPost("UpdateRepeatAssignedTasksChildByIdAndRepeat/{Id}/{Repeat}")]
+        public bool UpdateRepeatAssignedTasksChildByIdAndRepeat(int Id, int Repeat)
         {
-            return _data.UpdateRepeatAssignedTasksChildByIdAndRepeat(AssignedTaskId, Repeat);
+            return _data.UpdateRepeatAssignedTasksChildByIdAndRepeat(Id, Repeat);
         }
 
-        [HttpGet("GetAssignedTasksChildById/{AssignedTaskId}")]
-        public AssignedTasksChildModel GetAssignedTasksChildById(int AssignedTaskId)
+        [HttpGet("GetAssignedTasksChildById/{Id}")]
+        public AssignedTasksChildModel GetAssignedTasksChildById(int Id)
         {
-            return _data.GetAssignedTasksChildById(AssignedTaskId);
+            return _data.GetAssignedTasksChildById(Id);
         }
 
         
@@ -52,10 +52,10 @@ namespace scrubby_webapi.Controllers
         }
 
 
-        [HttpPost("DeletedAssignedTasksChildById/{AssignedTaskId}")]
-        public bool DeletedAssignedTasksChildById(int AssignedTaskId)
+        [HttpPost("DeletedAssignedTasksChildById/{Id}")]
+        public bool DeletedAssignedTasksChildById(int Id)
         {
-             return _data.DeletedAssignedTasksChildById(AssignedTaskId);
+             return _data.DeletedAssignedTasksChildById(Id);
         }
 
     }

@@ -157,23 +157,33 @@ namespace scrubby_webapi.Services.Context
             var sharedSpacesData = new List<SharedSpacesModel>(){
                  new SharedSpacesModel(){
                      Id=1,
-                     UserId=1
+                     UserId=1,
+                    isDeleted=false,
+                    isAccepted=true
                  },
                  new SharedSpacesModel(){
                      Id=2,
-                     UserId=2
+                     UserId=2,
+                     isDeleted=false,
+                    isAccepted=true
                  },
                  new SharedSpacesModel(){
                      Id=3,
-                     UserId=3
+                     UserId=3,
+                     isDeleted=true,
+                    isAccepted=true
                  },
                  new SharedSpacesModel(){
                      Id=4,
-                     UserId=4
+                     UserId=4,
+                     isDeleted=true,
+                    isAccepted=true
                  },
                  new SharedSpacesModel(){
                      Id=5,
-                     UserId=5
+                     UserId=5,
+                     isDeleted=false,
+                    isAccepted=true
                  },
             };
             builder.Entity<SharedSpacesModel>().HasData(sharedSpacesData);
@@ -387,54 +397,7 @@ namespace scrubby_webapi.Services.Context
             };
             builder.Entity<AssignedTasksUsersModel>().HasData(AssignedTasksUsersData);
 
-            var AssignedTasksChildData = new List<AssignedTasksChildModel>(){
-                new AssignedTasksChildModel(){
-                    Id=1,
-                    UserIdTasked=1,
-                    UserIdOwner=1,
-                    SelectedTasksId=5,
-                    DateCreated="4-21-2022",
-                    DateCompleted="4-22-2022",
-                    Repeat=2
-                },
-                new AssignedTasksChildModel(){
-                    Id=2,
-                    UserIdTasked=2,
-                    UserIdOwner=2,
-                    SelectedTasksId=3,
-                    DateCreated="4-10-2022",
-                    DateCompleted="4-12-2022",
-                    Repeat=3
-                },
-                new AssignedTasksChildModel(){
-                    Id=3,
-                    UserIdTasked=3,
-                    UserIdOwner=3,
-                    SelectedTasksId=2,
-                    DateCreated="4-1-2022",
-                    DateCompleted="4-3-2022",
-                    Repeat=1
-                },
-                new AssignedTasksChildModel(){
-                    Id=4,
-                    UserIdTasked=4,
-                    UserIdOwner=4,
-                    SelectedTasksId=4,
-                    DateCreated="4-20-2022",
-                    DateCompleted="4-20-2022",
-                    Repeat=1
-                },
-                new AssignedTasksChildModel(){
-                    Id=5,
-                    UserIdTasked=5,
-                    UserIdOwner=5,
-                    SelectedTasksId=1,
-                    DateCreated="3-30-2022",
-                    DateCompleted="3-31-2022",
-                    Repeat=2
-                }
-            };
-            builder.Entity<AssignedTasksChildModel>().HasData(AssignedTasksChildData);
+            
         }
         
     }

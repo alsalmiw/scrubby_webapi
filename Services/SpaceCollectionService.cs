@@ -32,11 +32,15 @@ namespace scrubby_webapi.Services
         }
         public bool DeleteSpaceCollectionById(int Id)
         {
-            SpaceCollectionModel SpaceCollection = GetSpaceCollectionById(Id);
-
-            SpaceCollection.IsDeleted = !SpaceCollection.IsDeletedIsDeleted;
-            _context.Update<SpaceCollectionModel>(SpaceCollection);
-            return _context.SaveChanges() != 0;
+            SpaceCollectionModel foundSpaceCollection = GetSpaceCollectionById(Id);
+            bool result = false;
+            if(foundSpaceCollection != null)
+            {
+                foundSpaceCollection.IsDeleted = !foundSpaceCollection.IsDeleted;
+                _context.Update<SpaceCollectionModel>(foundSpaceCollection);
+                result = _context.SaveChanges() != 0;
+            }
+            return result;
         }
 
         //update space collection name

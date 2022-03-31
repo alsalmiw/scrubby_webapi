@@ -21,7 +21,6 @@ namespace scrubby_webapi.Controllers
         }
 
         [HttpGet("GetCleaningProductsById/{id}")]
-
         public IEnumerable<CleaningProductsStaticAPIModel> GetAllCleaningProductsById(int id) 
         {
             return _data.GetAllCleaningProductsById(id);

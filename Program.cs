@@ -9,10 +9,18 @@ builder.Services.AddScoped <UserService>();
 builder.Services.AddScoped<DependentService>();
 builder.Services.AddScoped<SelectedTaskService>();
 builder.Services.AddScoped<SelectedItemsInSpaceService>();
+
 builder.Services.AddScoped<SharedSpacesService>();
+
 builder.Services.AddScoped<SharedInfoService>();
 builder.Services.AddScoped<SpaceCollectionService>();
 builder.Services.AddScoped<AssignedTasksChildService>();
+
+builder.Services.AddScoped<AssignedTasksUserService>();
+builder.Services.AddScoped<TasksInfoStaticAPIService>();
+builder.Services.AddScoped<CleaningProductsStaticAPIService>();
+builder.Services.AddScoped<SpaceItemsStaticAPIService>();
+
 
 
 var ConnectionString = builder.Configuration.GetConnectionString("MyScrubbyString");

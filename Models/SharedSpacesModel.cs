@@ -9,6 +9,8 @@ namespace scrubby_webapi.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
+        public string? isDeleted { get; set; }
+        public string? isAccepted { get; set; }
         public SharedSpacesModel(){}
     }
 }

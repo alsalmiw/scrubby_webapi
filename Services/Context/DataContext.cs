@@ -127,31 +127,31 @@ namespace scrubby_webapi.Services.Context
             var spaceCollectionData = new List<SpaceCollectionModel>(){
                 new SpaceCollectionModel(){
                     Id=1,
-                    CollectionName="Bathroom",
+                    CollectionName="Smith House",
                     IsDeleted=false,
                     UserId=1
                 },
                 new SpaceCollectionModel(){
                     Id=2,
-                    CollectionName="Bathroom",
+                    CollectionName="Storage Shed",
                     IsDeleted=false,
                     UserId=1
                 },
                 new SpaceCollectionModel(){
                     Id=3,
-                    CollectionName="Bathroom",
+                    CollectionName="Paris Home",
                     IsDeleted=false,
                     UserId=2
                 },
                 new SpaceCollectionModel(){
                     Id=4,
-                    CollectionName="Bathroom",
+                    CollectionName="Work Office",
                     IsDeleted=false,
                     UserId=3
                 },
                 new SpaceCollectionModel(){
                     Id=5,
-                    CollectionName="Bathroom",
+                    CollectionName="Shed",
                     IsDeleted=false,
                     UserId=4
                 }
@@ -204,7 +204,7 @@ namespace scrubby_webapi.Services.Context
                     Id=2,
                     taskAndProductId=2,
                     DateCreated="4-1-2022",
-                    DateCompleted="4-3-2022",
+                    DateCompleted="",
                     Repeat=2
                 },
                 new SelectedTasksModel(){
@@ -218,7 +218,7 @@ namespace scrubby_webapi.Services.Context
                     Id=4,
                     taskAndProductId=4,
                     DateCreated="4-20-2022",
-                    DateCompleted="4-20-2022",
+                    DateCompleted="",
                     Repeat=3
                 },
                 new SelectedTasksModel(){
@@ -301,7 +301,7 @@ namespace scrubby_webapi.Services.Context
                 },
                 new DependentModel(){
                     Id=5,
-                    UserId=1,
+                    UserId=2,
                     DependentName="Tony",
                     DependentAge=17,
                     DependentPhoto="",
@@ -339,7 +339,7 @@ namespace scrubby_webapi.Services.Context
                     ProductName="Floor Detergents",
                     Instructions="Pour into a bucket of warm water and stir until product is mixed",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
-                    TasksTags="Window, Mirror"
+                    TasksTags="Floor"
                 },
                 new CleaningProductsStaticAPIModel(){
                     Id=5,
@@ -410,7 +410,7 @@ namespace scrubby_webapi.Services.Context
                     DateCreated="03/30/2022",
                     DateCompleted="04/02/2022",
                     IsDeleted=false,
-                    Repeat= false
+                    Repeat= 1
                 },
                 new AssignedTasksChildModel() {
                     Id=2,
@@ -419,7 +419,7 @@ namespace scrubby_webapi.Services.Context
                     DateCreated="03/31/2022",
                     DateCompleted="04/03/2022",
                     IsDeleted=false,
-                    Repeat= false
+                    Repeat= 1
                 },
                 new AssignedTasksChildModel() {
                     Id=3,
@@ -428,7 +428,7 @@ namespace scrubby_webapi.Services.Context
                     DateCreated="04/01/2022",
                     DateCompleted="04/04/2022",
                     IsDeleted=false,
-                    Repeat= false
+                    Repeat= 2
                 },
                 new AssignedTasksChildModel() {
                     Id=4,
@@ -437,7 +437,7 @@ namespace scrubby_webapi.Services.Context
                     DateCreated="04/02/2022",
                     DateCompleted="04/05/2022",
                     IsDeleted=false,
-                    Repeat= false
+                    Repeat= 3
                 },
                 new AssignedTasksChildModel() {
                     Id=5,
@@ -446,7 +446,7 @@ namespace scrubby_webapi.Services.Context
                     DateCreated="04/03/2022",
                     DateCompleted="04/06/2022",
                     IsDeleted=false,
-                    Repeat= false
+                    Repeat= 2
                 }
             };
             builder.Entity<AssignedTasksChildModel>().HasData(assignedTasksChildData);
@@ -456,31 +456,31 @@ namespace scrubby_webapi.Services.Context
                     Id=1,
                     Name="Chair",
                     Description="A chair that is brown",
-                    Tags="wood",
+                    Tags="wood, living room, bedroom, office ",
                 },
                 new SpaceItemsStaticAPIModel() {
                     Id=2,
                     Name="Lamp",
                     Description="A lamp that is shiny",
-                    Tags="bright, metal",
+                    Tags="bright, metal, living room, bedroom, office ",
                 },
                 new SpaceItemsStaticAPIModel() {
                     Id=3,
                     Name="Table",
                     Description="A round table",
-                    Tags="wood",
+                    Tags="wood, living room, bedroom, office, kitchen",
                 },
                 new SpaceItemsStaticAPIModel() {
                     Id=4,
                     Name="Rug",
                     Description="A rug that is fluffy",
-                    Tags="carpet, fluffy",
+                    Tags="carpet, fluffy, living room, bedroom",
                 },
                 new SpaceItemsStaticAPIModel() {
                     Id=5,
                     Name="Bed",
                     Description="A water bed",
-                    Tags="slippery, wet",
+                    Tags="slippery, wet, bedroom",
                 },
             };
             builder.Entity<SpaceItemsStaticAPIModel>().HasData(spaceItemsStaticAPIData);
@@ -491,7 +491,7 @@ namespace scrubby_webapi.Services.Context
                     Name="Clean toilet",
                     Description="Clean the toilet using wax on and wax off",
                     Tags="tile, slippery",
-                    Time="3:00pm",
+                    Time="15 min",
                     coins=20
                 },
                 new TasksInfoStaticAPIModel() {
@@ -499,7 +499,7 @@ namespace scrubby_webapi.Services.Context
                     Name="Make bed",
                     Description="Make bed using military style",
                     Tags="sheets, pillow",
-                    Time="5:00pm",
+                    Time="5 min",
                     coins=10
                 },
                 new TasksInfoStaticAPIModel() {
@@ -507,7 +507,7 @@ namespace scrubby_webapi.Services.Context
                     Name="Wash dishes",
                     Description="Wash dishes by hand",
                     Tags="soap, water",
-                    Time="6:00pm",
+                    Time="10 min",
                     coins=15
                 },
                 new TasksInfoStaticAPIModel() {
@@ -515,7 +515,7 @@ namespace scrubby_webapi.Services.Context
                     Name="Do laundry",
                     Description="Wash clothes with one batch colors and other batch white",
                     Tags="tile, slippery",
-                    Time="3:00pm",
+                    Time="15 min",
                     coins=20
                 },
                 new TasksInfoStaticAPIModel() {
@@ -523,7 +523,7 @@ namespace scrubby_webapi.Services.Context
                     Name="Dust living room",
                     Description="Dust living room with swifter",
                     Tags="dust, swifter",
-                    Time="8:00pm",
+                    Time="5 min",
                     coins=5
                 }
             };

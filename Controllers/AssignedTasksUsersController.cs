@@ -21,24 +21,26 @@ namespace scrubby_webapi.Controllers
 
         [HttpGet("GetAllAssignedTasksUsersById/{Id}")]
 
-        public IEnumerable<AssignedTasksUsersModel> GetAllAssignedTasksUsersById(int id)
+        public AssignedTasksUsersModel GetAllAssignedTasksUsersById(int id)
         {
             return _data.GetAllAssignedTasksUsersById(id);
         }
 
-        [HttpGet("GetDateCreatedAssignedTasksUsersById/{Id}")]
+        //missing service
 
-        public IEnumerable<AssignedTasksUsersModel> GetDateCreatedAssignedTasksUsersById(int id)
-        {
-            return _data.GetDateCreatedAssignedTasksUsersById(id);
-        }
+        // [HttpGet("GetDateCreatedAssignedTasksUsersById/{Id}")]
 
-        [HttpGet("GetDateCompletedAssignedTasksUsersById/{Id}")]
+        // public IEnumerable<AssignedTasksUsersModel> GetDateCreatedAssignedTasksUsersById(int id)
+        // {
+        //     return _data.GetDateCreatedAssignedTasksUsersById(id);
+        // }
 
-        public IEnumerable<AssignedTasksUsersModel> GetDateCompletedAssignedTasksUsersById(int id)
-        {
-            return _data.GetDateCompletedAssignedTasksUsersById(id);
-        }
+        // [HttpGet("GetDateCompletedAssignedTasksUsersById/{Id}")]
+
+        // public IEnumerable<AssignedTasksUsersModel> GetDateCompletedAssignedTasksUsersById(int id)
+        // {
+        //     return _data.GetDateCompletedAssignedTasksUsersById(id);
+        // }
 
         [HttpGet("GetAllAssignedTasksUsersByUserId/{userId}")]
 
@@ -47,18 +49,18 @@ namespace scrubby_webapi.Controllers
             return _data.GetAllAssignedTasksUsersByUserId(userId);
         }
 
-        [HttpGet("GetDateCreatedAssignedTasksUsersByUserId/{userId}")]
+        // [HttpGet("GetDateCreatedAssignedTasksUsersByUserId/{userId}")]
 
-        public IEnumerable<AssignedTasksUsersModel> GetDateCreatedAssignedTasksUsersByUserId(int userId)
-        {
-            return _data.GetDateCreatedAssignedTasksUsersByUserId(userId);
-        }
+        // public IEnumerable<AssignedTasksUsersModel> GetDateCreatedAssignedTasksUsersByUserId(int userId)
+        // {
+        //     return _data.GetDateCreatedAssignedTasksUsersByUserId(userId);
+        // }
 
-        [HttpGet("GetDateCompletedAssignedTasksUsersByUserId/{userId}")]
-        public IEnumerable<AssignedTasksUsersModel> GetDateCompletedAssignedTasksUsersByUserId(int userId)
-        {
-            return _data.GetDateCompletedAssignedTasksUsersByUserId(userId);
-        }
+        // [HttpGet("GetDateCompletedAssignedTasksUsersByUserId/{userId}")]
+        // public IEnumerable<AssignedTasksUsersModel> GetDateCompletedAssignedTasksUsersByUserId(int userId)
+        // {
+        //     return _data.GetDateCompletedAssignedTasksUsersByUserId(userId);
+        // }
 
         [HttpPost("UpdateAssignedTasksUsers/{Id}/{SelectedTasksId}")]
 

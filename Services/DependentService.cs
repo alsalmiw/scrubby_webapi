@@ -24,7 +24,7 @@ namespace scrubby_webapi.Services
         }                                                               
         public bool UpdateDependent(DependentModel dependentUpdate)
         {
-            _context.Update<DependentModel>(DependentUpdate);
+            _context.Update<DependentModel>(dependentUpdate);
             return _context.SaveChanges() != 0;
             
         }

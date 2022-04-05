@@ -9,8 +9,8 @@ namespace scrubby_webapi.Models
     {  
         public int Id { get; set; } 
         public int taskAndProductId { get; set; }
-        public int DateCreated { get; set; }
-        public int DateCompleted { get; set; }
+        public string? DateCreated { get; set; }
+        public string? DateCompleted { get; set; }
         public int Repeat { get; set; }
         public SelectedTasksModel(){}
     }

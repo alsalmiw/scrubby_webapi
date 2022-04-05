@@ -46,7 +46,7 @@ namespace scrubby_webapi.Controllers
 
         
         [HttpGet("GetAssignedTasksChildByUserId/{UserId}")]
-        public AssignedTasksChildModel GetAssignedTasksChildByUserId(int UserId)
+        public IEnumerable<AssignedTasksChildModel> GetAssignedTasksChildByUserId(int UserId)
         {
             return _data.GetAssignedTasksChildByUserId(UserId);
         }

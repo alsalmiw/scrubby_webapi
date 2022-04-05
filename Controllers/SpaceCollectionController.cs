@@ -30,7 +30,7 @@ namespace scrubby_webapi.Controllers
             return _data.GetSpaceCollectionById(Id);
         }
         [HttpGet("GetSpaceCollectionByUserId/{UserId}")]
-        public SpaceCollectionModel GetSpaceCollectionByUserId(int UserId)
+        public IEnumerable<SpaceCollectionModel>  GetSpaceCollectionByUserId(int UserId)
         {
             return _data.GetSpaceCollectionByUserId(UserId);
         }

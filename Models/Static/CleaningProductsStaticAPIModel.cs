@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace scrubby_webapi.Models
+namespace scrubby_webapi.Models.Static
 {
     public class CleaningProductsStaticAPIModel
     {

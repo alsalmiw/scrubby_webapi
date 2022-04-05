@@ -18,13 +18,15 @@ namespace scrubby_webapi.Services
 
         public AssignedTasksUsersModel GetAllAssignedTasksUsersById(int id)
         {
-            return _context.AssignedTasksUsersInfo.SingleOrDefault(user => user.Id = id);
+            return _context.AssignedTasksUsersInfo.SingleOrDefault(user => user.Id == id);
         }
 
-        public AssignedTasksUsersModel GetAllAssignedTasksUsersByUserId(int userId)
+        public IEnumerable<AssignedTasksUsersModel> GetAllAssignedTasksUsersByUserId(int userId)
         {
-            return _context.AssignedTasksUsersInfo.SingleOrDefault(user => user.Id == userId);
+            return _context.AssignedTasksUsersInfo.Where(user => user.Id == userId);
         }
+
+        
 
 
 
@@ -37,7 +39,7 @@ namespace scrubby_webapi.Services
             {
                 //A user was foundUser
                 foundUser.SelectedTasksId = SelectedTasksId;
-                _context.Update<UserModel>(foundUser);
+                _context.Update<AssignedTasksUsersModel>(foundUser);
                result =  _context.SaveChanges() != 0;
             }
 

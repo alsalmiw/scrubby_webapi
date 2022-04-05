@@ -21,7 +21,7 @@ namespace scrubby_webapi.Controllers
         [HttpGet("GetSelectedTaskById/{Id}")]
         public IEnumerable<SelectedTasksModel> GetSelectedTaskByUserId(int id)
         {
-           return  _data.GetSelectedTaskUserById(id);
+           return  _data.GetSelectedTaskByUserId(id);
         }
 
         [HttpPost("UpdateSelectedTask")]

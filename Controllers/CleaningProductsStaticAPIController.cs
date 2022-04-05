@@ -21,17 +21,19 @@ namespace scrubby_webapi.Controllers
         }
 
         [HttpGet("GetCleaningProductsById/{id}")]
-        public IEnumerable<CleaningProductsStaticAPIModel> GetAllCleaningProductsById(int id) 
+        public CleaningProductsStaticAPIModel GetAllCleaningProductsById(int id) 
         {
             return _data.GetAllCleaningProductsById(id);
         }
 
-        [HttpGet("GetCleaningProductsByTags/{Tags}")]
 
-        public IEnumerable<CleaningProductsStaticAPIModel> GetTasksInfoStaticAPIByTags(string Tags)
-        {
-            return _data.GetTasksInfoStaticAPIByTags(Id);
-        }
+        //need services
+        // [HttpGet("GetCleaningProductsByTags/{Tags}")]
+
+        // public IEnumerable<CleaningProductsStaticAPIModel> GetTasksInfoStaticAPIByTags(string Tags)
+        // {
+        //     return _data.GetTasksInfoStaticAPIByTags(Tags);
+        // }
 
         
 

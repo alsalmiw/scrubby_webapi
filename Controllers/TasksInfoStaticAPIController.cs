@@ -18,7 +18,7 @@ namespace scrubby_webapi.Controllers
         {
             _data = _dataFromService;
         }
-        [HttpGet("GetTasksInfoStaticAPIById/{Id")]
+        [HttpGet("GetTasksInfoStaticAPIById/{Id}")]
         public TasksInfoStaticAPIModel GetTasksInfoStaticAPIById(int Id)
         {
             return _data.GetTasksInfoStaticAPIById(Id);
@@ -26,7 +26,7 @@ namespace scrubby_webapi.Controllers
         [HttpGet("GetTasksInfoStaticAPIByTags/{Tags}")]
         public IEnumerable<TasksInfoStaticAPIModel> GetTasksInfoStaticAPIByTags(string Tags)
         {
-            return _data.GetTasksInfoStaticAPIByTags(Id);
+            return _data.GetTasksInfoStaticAPIByTags(Tags);
         }
 
     }

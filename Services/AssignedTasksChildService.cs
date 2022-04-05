@@ -16,7 +16,7 @@ namespace scrubby_webapi.Services
         }
         public bool CreateAssignedTasksChild(AssignedTasksChildModel AssignedTasksChildToCreate)
         {
-            _context.Add(newCreatedAssignedTaskChild);
+            _context.Add(AssignedTasksChildToCreate);
             return _context.SaveChanges() !=0;
         }
 
@@ -60,7 +60,7 @@ namespace scrubby_webapi.Services
         {
             AssignedTasksChildModel AssignedTasksChild = GetAssignedTasksChildById(Id);
 
-            AssignedTasksChild.IsDeleted = !AssignedTasksChild.IsDeletedIsDeleted;
+            AssignedTasksChild.IsDeleted = !AssignedTasksChild.IsDeleted;
             _context.Update<AssignedTasksChildModel>(AssignedTasksChild);
             return _context.SaveChanges() != 0;
         }

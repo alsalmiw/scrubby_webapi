@@ -13,7 +13,7 @@ namespace scrubby_webapi.Services.Context
          public DbSet<UserModel> UserInfo { get; set; }
          public DbSet<DependentModel> DependentInfo {get; set;}
          public DbSet<SelectedTasksModel> SelectedTasksInfo {get; set;}
-         public DBSet<SelectedItemsInSpaceModel> SelectedItemsInSpaceInfo {get; set;}
+         public DbSet<SelectedItemsInSpaceModel> SelectedItemsInSpaceInfo {get; set;}
          public DbSet<SpaceInfoModel> SpaceInfo { get; set; }
          public DbSet<SharedSpacesModel> SharedSpacesInfo { get; set; }
          public DbSet<SpaceCollectionModel> SpaceCollectionInfo {get; set;}
@@ -318,35 +318,35 @@ namespace scrubby_webapi.Services.Context
                     ProductName="Window Wipers",
                     Instructions="Spray compound onto window and wipe with a clean towel",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
-                    TasksTags="Window, Mirror"
+                    TaskTags="Window, Mirror"
                 },
                 new CleaningProductsStaticAPIModel(){
                     Id=2,
                     ProductName="Bleach",
                     Instructions="Spray compound onto surface and scurb with a sponge",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
-                    TasksTags="Toilet, Shower, Bathtub"
+                    TaskTags="Toilet, Shower, Bathtub"
                 },
                 new CleaningProductsStaticAPIModel(){
                     Id=3,
                     ProductName="Dish Detergents",
                     Instructions="Squeeze onto a sponge",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
-                    TasksTags="Dishes"
+                    TaskTags="Dishes"
                 },
                 new CleaningProductsStaticAPIModel(){
                     Id=4,
                     ProductName="Floor Detergents",
                     Instructions="Pour into a bucket of warm water and stir until product is mixed",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
-                    TasksTags="Floor"
+                    TaskTags="Floor"
                 },
                 new CleaningProductsStaticAPIModel(){
                     Id=5,
                     ProductName="Window Wipers",
                     Instructions="Spray compound onto window and wipe with a clean towel",
                     Warnings="HARMFUL IF SWALLOWED. SKIN AND EYE IRRITANT.",
-                    TasksTags="Window, Mirror"
+                    TaskTags="Window, Mirror"
                 },
             };
             builder.Entity<CleaningProductsStaticAPIModel>().HasData(cleaningProductsStaticAPIData);

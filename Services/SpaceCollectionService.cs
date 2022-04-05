@@ -16,19 +16,19 @@ namespace scrubby_webapi.Services
         }
         public bool CreateSpaceCollection(SpaceCollectionModel SpaceCollectionToCreate)
         {
-            _context.Add(newCreatedAssignedTaskChild);
+            _context.Add(SpaceCollectionToCreate);
             return _context.SaveChanges() !=0;
         }
         //edit or update
         
         public SpaceCollectionModel GetSpaceCollectionById(int Id)
         {
-            return _data.GetSpaceCollectionInfo.SingleOrDefault(item => item.Id == Id);
+            return _context.SpaceCollectionInfo.SingleOrDefault(item => item.Id == Id);
         }
 
-        public SpaceCollectionModel GetSpaceCollectionByUserId(int UserId)
+        public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUserId(int UserId)
         {
-            return _data.GetSpaceCollectionInfo.Where(item => item.Id == UserId);
+            return _context.SpaceCollectionInfo.Where(item => item.Id == UserId);
         }
         public bool DeleteSpaceCollectionById(int Id)
         {
@@ -47,11 +47,11 @@ namespace scrubby_webapi.Services
         public bool UpdateSpaceCollectionNameByUserId(int UserId, string CollectionName)
         {
             bool result = false;
-            SpaceCollectionModel SpaceCollection = GetSpaceCollectionByUserId(UserId);
+            SpaceCollectionModel SpaceCollection = GetSpaceCollectionById(UserId);
             if(SpaceCollection !=null)
             {
                 SpaceCollection.CollectionName= CollectionName;
-                _context.Update<SpaceCollectionModel>(founSpaceCollectiondUser);
+                _context.Update<SpaceCollectionModel>(SpaceCollection);
                 result = _context.SaveChanges()!=0;
             }
             return result;

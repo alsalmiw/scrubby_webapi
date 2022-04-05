@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Services;
+using scrubby_webapi.Models;
 
 namespace scrubby_webapi.Controllers
 {
@@ -41,7 +42,7 @@ namespace scrubby_webapi.Controllers
         [HttpGet("GetSharedSpacesByUserId/{UserId}")]
         public IEnumerable<SharedSpacesModel> GetSharedSpacesByUserId(int UserId)
         {
-            return _data.GetSharedSpacesByUserId(id);
+            return _data.GetSharedSpacesByUserId(UserId);
         }
     }
 }

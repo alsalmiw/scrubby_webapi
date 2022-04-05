@@ -21,7 +21,7 @@ namespace scrubby_webapi.Controllers
         [HttpGet("SelectedItemsInSpace/{Id}")]
         public IEnumerable<SelectedItemsInSpaceModel> GetSelectedTaskByUserId(int id)
         {
-           return  _data.GetSelectedTaskUserById(id);
+           return  _data.GetSelectedTaskByUserId(id);
         }
     }
 }

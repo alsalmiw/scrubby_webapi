@@ -7,16 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped <UserService>();
 builder.Services.AddScoped<DependentService>();
-builder.Services.AddScoped<SelectedTaskService>();
+builder.Services.AddScoped<SelectedTasksService>();
 builder.Services.AddScoped<SelectedItemsInSpaceService>();
 
 builder.Services.AddScoped<SharedSpacesService>();
 
-builder.Services.AddScoped<SharedInfoService>();
+builder.Services.AddScoped<SpaceInfoService>();
 builder.Services.AddScoped<SpaceCollectionService>();
 builder.Services.AddScoped<AssignedTasksChildService>();
 
-builder.Services.AddScoped<AssignedTasksUserService>();
+builder.Services.AddScoped<AssignedTasksUsersService>();
 builder.Services.AddScoped<TasksInfoStaticAPIService>();
 builder.Services.AddScoped<CleaningProductsStaticAPIService>();
 builder.Services.AddScoped<SpaceItemsStaticAPIService>();

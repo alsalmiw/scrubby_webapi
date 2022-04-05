@@ -16,12 +16,12 @@ namespace scrubby_webapi.Services.Context
         }
         public TasksInfoStaticAPIModel GetTasksInfoStaticAPIById(int Id)
         {
-            return _context.TasksInfoStaticInfo.SingleOrDefault(item => item.Id == Id);
+            return _context.TasksInfoStaticAPIInfo.SingleOrDefault(item => item.Id == Id);
         }
-        public List<TasksInfoStaticAPIModel> GetTasksInfoStaticAPIByTags(string Tags)
+        public IEnumerable<TasksInfoStaticAPIModel> GetTasksInfoStaticAPIByTags(string Tags)
         {
             
-            return _context.TasksInfoStaticInfo.SingleOrDefault(item => item.Tags.Contains().toLower() == Tags.ToLower());
+            return _context.TasksInfoStaticAPIInfo.Where(item => item.Tags.Contains(Tags.ToLower()));
         }
 
     }

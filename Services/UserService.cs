@@ -136,6 +136,10 @@ namespace scrubby_webapi.Services
             }
             return result;
         }
+        public IEnumerable<UserModel> GetAllUsers()
+        {
+            return _context.UserInfo;
+        }
   
         
 

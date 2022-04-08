@@ -28,12 +28,12 @@ namespace scrubby_webapi.Controllers
 
 
         //need services
-        // [HttpGet("GetCleaningProductsByTags/{Tags}")]
+        [HttpGet("GetCleaningProductsByTags/{Tags}")]
 
-        // public IEnumerable<CleaningProductsStaticAPIModel> GetTasksInfoStaticAPIByTags(string Tags)
-        // {
-        //     return _data.GetTasksInfoStaticAPIByTags(Tags);
-        // }
+        public IEnumerable<CleaningProductsStaticAPIModel> GetTasksInfoStaticAPIByTags(string Tags)
+        {
+            return _data.GetTasksInfoStaticAPIByTags(Tags);
+        }
 
         
 

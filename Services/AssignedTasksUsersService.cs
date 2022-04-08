@@ -47,6 +47,25 @@ namespace scrubby_webapi.Services
         }
 
         //Need Help on creating
+        public AssignedTasksUsersModel GetDateCreatedAssignedTasksUsersById(int Id)
+        {
+            return _context.AssignedTasksUsersInfo.SingleOrDefault(item => item.Id == Id);
+        }
+
+        public AssignedTasksUsersModel GetDateCompletedAssignedTasksUsersById(int Id)
+        {
+            return _context.AssignedTasksUsersInfo.SingleOrDefault(item => item.Id == Id);
+        }
+
+        public IEnumerable<AssignedTasksUsersModel> GetDateCreatedAssignedTasksUsersByUserId(int userId)
+        {
+            return _context.AssignedTasksUsersInfo.Where(user => user.Id == userId);
+        }
+
+        public IEnumerable<AssignedTasksUsersModel> GetDateCompletedAssignedTasksUsersByUserId(int userId)
+        {
+            return _context.AssignedTasksUsersInfo.Where(user => user.Id == userId);
+        }
         
          
 

@@ -9,24 +9,24 @@ namespace scrubby_webapi.Services
 {
     public class DependentService
     {
-        //private readonly DataContext _context;
-        // public DependentService(DataContext context)
-        // {
-        //    // _context = context; 
-        // }
+        private readonly DataContext _context;
+        public DependentService(DataContext context)
+        {
+            _context = context; 
+        }
 
         public bool AddDependent(DependentModel newDependent)
         {
-            // _context.Add(newDependent);
-            // return _context.SaveChanges() !=0;
-            return false;
+            _context.Add(newDependent);
+            return _context.SaveChanges() !=0;
+            
             
         }                                                               
         public bool UpdateDependent(DependentModel dependentUpdate)
         {
-            // _context.Update<DependentModel>(DependentUpdate);
-            // return _context.SaveChanges() != 0;
-            return false;
+            _context.Update<DependentModel>(dependentUpdate);
+            return _context.SaveChanges() != 0;
+            
         }
     }
 }

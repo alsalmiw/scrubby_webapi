@@ -23,6 +23,7 @@ namespace scrubby_webapi.Controllers
             return _data.AddDependent(newDependent);
         }
 
+        
         [HttpPost("UpdateDependent")]
         public bool UpdateDependent (DependentModel dependentUpdate)
         {

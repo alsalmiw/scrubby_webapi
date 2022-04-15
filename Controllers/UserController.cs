@@ -42,5 +42,11 @@ namespace scrubby_webapi.Models
         {
             return _data.DeleteUser(id);
         }
+        [HttpGet("GetAllUsers")]
+        public IEnumerable<UserModel> GetAllUsers()
+        {
+            return _data.GetAllUsers();
+        }
+
     }
 }

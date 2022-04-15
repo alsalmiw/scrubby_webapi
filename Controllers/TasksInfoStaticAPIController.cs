@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Services.Context;
+using scrubby_webapi.Models.Static;
 
 namespace scrubby_webapi.Controllers
 {
@@ -17,5 +18,16 @@ namespace scrubby_webapi.Controllers
         {
             _data = _dataFromService;
         }
+        [HttpGet("GetTasksInfoStaticAPIById/{Id}")]
+        public TasksInfoStaticAPIModel GetTasksInfoStaticAPIById(int Id)
+        {
+            return _data.GetTasksInfoStaticAPIById(Id);
+        }
+        [HttpGet("GetTasksInfoStaticAPIByTags/{Tags}")]
+        public IEnumerable<TasksInfoStaticAPIModel> GetTasksInfoStaticAPIByTags(string Tags)
+        {
+            return _data.GetTasksInfoStaticAPIByTags(Tags);
+        }
+
     }
 }

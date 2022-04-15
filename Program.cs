@@ -7,6 +7,21 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped <UserService>();
 builder.Services.AddScoped<DependentService>();
+builder.Services.AddScoped<SelectedTasksService>();
+builder.Services.AddScoped<SelectedItemsInSpaceService>();
+
+builder.Services.AddScoped<SharedSpacesService>();
+
+builder.Services.AddScoped<SpaceInfoService>();
+builder.Services.AddScoped<SpaceCollectionService>();
+builder.Services.AddScoped<AssignedTasksChildService>();
+
+builder.Services.AddScoped<AssignedTasksUsersService>();
+builder.Services.AddScoped<TasksInfoStaticAPIService>();
+builder.Services.AddScoped<CleaningProductsStaticAPIService>();
+builder.Services.AddScoped<SpaceItemsStaticAPIService>();
+
+
 
 var ConnectionString = builder.Configuration.GetConnectionString("MyScrubbyString");
 
@@ -14,7 +29,7 @@ builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(Conne
 
 builder.Services.AddCors(options => {
 options.AddPolicy("ScrubbyPolicy",
-builder => {builder.WithOrigins("http://localhost:3000")
+builder => {builder.WithOrigins("http://localhost:19000", "http://localhost:19001","http://localhost:19002")
     .AllowAnyHeader()
     .AllowAnyMethod();
 });

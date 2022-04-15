@@ -11,8 +11,9 @@ namespace scrubby_webapi.Models.Static
         public string? ProductName { get; set; }
         public string? Instructions { get; set; }
         public string? Warnings { get; set; }
-        public string? Tags { get; set; }
+        public string? TaskTags { get; set; }
 
         public CleaningProductsStaticAPIModel(){}
+
     }
 }

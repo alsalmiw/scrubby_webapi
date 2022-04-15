@@ -140,6 +140,21 @@ namespace scrubby_webapi.Services
         {
             return _context.UserInfo;
         }
+
+        
+        public bool UpdateName(string username, string Name)
+        {
+            UserModel foundUser = GetUserByUserName(username);
+            bool result = false;
+            if(foundUser != null)
+            {
+                //A user was foundUser
+                foundUser.Name = Name;
+                _context.Update<UserModel>(foundUser);
+               result =  _context.SaveChanges() != 0;
+            }
+            return result;
+        }
   
         
 

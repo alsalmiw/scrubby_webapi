@@ -28,7 +28,7 @@ namespace scrubby_webapi.Models
         public IActionResult Login([FromBody] LoginDTO User){
             return _data.Login(User);
         }
-
+   
         [HttpPost("UpdateUser/{id}/{username}")]
 
         public bool UpdateUsername(int id, string username)
@@ -46,6 +46,12 @@ namespace scrubby_webapi.Models
         public IEnumerable<UserModel> GetAllUsers()
         {
             return _data.GetAllUsers();
+        }
+
+        [HttpPost("UpdateName/{username}/{Name}")]
+        public bool UpdateName(string username, string Name)
+        {
+            return _data.UpdateName(username, Name);
         }
 
     }

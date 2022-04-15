@@ -623,29 +623,7 @@ namespace scrubby_webapi.Services.Context
 
         }
 
-           private void SeedData(ModelBuilder builder)
-        {
-            var CleaningProducts = new List<CleaningProductsStaticAPIModel>()
-            {
-                    new CleaningProductsStaticAPIModel(){
-                        Id = 1,
-                        ProductName ="",
-                        Instructions ="",
-                        Warnings="",
-                        Tags=""
-                    },
-                     new CleaningProductsStaticAPIModel(){
-                        Id = 1,
-                        ProductName ="",
-                        Instructions ="",
-                        Warnings="",
-                        Tags=""
-                    }
-        
-             };
-             builder.Entity<CleaningProductsStaticAPIModel>().HasData(CleaningProducts);
-
-        }
+           
     
     }
 }

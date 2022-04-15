@@ -9,7 +9,9 @@ namespace scrubby_webapi.Models.DTO
     {
         public int Id { get; set; }
         public string? Username { get; set; }
+        public string? Name { get; set; }
         public string? Photo { get; set; }
+         public int Points { get; set; }
         public int Coins { get; set; }
         public bool isDeleted { get; set; }
     }

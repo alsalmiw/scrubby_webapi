@@ -48,10 +48,16 @@ namespace scrubby_webapi.Models
             return _data.GetAllUsers();
         }
 
-        [HttpPost("UpdateName/{username}/{Name}")]
-        public bool UpdateName(string username, string Name)
+        [HttpGet("GetUserPublicInfoByUserName/{username}")]
+        public UserDTO GetUserPublicInfoByUserName(string username)
         {
-            return _data.UpdateName(username, Name);
+            return _data.GetUserPublicInfoByUserName(username);
+        }
+
+        [HttpPost("UpdateName")]
+        public bool UpdateName(UserDTO newName)
+        {
+            return _data.UpdateName(newName);
         }
 
     }

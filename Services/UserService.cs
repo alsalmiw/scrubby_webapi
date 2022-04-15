@@ -11,6 +11,7 @@ using scrubby_webapi.Models;
 using scrubby_webapi.Models.DTO;
 using scrubby_webapi.Services.Context;
 using System.Text;
+using System.Reflection.Metadata.Ecma335;
 
 namespace scrubby_webapi.Services
 {
@@ -142,20 +143,38 @@ namespace scrubby_webapi.Services
         }
 
         
-        public bool UpdateName(string username, string Name)
+        public bool UpdateName(UserDTO newName)
         {
-            UserModel foundUser = GetUserByUserName(username);
+            UserModel foundUser = GetUserByUserName(newName.Username);
             bool result = false;
             if(foundUser != null)
             {
                 //A user was foundUser
-                foundUser.Name = Name;
+                foundUser.Name = newName.Name;
                 _context.Update<UserModel>(foundUser);
                result =  _context.SaveChanges() != 0;
             }
             return result;
         }
-  
+        
+          public UserDTO GetUserPublicInfoByUserName(string username)
+        {
+            UserDTO userInfo = new UserDTO();
+              UserModel foundUser = GetUserByUserName(username);
+               if(foundUser != null)
+            {
+                //A user was foundUser
+                userInfo.Id =foundUser.Id ;
+               userInfo.Name =  foundUser.Name ;
+                userInfo.Username=foundUser.Username;
+                userInfo.Photo=foundUser.Photo;
+                userInfo.Points =foundUser.Points;
+                userInfo.Coins= foundUser.Coins;
+                userInfo.isDeleted=foundUser.isDeleted;
+              
+            }
+            return userInfo;
+        }
         
 
 

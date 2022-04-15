@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace scrubby_webapi.Models.DTO
 {
-    public class userDTO
+    public class UserDTO
     {
         public int Id { get; set; }
         public string? Username { get; set; }

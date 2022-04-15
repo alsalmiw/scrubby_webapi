@@ -60,5 +60,12 @@ namespace scrubby_webapi.Models
             return _data.UpdateName(newName);
         }
 
+        [HttpPost("UpdatePassword")]
+        public bool UpdatePassword(LoginDTO newPassword)
+        {
+            return _data.UpdatePassword(newPassword);
+        }
+
+
     }
 }

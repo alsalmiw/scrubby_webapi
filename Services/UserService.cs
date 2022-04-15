@@ -175,6 +175,22 @@ namespace scrubby_webapi.Services
             }
             return userInfo;
         }
+
+        public bool UpdatePassword(LoginDTO newPassword)
+        {
+             bool result = false;
+            UserModel foundUser = GetUserByUserName(newPassword.Username);
+              if(foundUser != null)
+              {
+                  var hashedPassword = HashPassword(newPassword.Password);
+                  foundUser.Hash = hashedPassword.Hash;
+                  foundUser.Salt = hashedPassword.Salt;
+                    _context.Update<UserModel>(foundUser);
+               result =  _context.SaveChanges() != 0;
+              }
+
+            return result;
+        }
         
 
 

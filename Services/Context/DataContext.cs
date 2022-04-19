@@ -454,7 +454,7 @@ namespace scrubby_webapi.Services.Context
             var spaceItemsStaticAPIData = new List<SpaceItemsStaticAPIModel>() {
                 new SpaceItemsStaticAPIModel() {
                     Id=1,
-                    Name="Chair",
+                    Name="Wooden Chair",
                     Description="A chair that is brown",
                     Tags="wood, living room, bedroom, office ",
                 },
@@ -568,10 +568,186 @@ namespace scrubby_webapi.Services.Context
                 },
                 new SpaceItemsStaticAPIModel() {
                     Id=20,
-                    Name="Wooden Desk",
-                    Description="A water bed",
-                    Tags="slippery, wet, bedroom",
+                    Name="Fabric Chair",
+                    Description="A Chair that is made of fabric",
+                    Tags="living room, bedroom, office",
                 },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=21,
+                    Name="Computer Monitor",
+                    Description="",
+                    Tags="office",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=22,
+                    Name="Keyboard",
+                    Description="",
+                    Tags="office",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=23,
+                    Name="Bookshelf",
+                    Description="",
+                    Tags="office, living room",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=24,
+                    Name="Side table",
+                    Description="",
+                    Tags="office, living room, office",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=25,
+                    Name="Dresser",
+                    Description="",
+                    Tags="bedroom",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=26,
+                    Name="Drawer Chest",
+                    Description="",
+                    Tags="bedroom",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=27,
+                    Name="Nightstand",
+                    Description="",
+                    Tags="bedroom",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=28,
+                    Name="Mirror",
+                    Description="",
+                    Tags="office, living room, office, bedroom, bathroom",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=29,
+                    Name="Sink",
+                    Description="",
+                    Tags="bathroom, kitchen, laundry room",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=30,
+                    Name="Cabinet",
+                    Description="",
+                    Tags="",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=31,
+                    Name="Vanity",
+                    Description="",
+                    Tags="",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=32,
+                    Name="Toilet",
+                    Description="",
+                    Tags="bathroom",
+                },
+                   new SpaceItemsStaticAPIModel() {
+                    Id=33,
+                    Name="Bathtub",
+                    Description="",
+                    Tags="bathroom",
+                },
+                   new SpaceItemsStaticAPIModel() {
+                    Id=34,
+                    Name="Shower Stall",
+                    Description="",
+                    Tags="bathroom",
+                },
+                   new SpaceItemsStaticAPIModel() {
+                    Id=35,
+                    Name="Sofa",
+                    Description="",
+                    Tags="living room",
+                },
+                   new SpaceItemsStaticAPIModel() {
+                    Id=36,
+                    Name="TV Stand",
+                    Description="",
+                    Tags="living roo",
+                },
+                   new SpaceItemsStaticAPIModel() {
+                    Id=37,
+                    Name="Cabinets",
+                    Description="",
+                    Tags="kitchen",
+                },  
+                 new SpaceItemsStaticAPIModel() {
+                    Id=38,
+                    Name="Stove Top",
+                    Description="",
+                    Tags="kitchen",
+                },
+                new SpaceItemsStaticAPIModel() {
+                    Id=39,
+                    Name="Oven",
+                    Description="",
+                    Tags="kitchen",
+                },
+                new SpaceItemsStaticAPIModel() {
+                    Id=40,
+                    Name="Microwave",
+                    Description="",
+                    Tags="kitchen",
+                },
+                new SpaceItemsStaticAPIModel() {
+                    Id=41,
+                    Name="Countertops",
+                    Description="",
+                    Tags="kitchen",
+                },
+                new SpaceItemsStaticAPIModel() {
+                    Id=42,
+                    Name="Wooden Floor",
+                    Description="",
+                    Tags="living room, kithen, bedroom",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=43,
+                    Name="Fridge",
+                    Description="",
+                    Tags="kitchen",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=44,
+                    Name="Dishwasher",
+                    Description="",
+                    Tags="kitchen",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=45,
+                    Name="Car",
+                    Description="",
+                    Tags="garage",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=46,
+                    Name="Grass",
+                    Description="",
+                    Tags="yard",
+                },
+                   new SpaceItemsStaticAPIModel() {
+                    Id=47,
+                    Name="Tree",
+                    Description="",
+                    Tags="yard",
+                },
+
+                   new SpaceItemsStaticAPIModel() {
+                    Id=48,
+                    Name="Plants",
+                    Description="",
+                    Tags="yard",
+                },
+                   new SpaceItemsStaticAPIModel() {
+                    Id=48,
+                    Name="laundry",
+                    Description="",
+                    Tags="laundryroom",
+                },
+                
             };
             builder.Entity<SpaceItemsStaticAPIModel>().HasData(spaceItemsStaticAPIData);
 
@@ -580,7 +756,7 @@ namespace scrubby_webapi.Services.Context
                     Id=1,
                     Name="Clean toilet",
                     Description="Clean the toilet using wax on and wax off",
-                    Tags="tile, slippery",
+                    Tags="toilet",
                     Time="15 min",
                     coins=20
                 },
@@ -588,34 +764,155 @@ namespace scrubby_webapi.Services.Context
                     Id=2,
                     Name="Make bed",
                     Description="Make bed using military style",
-                    Tags="sheets, pillow",
+                    Tags="bed",
                     Time="5 min",
                     coins=10
                 },
                 new TasksInfoStaticAPIModel() {
                     Id=3,
                     Name="Wash dishes",
-                    Description="Wash dishes by hand",
-                    Tags="soap, water",
+                    Description="Load your dishwasher with dirty dishes.",
+                    Tags="",
                     Time="10 min",
                     coins=15
                 },
                 new TasksInfoStaticAPIModel() {
                     Id=4,
-                    Name="Do laundry",
+                    Name="Wash Clothes",
                     Description="Wash clothes with one batch colors and other batch white",
-                    Tags="tile, slippery",
+                    Tags="laundry",
                     Time="15 min",
                     coins=20
                 },
                 new TasksInfoStaticAPIModel() {
                     Id=5,
-                    Name="Dust living room",
-                    Description="Dust living room with swifter",
+                    Name="Dust",
+                    Description="Dust the furniture",
                     Tags="dust, swifter",
                     Time="5 min",
                     coins=5
-                }
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=6,
+                    Name="Change Bedsheets",
+                    Description="Remove old bedsheets and replace with clean sheets",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=7,
+                    Name="Polish",
+                    Description="Polish the wood surface",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=8,
+                    Name="Scrub",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=9,
+                    Name="Sanitize",
+                    Description="clean",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=10,
+                    Name="Organize",
+                    Description="Organize the items on the surface",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=11,
+                    Name="Shine",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=12,
+                    Name="Wipe",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=13,
+                    Name="Sweep",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=14,
+                    Name="Vaccum under",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=15,
+                    Name="Vaccum",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=16,
+                    Name="Mop",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=17,
+                    Name="Clear Expired",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=18,
+                    Name="Remove trash",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=19,
+                    Name="",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=20,
+                    Name="",
+                    Description="",
+                    Tags="",
+                    Time=" min",
+                    coins=5
+                },
+                
             };
 
             builder.Entity<TasksInfoStaticAPIModel>().HasData(tasksInfoStaticAPIData);

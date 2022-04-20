@@ -28,5 +28,10 @@ namespace scrubby_webapi.Services
             return _context.SaveChanges() != 0;
             
         }
+
+       public IEnumerable<DependentModel> GetDependantByUserId (int userId)
+        {
+            return _context.DependentInfo.Where(d => d.UserId == userId);
+        }
     }
 }

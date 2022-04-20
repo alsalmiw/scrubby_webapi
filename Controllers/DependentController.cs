@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using scrubby_webapi.Services;
 using scrubby_webapi.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 
 namespace scrubby_webapi.Controllers
 {
@@ -28,6 +29,12 @@ namespace scrubby_webapi.Controllers
         public bool UpdateDependent (DependentModel dependentUpdate)
         {
             return _data.UpdateDependent(dependentUpdate);
+        }
+
+        [HttpGet("GetDependantByUserId/{userId}")]
+        public IEnumerable<DependentModel> GetDependantByUserId (int userId)
+        {
+            return _data.GetDependantByUserId(userId);
         }
     }
 }

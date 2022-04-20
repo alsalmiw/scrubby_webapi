@@ -20,5 +20,10 @@ namespace scrubby_webapi.Services
             return _context.SpaceItemsStaticAPIInfo.Where(item => item.Tags.Contains(Tags.ToLower()));
             
         }
+
+        public IEnumerable<SpaceItemsStaticAPIModel>GetAllSpaceItemsStaticAPI()
+        {
+            return _context.SpaceItemsStaticAPIInfo;
+        }
     }
 }

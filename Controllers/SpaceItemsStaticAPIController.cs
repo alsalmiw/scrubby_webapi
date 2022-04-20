@@ -23,5 +23,10 @@ namespace scrubby_webapi.Controllers
         {
             return _data.GetSpaceItemsStaticAPIByTags(Tags);
         }
+        [HttpGet("GetAllSpaceItemsStaticAPI")]
+        public IEnumerable<SpaceItemsStaticAPIModel>GetAllSpaceItemsStaticAPI()
+        {
+            return _data.GetAllSpaceItemsStaticAPI();
+        }
     }
 }

@@ -742,7 +742,7 @@ namespace scrubby_webapi.Services.Context
                     Tags="yard",
                 },
                    new SpaceItemsStaticAPIModel() {
-                    Id=48,
+                    Id=49,
                     Name="laundry",
                     Description="",
                     Tags="laundryroom",

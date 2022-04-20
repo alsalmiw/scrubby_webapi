@@ -121,6 +121,30 @@ namespace scrubby_webapi.Services.Context
                 SpaceCategory="Space Category",
                 collectionId =1
                 },
+                 new SpaceInfoModel(){
+                Id=6,
+                SpaceName="Master Bath",
+                SpaceCategory="Bathroom",
+                collectionId =4
+                },
+                 new SpaceInfoModel(){
+                Id=7,
+                SpaceName="Kids Bedroom",
+                SpaceCategory="Bedroom",
+                collectionId =4
+                },
+                 new SpaceInfoModel(){
+                Id=8,
+                SpaceName="Kitchen",
+                SpaceCategory="Kitchen",
+                collectionId =4
+                },
+                 new SpaceInfoModel(){
+                Id=9,
+                SpaceName="Loft",
+                SpaceCategory="Living Room",
+                collectionId =4
+                },
             };
             builder.Entity<SpaceInfoModel>().HasData(spaceInfoData);
 
@@ -189,6 +213,7 @@ namespace scrubby_webapi.Services.Context
                      isDeleted=false,
                     isAccepted=true
                  },
+                 
             };
             builder.Entity<SharedSpacesModel>().HasData(sharedSpacesData);
 
@@ -265,7 +290,7 @@ namespace scrubby_webapi.Services.Context
 
                 new DependentModel(){
                     Id=1,
-                    UserId=1,
+                    UserId=3,
                     DependentName="Taylor",
                     DependentAge=11,
                     DependentPhoto="",
@@ -274,7 +299,7 @@ namespace scrubby_webapi.Services.Context
                 },
                 new DependentModel(){
                     Id=2,
-                    UserId=1,
+                    UserId=3,
                     DependentName="Sammy",
                     DependentAge=8,
                     DependentPhoto="",
@@ -283,7 +308,7 @@ namespace scrubby_webapi.Services.Context
                 },
                 new DependentModel(){
                     Id=3,
-                    UserId=1,
+                    UserId=3,
                     DependentName="Jeff",
                     DependentAge=15,
                     DependentPhoto="",

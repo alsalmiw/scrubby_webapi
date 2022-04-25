@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using scrubby_webapi.Models;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Services;
+using scrubby_webapi.Models.DTO;
 
 namespace scrubby_webapi.Controllers
 {

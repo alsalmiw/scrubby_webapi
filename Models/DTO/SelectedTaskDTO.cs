@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Models.DTO
+namespace scrubby_webapi.Models.DTO
 {
     public class SelectedTaskDTO
     {

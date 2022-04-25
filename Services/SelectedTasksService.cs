@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.Static;
 using scrubby_webapi.Models.DTO;
 using scrubby_webapi.Services.Context;
 using System.Collections;
@@ -31,22 +32,8 @@ namespace scrubby_webapi.Services
             List<SelectedTasksModel> newList = new List<SelectedTasksModel>();
             for (int i = 0; i < listOfSelectedItem.Count; i++)
             {
-                // for (int j = 0; j < TasksInfoStaticAPIInfo.Count; j++)
-                // {
-                //         if(TasksInfoStaticAPIInfo[j].Tags.Contains(listOfSelectedItem[i].Name))
-                //     {
-                         List<SelectedTasksModel> newTasks = new List<SelectedTasksModel>();
-                //         newTask.Id=0;
-                //         newTask.itemId = listOfSelectedItem[i].Id;
-                //         newTask.UserId = listOfSelectedItem[i].UserId;
-                //         newTask.taskId = tasksInfoStaticAPIData[j].Id;
-                //         //product id
-                //         newTask.DateCreated = DateTime.Today;
-                //         newTask.isDeleted=false;
-                //         newTask.isArchived=false;
-                //         list.Add(newTask);
-                //     }
-                // }
+                 List<TasksInfoStaticAPIModel> newTasks = new List<TasksInfoStaticAPIModel>();
+
 
                 newTasks = _context.TasksInfoStaticAPIInfo.Where(item => item.Tags.Contains(listOfSelectedItem[i].Name)).ToList();
                 for (int j = 0; j < newTasks.Count; j++)

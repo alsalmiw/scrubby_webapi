@@ -29,6 +29,11 @@ namespace scrubby_webapi.Controllers
         {
             return UpdateSelectedTask(selectedTaskToUpdate);
         }
+        [HttpPost("AddSelectedTask")]
+        public bool AddSelectedTask(List<SelectedTaskDTO> listOfSelectedTask)
+        {
+            return AddSelectedTask(listOfSelectedTask);
+        }
 
 
     }

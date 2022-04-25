@@ -220,38 +220,58 @@ namespace scrubby_webapi.Services.Context
             var selectedTasksData = new List<SelectedTasksModel>(){
                 new SelectedTasksModel(){
                     Id=1,
-                    taskAndProductId=1,
-                    DateCreated="3-30-2022",
-                    DateCompleted="3-31-2022",
-                    Repeat=1
+                    itemId=1,
+                    UserId=2,
+                    taskId=5,
+                    productId=3,
+                    DateCreated="4-19-2022",
+                    DateCompleted="",
+                    isDeleted=false,
+                    isArchived=true
                 },
                 new SelectedTasksModel(){
                     Id=2,
-                    taskAndProductId=2,
-                    DateCreated="4-1-2022",
-                    DateCompleted="",
-                    Repeat=2
+                    itemId=1,
+                    UserId=2,
+                    taskId=5,
+                    productId=3,
+                    DateCreated="4-21-2022",
+                    DateCompleted="4-22-2022",
+                    isDeleted=false,
+                    isArchived=true
                 },
                 new SelectedTasksModel(){
                     Id=3,
-                    taskAndProductId=3,
-                    DateCreated="4-10-2022",
-                    DateCompleted="4-12-2022",
-                    Repeat=2
+                    itemId=1,
+                    UserId=3,
+                    taskId=5,
+                    productId=3,
+                    DateCreated="4-21-2022",
+                    DateCompleted="4-22-2022",
+                    isDeleted=false,
+                    isArchived=true
                 },
                 new SelectedTasksModel(){
                     Id=4,
-                    taskAndProductId=4,
-                    DateCreated="4-20-2022",
-                    DateCompleted="",
-                    Repeat=3
+                    itemId=1,
+                    UserId=1,
+                    taskId=5,
+                    productId=3,
+                    DateCreated="4-21-2022",
+                    DateCompleted="4-22-2022",
+                    isDeleted=false,
+                    isArchived=true
                 },
                 new SelectedTasksModel(){
                     Id=5,
-                    taskAndProductId=5,
+                    itemId=1,
+                    UserId=1,
+                    taskId=5,
+                    productId=3,
                     DateCreated="4-21-2022",
                     DateCompleted="4-22-2022",
-                    Repeat=3
+                    isDeleted=false,
+                    isArchived=true
                 }
             };
             builder.Entity<SelectedTasksModel>().HasData(selectedTasksData);

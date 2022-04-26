@@ -125,25 +125,25 @@ namespace scrubby_webapi.Services.Context
                 Id=6,
                 SpaceName="Master Bath",
                 SpaceCategory="Bathroom",
-                collectionId =4
+                collectionId =3
                 },
                  new SpaceInfoModel(){
                 Id=7,
                 SpaceName="Kids Bedroom",
                 SpaceCategory="Bedroom",
-                collectionId =4
+                collectionId =3
                 },
                  new SpaceInfoModel(){
                 Id=8,
                 SpaceName="Kitchen",
                 SpaceCategory="Kitchen",
-                collectionId =4
+                collectionId =3
                 },
                  new SpaceInfoModel(){
                 Id=9,
                 SpaceName="Loft",
                 SpaceCategory="Living Room",
-                collectionId =4
+                collectionId =3
                 },
             };
             builder.Entity<SpaceInfoModel>().HasData(spaceInfoData);

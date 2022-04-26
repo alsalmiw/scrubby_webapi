@@ -33,9 +33,8 @@ namespace scrubby_webapi.Services
             for (int i = 0; i < listOfSelectedItem.Count; i++)
             {
                  List<TasksInfoStaticAPIModel> newTasks = new List<TasksInfoStaticAPIModel>();
-
-
-                newTasks = _context.TasksInfoStaticAPIInfo.Where(item => item.Tags.Contains(listOfSelectedItem[i].Name)).ToList();
+                newTasks = _context.TasksInfoStaticAPIInfo.Where(item => item.Tags.ToLower().Contains(listOfSelectedItem[i].Name.ToLower())).ToList();
+                
                 for (int j = 0; j < newTasks.Count; j++)
                 {
                     SelectedTasksModel newTask = new SelectedTasksModel();
@@ -45,20 +44,17 @@ namespace scrubby_webapi.Services
                         newTask.taskId = newTasks[j].Id;
                         //product id
                         DateTime date = DateTime.Now;
-                        newTask.DateCreated = date.ToString("M/d/yyyy") ;
+                        newTask.DateCreated = date.ToString("MM/dd/yyyy") ;
                         newTask.isDeleted=false;
                         newTask.isArchived=false;
                         newList.Add(newTask);
                 }
-
             }
             bool result = false;
             for (int k = 0; k < newList.Count; k++)
             {
-                
                 _context.Add(newList[k]);
                 result = _context.SaveChanges()!=0;
-                
             }
             //check if result is false to then break out
             //if failed need to get rid of duplicates.

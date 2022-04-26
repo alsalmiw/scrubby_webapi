@@ -28,14 +28,14 @@ namespace scrubby_webapi.Controllers
         [HttpPost("UpdateSelectedTask")]
         public bool UpdateSelectedTask(SelectedTasksModel selectedTaskToUpdate)
         {
-            return UpdateSelectedTask(selectedTaskToUpdate);
+            return _data.UpdateSelectedTask(selectedTaskToUpdate);
         }
         [HttpPost("AddSelectedTask")]
         public bool AddSelectedTask(List<SelectedTaskDTO> listOfSelectedTask)
         {
-            return AddSelectedTask(listOfSelectedTask);
+            return _data.AddSelectedTask(listOfSelectedTask);
         }
-
+//
 
     }
 }

@@ -11,6 +11,8 @@ namespace scrubby_webapi.Services.Context
     public class DataContext: DbContext 
     {
          public DbSet<UserModel> UserInfo { get; set; }
+         public DbSet<InviteUsersModel> InvitesInfo { get; set; }
+
          public DbSet<DependentModel> DependentInfo {get; set;}
          public DbSet<SelectedTasksModel> SelectedTasksInfo {get; set;}
          public DbSet<SelectedItemsInSpaceModel> SelectedItemsInSpaceInfo {get; set;}
@@ -34,6 +36,17 @@ namespace scrubby_webapi.Services.Context
         }
         private void SeedData(ModelBuilder builder)
         {
+            var InvitedUsers = new List<InviteUsersModel>(){
+                 new InviteUsersModel(){
+                  Id =1,
+                  UserId =3,
+                  InvitedUsername ="Peter",
+                  IsAccepted =false,
+                  IsDeleted  = false,
+                 }
+             };
+            builder.Entity<InviteUsersModel>().HasData(InvitedUsers);
+
             var userData = new List<UserModel>()
             {
                 new UserModel(){

@@ -5,7 +5,8 @@ using scrubby_webapi.Services.Context;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped <UserService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<InviteUsersService>();
 builder.Services.AddScoped<DependentService>();
 builder.Services.AddScoped<SelectedTasksService>();
 builder.Services.AddScoped<SelectedItemsInSpaceService>();

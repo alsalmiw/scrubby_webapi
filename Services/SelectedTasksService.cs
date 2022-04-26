@@ -26,6 +26,11 @@ namespace scrubby_webapi.Services
         {
             return false;
         }
+
+        public IEnumerable<SelectedTasksModel> GetAllSelectedTasks()
+        {
+           return  _context.SelectedTasksInfo;
+        }
         //
         public bool AddSelectedTask(List<SelectedTaskDTO> listOfSelectedItem)
         {
@@ -34,7 +39,7 @@ namespace scrubby_webapi.Services
             {
                  List<TasksInfoStaticAPIModel> newTasks = new List<TasksInfoStaticAPIModel>();
                 newTasks = _context.TasksInfoStaticAPIInfo.Where(item => item.Tags.ToLower().Contains(listOfSelectedItem[i].Name.ToLower())).ToList();
-                
+                Console.WriteLine(newTasks);
                 for (int j = 0; j < newTasks.Count; j++)
                 {
                     SelectedTasksModel newTask = new SelectedTasksModel();

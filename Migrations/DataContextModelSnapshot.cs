@@ -226,7 +226,7 @@ namespace scrubby_webapi.Migrations
                             DependentCoins = 5000,
                             DependentName = "Taylor",
                             DependentPhoto = "",
-                            UserId = 1,
+                            UserId = 3,
                             isDeleted = false
                         },
                         new
@@ -236,7 +236,7 @@ namespace scrubby_webapi.Migrations
                             DependentCoins = 2000,
                             DependentName = "Sammy",
                             DependentPhoto = "",
-                            UserId = 1,
+                            UserId = 3,
                             isDeleted = false
                         },
                         new
@@ -246,7 +246,7 @@ namespace scrubby_webapi.Migrations
                             DependentCoins = 100,
                             DependentName = "Jeff",
                             DependentPhoto = "",
-                            UserId = 1,
+                            UserId = 3,
                             isDeleted = true
                         },
                         new
@@ -268,6 +268,41 @@ namespace scrubby_webapi.Migrations
                             DependentPhoto = "",
                             UserId = 2,
                             isDeleted = false
+                        });
+                });
+
+            modelBuilder.Entity("scrubby_webapi.Models.InviteUsersModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("InvitedUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAccepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InvitesInfo");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InvitedUsername = "Peter",
+                            IsAccepted = false,
+                            IsDeleted = false,
+                            UserId = 3
                         });
                 });
 
@@ -336,10 +371,22 @@ namespace scrubby_webapi.Migrations
                     b.Property<string>("DateCreated")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Repeat")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("taskAndProductId")
+                    b.Property<bool>("isArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("itemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("productId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("taskId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -350,42 +397,62 @@ namespace scrubby_webapi.Migrations
                         new
                         {
                             Id = 1,
-                            DateCompleted = "3-31-2022",
-                            DateCreated = "3-30-2022",
-                            Repeat = 1,
-                            taskAndProductId = 1
+                            DateCompleted = "",
+                            DateCreated = "4-19-2022",
+                            UserId = 2,
+                            isArchived = true,
+                            isDeleted = false,
+                            itemId = 1,
+                            productId = 3,
+                            taskId = 5
                         },
                         new
                         {
                             Id = 2,
-                            DateCompleted = "",
-                            DateCreated = "4-1-2022",
-                            Repeat = 2,
-                            taskAndProductId = 2
+                            DateCompleted = "4-22-2022",
+                            DateCreated = "4-21-2022",
+                            UserId = 2,
+                            isArchived = true,
+                            isDeleted = false,
+                            itemId = 1,
+                            productId = 3,
+                            taskId = 5
                         },
                         new
                         {
                             Id = 3,
-                            DateCompleted = "4-12-2022",
-                            DateCreated = "4-10-2022",
-                            Repeat = 2,
-                            taskAndProductId = 3
+                            DateCompleted = "4-22-2022",
+                            DateCreated = "4-21-2022",
+                            UserId = 3,
+                            isArchived = true,
+                            isDeleted = false,
+                            itemId = 1,
+                            productId = 3,
+                            taskId = 5
                         },
                         new
                         {
                             Id = 4,
-                            DateCompleted = "",
-                            DateCreated = "4-20-2022",
-                            Repeat = 3,
-                            taskAndProductId = 4
+                            DateCompleted = "4-22-2022",
+                            DateCreated = "4-21-2022",
+                            UserId = 1,
+                            isArchived = true,
+                            isDeleted = false,
+                            itemId = 1,
+                            productId = 3,
+                            taskId = 5
                         },
                         new
                         {
                             Id = 5,
                             DateCompleted = "4-22-2022",
                             DateCreated = "4-21-2022",
-                            Repeat = 3,
-                            taskAndProductId = 5
+                            UserId = 1,
+                            isArchived = true,
+                            isDeleted = false,
+                            itemId = 1,
+                            productId = 3,
+                            taskId = 5
                         });
                 });
 
@@ -563,6 +630,34 @@ namespace scrubby_webapi.Migrations
                             SpaceCategory = "Space Category",
                             SpaceName = "Space Name",
                             collectionId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            SpaceCategory = "Bathroom",
+                            SpaceName = "Master Bath",
+                            collectionId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            SpaceCategory = "Bedroom",
+                            SpaceName = "Kids Bedroom",
+                            collectionId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            SpaceCategory = "Kitchen",
+                            SpaceName = "Kitchen",
+                            collectionId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            SpaceCategory = "Living Room",
+                            SpaceName = "Loft",
+                            collectionId = 3
                         });
                 });
 
@@ -659,7 +754,7 @@ namespace scrubby_webapi.Migrations
                         {
                             Id = 1,
                             Description = "A chair that is brown",
-                            Name = "Chair",
+                            Name = "Wooden Chair",
                             Tags = "wood, living room, bedroom, office "
                         },
                         new
@@ -791,9 +886,212 @@ namespace scrubby_webapi.Migrations
                         new
                         {
                             Id = 20,
-                            Description = "A water bed",
-                            Name = "Wooden Desk",
-                            Tags = "slippery, wet, bedroom"
+                            Description = "A Chair that is made of fabric",
+                            Name = "Fabric Chair",
+                            Tags = "living room, bedroom, office"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Description = "",
+                            Name = "Computer Monitor",
+                            Tags = "office"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Description = "",
+                            Name = "Keyboard",
+                            Tags = "office"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Description = "",
+                            Name = "Bookshelf",
+                            Tags = "office, living room"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Description = "",
+                            Name = "Side table",
+                            Tags = "office, living room, office"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Description = "",
+                            Name = "Dresser",
+                            Tags = "bedroom"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Description = "",
+                            Name = "Drawer Chest",
+                            Tags = "bedroom"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Description = "",
+                            Name = "Nightstand",
+                            Tags = "bedroom"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Description = "",
+                            Name = "Mirror",
+                            Tags = "office, living room, office, bedroom, bathroom"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Description = "",
+                            Name = "Sink",
+                            Tags = "bathroom, kitchen, laundry room"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Description = "",
+                            Name = "Cabinet",
+                            Tags = ""
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Description = "",
+                            Name = "Vanity",
+                            Tags = ""
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Description = "",
+                            Name = "Toilet",
+                            Tags = "bathroom"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Description = "",
+                            Name = "Bathtub",
+                            Tags = "bathroom"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Description = "",
+                            Name = "Shower Stall",
+                            Tags = "bathroom"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Description = "",
+                            Name = "Sofa",
+                            Tags = "living room"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Description = "",
+                            Name = "TV Stand",
+                            Tags = "living roo"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Description = "",
+                            Name = "Cabinets",
+                            Tags = "kitchen"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Description = "",
+                            Name = "Stove Top",
+                            Tags = "kitchen"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Description = "",
+                            Name = "Oven",
+                            Tags = "kitchen"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Description = "",
+                            Name = "Microwave",
+                            Tags = "kitchen"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Description = "",
+                            Name = "Countertops",
+                            Tags = "kitchen"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Description = "",
+                            Name = "Wooden Floor",
+                            Tags = "living room, kithen, bedroom"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Description = "",
+                            Name = "Fridge",
+                            Tags = "kitchen"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Description = "",
+                            Name = "Dishwasher",
+                            Tags = "kitchen"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Description = "",
+                            Name = "Car",
+                            Tags = "garage"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Description = "",
+                            Name = "Grass",
+                            Tags = "yard"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Description = "",
+                            Name = "Tree",
+                            Tags = "yard"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Description = "",
+                            Name = "Plants",
+                            Tags = "yard"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Description = "",
+                            Name = "laundry",
+                            Tags = "laundryroom"
                         });
                 });
 
@@ -830,7 +1128,7 @@ namespace scrubby_webapi.Migrations
                             Id = 1,
                             Description = "Clean the toilet using wax on and wax off",
                             Name = "Clean toilet",
-                            Tags = "tile, slippery",
+                            Tags = "toilet",
                             Time = "15 min",
                             coins = 20
                         },
@@ -839,16 +1137,16 @@ namespace scrubby_webapi.Migrations
                             Id = 2,
                             Description = "Make bed using military style",
                             Name = "Make bed",
-                            Tags = "sheets, pillow",
+                            Tags = "bed",
                             Time = "5 min",
                             coins = 10
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Wash dishes by hand",
+                            Description = "Load your dishwasher with dirty dishes.",
                             Name = "Wash dishes",
-                            Tags = "soap, water",
+                            Tags = "",
                             Time = "10 min",
                             coins = 15
                         },
@@ -856,18 +1154,153 @@ namespace scrubby_webapi.Migrations
                         {
                             Id = 4,
                             Description = "Wash clothes with one batch colors and other batch white",
-                            Name = "Do laundry",
-                            Tags = "tile, slippery",
+                            Name = "Wash Clothes",
+                            Tags = "laundry",
                             Time = "15 min",
                             coins = 20
                         },
                         new
                         {
                             Id = 5,
-                            Description = "Dust living room with swifter",
-                            Name = "Dust living room",
+                            Description = "Dust the furniture",
+                            Name = "Dust",
                             Tags = "dust, swifter",
                             Time = "5 min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Remove old bedsheets and replace with clean sheets",
+                            Name = "Change Bedsheets",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Polish the wood surface",
+                            Name = "Polish",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "",
+                            Name = "Scrub",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "clean",
+                            Name = "Sanitize",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Organize the items on the surface",
+                            Name = "Organize",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "",
+                            Name = "Shine",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Description = "",
+                            Name = "Wipe",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Description = "",
+                            Name = "Sweep",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Description = "",
+                            Name = "Vaccum under",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Description = "",
+                            Name = "Vaccum",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Description = "",
+                            Name = "Mop",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Description = "",
+                            Name = "Clear Expired",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Description = "",
+                            Name = "Remove trash",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Description = "",
+                            Name = "",
+                            Tags = "",
+                            Time = " min",
+                            coins = 5
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Description = "",
+                            Name = "",
+                            Tags = "",
+                            Time = " min",
                             coins = 5
                         });
                 });

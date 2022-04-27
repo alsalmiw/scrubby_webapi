@@ -73,7 +73,6 @@ namespace scrubby_webapi.Services
          public IEnumerable<InviteUsersModel> AllInvitesByInvitedUsername (string? username)
         {
           return _context.InvitesInfo.Where(user => user.InvitedUsername == username);
-            
         }
     }
 }

@@ -29,7 +29,7 @@ namespace scrubby_webapi.Services
 
          public IEnumerable<SpaceInfoModel> GetSpacesByCollectionID(int id)
         {
-            return _context.SpaceInfo.Where(space => space.collectionId==id);
+            return _context.SpaceInfo.Where(space => space.CollectionId==id);
         }
 
     }

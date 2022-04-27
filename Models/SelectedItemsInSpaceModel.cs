@@ -9,7 +9,7 @@ namespace scrubby_webapi.Models
     {   
         public int Id { get; set; }
         public int SpaceId { get; set; }
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public SelectedItemsInSpaceModel(){}
     }
 }

@@ -56,7 +56,7 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 5000,
-                    isDeleted=false
+                    IsDeleted=false
 
                 },
                 new UserModel(){
@@ -66,7 +66,7 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 1000,
-                    isDeleted=false
+                    IsDeleted=false
 
                 },
                 new UserModel(){
@@ -76,7 +76,7 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 5000,
-                    isDeleted=false
+                    IsDeleted=false
 
                 },
                 new UserModel(){
@@ -86,7 +86,7 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 50000,
-                    isDeleted=false
+                    IsDeleted=false
 
                 },
                 new UserModel(){
@@ -96,7 +96,7 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 15000,
-                    isDeleted=false
+                    IsDeleted=false
 
                 }
             };
@@ -108,55 +108,55 @@ namespace scrubby_webapi.Services.Context
                 Id=1,
                 SpaceName="Space Name",
                 SpaceCategory="Space Category",
-                collectionId =1
+                CollectionId =1
                 },
             new SpaceInfoModel(){
                 Id=2,
                 SpaceName="Space Name",
                 SpaceCategory="Space Category",
-                collectionId =1
+                CollectionId =1
                 },
             new SpaceInfoModel(){
                 Id=3,
                 SpaceName="Space Name",
                 SpaceCategory="Space Category",
-                collectionId =1
+                CollectionId =1
                 },
             new SpaceInfoModel(){
                 Id=4,
                 SpaceName="Space Name",
                 SpaceCategory="Space Category",
-                collectionId =1
+                CollectionId =1
                 },
             new SpaceInfoModel(){
                 Id=5,
                 SpaceName="Space Name",
                 SpaceCategory="Space Category",
-                collectionId =1
+                CollectionId =1
                 },
                  new SpaceInfoModel(){
                 Id=6,
                 SpaceName="Master Bath",
                 SpaceCategory="Bathroom",
-                collectionId =3
+                CollectionId =3
                 },
                  new SpaceInfoModel(){
                 Id=7,
                 SpaceName="Kids Bedroom",
                 SpaceCategory="Bedroom",
-                collectionId =3
+                CollectionId =3
                 },
                  new SpaceInfoModel(){
                 Id=8,
                 SpaceName="Kitchen",
                 SpaceCategory="Kitchen",
-                collectionId =3
+                CollectionId =3
                 },
                  new SpaceInfoModel(){
                 Id=9,
                 SpaceName="Loft",
                 SpaceCategory="Living Room",
-                collectionId =3
+                CollectionId =3
                 },
             };
             builder.Entity<SpaceInfoModel>().HasData(spaceInfoData);
@@ -198,33 +198,17 @@ namespace scrubby_webapi.Services.Context
             var sharedSpacesData = new List<SharedSpacesModel>(){
                  new SharedSpacesModel(){
                      Id=1,
-                     UserId=1,
-                    isDeleted=false,
-                    isAccepted=true
+                    InvitedUsername="Peter",
+                    CollectionId=2,
+                    IsDeleted=false,
+                    IsAccepted=true
                  },
-                 new SharedSpacesModel(){
+                  new SharedSpacesModel(){
                      Id=2,
-                     UserId=2,
-                     isDeleted=false,
-                    isAccepted=true
-                 },
-                 new SharedSpacesModel(){
-                     Id=3,
-                     UserId=3,
-                     isDeleted=true,
-                    isAccepted=true
-                 },
-                 new SharedSpacesModel(){
-                     Id=4,
-                     UserId=4,
-                     isDeleted=true,
-                    isAccepted=true
-                 },
-                 new SharedSpacesModel(){
-                     Id=5,
-                     UserId=5,
-                     isDeleted=false,
-                    isAccepted=true
+                    InvitedUsername="Walaa",
+                    CollectionId=2,
+                    IsDeleted=false,
+                    IsAccepted=true
                  },
                  
             };
@@ -233,58 +217,58 @@ namespace scrubby_webapi.Services.Context
             var selectedTasksData = new List<SelectedTasksModel>(){
                 new SelectedTasksModel(){
                     Id=1,
-                    itemId=1,
+                    ItemId=1,
                     UserId=2,
-                    taskId=5,
-                    productId=3,
+                    TaskId=5,
+                    ProductId=3,
                     DateCreated="4-19-2022",
                     DateCompleted="",
-                    isDeleted=false,
-                    isArchived=true
+                    IsDeleted=false,
+                    IsArchived=true
                 },
                 new SelectedTasksModel(){
                     Id=2,
-                    itemId=1,
+                    ItemId=1,
                     UserId=2,
-                    taskId=5,
-                    productId=3,
+                    TaskId=5,
+                    ProductId=3,
                     DateCreated="4-21-2022",
                     DateCompleted="4-22-2022",
-                    isDeleted=false,
-                    isArchived=true
+                    IsDeleted=false,
+                    IsArchived=true
                 },
                 new SelectedTasksModel(){
                     Id=3,
-                    itemId=1,
+                    ItemId=1,
                     UserId=3,
-                    taskId=5,
-                    productId=3,
+                    TaskId=5,
+                    ProductId=3,
                     DateCreated="4-21-2022",
                     DateCompleted="4-22-2022",
-                    isDeleted=false,
-                    isArchived=true
+                    IsDeleted=false,
+                    IsArchived=true
                 },
                 new SelectedTasksModel(){
                     Id=4,
-                    itemId=1,
+                    ItemId=1,
                     UserId=1,
-                    taskId=5,
-                    productId=3,
+                    TaskId=5,
+                    ProductId=3,
                     DateCreated="4-21-2022",
                     DateCompleted="4-22-2022",
-                    isDeleted=false,
-                    isArchived=true
+                    IsDeleted=false,
+                    IsArchived=true
                 },
                 new SelectedTasksModel(){
                     Id=5,
-                    itemId=1,
+                    ItemId=1,
                     UserId=1,
-                    taskId=5,
-                    productId=3,
+                    TaskId=5,
+                    ProductId=3,
                     DateCreated="4-21-2022",
                     DateCompleted="4-22-2022",
-                    isDeleted=false,
-                    isArchived=true
+                    IsDeleted=false,
+                    IsArchived=true
                 }
             };
             builder.Entity<SelectedTasksModel>().HasData(selectedTasksData);
@@ -294,27 +278,27 @@ namespace scrubby_webapi.Services.Context
                 new SelectedItemsInSpaceModel(){
                     Id=1,
                     SpaceId=1,
-                    isDeleted=true
+                    IsDeleted=true
                 },
                 new SelectedItemsInSpaceModel(){
                     Id=2,
                     SpaceId=2,
-                    isDeleted=false
+                    IsDeleted=false
                 },
                 new SelectedItemsInSpaceModel(){
                     Id=3,
                     SpaceId=3,
-                    isDeleted=true
+                    IsDeleted=true
                 },
                 new SelectedItemsInSpaceModel(){
                     Id=4,
                     SpaceId=4,
-                    isDeleted=false
+                    IsDeleted=false
                 },
                 new SelectedItemsInSpaceModel(){
                     Id=5,
                     SpaceId=5,
-                    isDeleted=true
+                    IsDeleted=true
                 }
             };
             builder.Entity<SelectedItemsInSpaceModel>().HasData(selectedItemsInSpaceData);
@@ -328,7 +312,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=11,
                     DependentPhoto="",
                     DependentCoins=5000,
-                    isDeleted=false
+                    IsDeleted=false
                 },
                 new DependentModel(){
                     Id=2,
@@ -337,7 +321,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=8,
                     DependentPhoto="",
                     DependentCoins=2000,
-                    isDeleted=false
+                    IsDeleted=false
                 },
                 new DependentModel(){
                     Id=3,
@@ -346,7 +330,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=15,
                     DependentPhoto="",
                     DependentCoins=100,
-                    isDeleted=true
+                    IsDeleted=true
                 },
                 new DependentModel(){
                     Id=4,
@@ -355,7 +339,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=8,
                     DependentPhoto="",
                     DependentCoins=7000,
-                    isDeleted=false
+                    IsDeleted=false
                 },
                 new DependentModel(){
                     Id=5,
@@ -364,7 +348,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=17,
                     DependentPhoto="",
                     DependentCoins=4000,
-                    isDeleted=false
+                    IsDeleted=false
                 },
             };
             builder.Entity<DependentModel>().HasData(dependentData);

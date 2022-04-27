@@ -44,14 +44,14 @@ namespace scrubby_webapi.Services
                 {
                     SelectedTasksModel newTask = new SelectedTasksModel();
                         newTask.Id=0;
-                        newTask.itemId = listOfSelectedItem[i].Id;
+                        newTask.ItemId = listOfSelectedItem[i].Id;
                         newTask.UserId = listOfSelectedItem[i].UserId;
-                        newTask.taskId = newTasks[j].Id;
+                        newTask.TaskId = newTasks[j].Id;
                         //product id
                         DateTime date = DateTime.Now;
                         newTask.DateCreated = date.ToString("MM/dd/yyyy") ;
-                        newTask.isDeleted=false;
-                        newTask.isArchived=false;
+                        newTask.IsDeleted=false;
+                        newTask.IsArchived=false;
                         newList.Add(newTask);
                 }
             }

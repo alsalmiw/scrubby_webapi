@@ -131,7 +131,7 @@ namespace scrubby_webapi.Services
             if(foundUser != null)
             {
                 //A user was foundUser
-                foundUser.isDeleted = true;
+                foundUser.IsDeleted = true;
                 _context.Update<UserModel>(foundUser);
                result =  _context.SaveChanges() != 0;
             }
@@ -170,7 +170,7 @@ namespace scrubby_webapi.Services
                 userInfo.Photo=foundUser.Photo;
                 userInfo.Points =foundUser.Points;
                 userInfo.Coins= foundUser.Coins;
-                userInfo.isDeleted=foundUser.isDeleted;
+                userInfo.IsDeleted=foundUser.IsDeleted;
               
             }
             return userInfo;

@@ -13,9 +13,8 @@ namespace scrubby_webapi.Models
         public string? Hash { get; set; }
         public string? Photo { get; set; }
         public int Coins { get; set; }
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public string? Name { get; set; }
-
         public int Points { get; set; }
         public UserModel() { }
     }

@@ -26,7 +26,7 @@ namespace scrubby_webapi.Services
             bool result = false;
             if(foundSharedSpaces != null)
             {
-                foundSharedSpaces.isDeleted = !foundSharedSpaces.isDeleted;
+                foundSharedSpaces.IsDeleted = !foundSharedSpaces.IsDeleted;
                 _context.Update<SharedSpacesModel>(foundSharedSpaces);
                result =  _context.SaveChanges() != 0;
             }

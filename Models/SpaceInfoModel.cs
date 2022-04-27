@@ -10,7 +10,7 @@ namespace scrubby_webapi.Models
         public int Id { get; set; }
         public string? SpaceName { get; set; }
         public string? SpaceCategory { get; set; }
-        public int collectionId { get; set; }
+        public int CollectionId { get; set; }
         public SpaceInfoModel(){}
     }
 }

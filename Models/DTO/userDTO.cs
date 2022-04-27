@@ -13,6 +13,6 @@ namespace scrubby_webapi.Models.DTO
         public string? Photo { get; set; }
          public int Points { get; set; }
         public int Coins { get; set; }
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

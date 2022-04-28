@@ -21,14 +21,24 @@ namespace scrubby_webapi.Services
         {
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
+
         public bool InviteUser (InviteUsersModel newUser)
         {
             bool result = false;
             UserModel foundUser = GetUserByUserName(newUser.InvitedUsername);
             if(foundUser != null)
             {
-            _context.Add(newUser);
-            result= _context.SaveChanges() !=0;
+            InviteUsersModel foundInvite = _context.InvitesInfo.SingleOrDefault(invite => invite.InvitedUsername == newUser.InvitedUsername && invite.UserId== newUser.UserId && invite.IsDeleted == false);
+
+            if (foundInvite!=null)
+            {
+               result=false;
+            }
+            else{
+                _context.Add(newUser);
+                result= _context.SaveChanges() !=0;
+            }
+            
             }
             return result ;
         }

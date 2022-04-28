@@ -12,7 +12,6 @@ namespace scrubby_webapi.Services.Context
     {
          public DbSet<UserModel> UserInfo { get; set; }
          public DbSet<InviteUsersModel> InvitesInfo { get; set; }
-
          public DbSet<DependentModel> DependentInfo {get; set;}
          public DbSet<SelectedTasksModel> SelectedTasksInfo {get; set;}
          public DbSet<SelectedItemsInSpaceModel> SelectedItemsInSpaceInfo {get; set;}
@@ -20,7 +19,6 @@ namespace scrubby_webapi.Services.Context
          public DbSet<SharedSpacesModel> SharedSpacesInfo { get; set; }
          public DbSet<SpaceCollectionModel> SpaceCollectionInfo {get; set;}
          public DbSet<AssignedTasksChildModel> AssignedTasksChildInfo {get; set;}
-
          public DbSet<AssignedTasksUsersModel> AssignedTasksUsersInfo { get; set; }
          public DbSet<TasksInfoStaticAPIModel> TasksInfoStaticAPIInfo { get; set; }
          public DbSet<SpaceItemsStaticAPIModel> SpaceItemsStaticAPIInfo { get; set; }
@@ -56,7 +54,8 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 5000,
-                    IsDeleted=false
+                    IsDeleted=false,
+                    IsChildFree=false
 
                 },
                 new UserModel(){
@@ -66,7 +65,8 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 1000,
-                    IsDeleted=false
+                    IsDeleted=false,
+                    IsChildFree=false
 
                 },
                 new UserModel(){
@@ -76,7 +76,8 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 5000,
-                    IsDeleted=false
+                    IsDeleted=false,
+                    IsChildFree=false
 
                 },
                 new UserModel(){
@@ -86,7 +87,8 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 50000,
-                    IsDeleted=false
+                    IsDeleted=false,
+                    IsChildFree=false
 
                 },
                 new UserModel(){
@@ -96,7 +98,8 @@ namespace scrubby_webapi.Services.Context
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
                     Photo="",
                     Coins= 15000,
-                    IsDeleted=false
+                    IsDeleted=false,
+                    IsChildFree=false
 
                 }
             };
@@ -498,13 +501,13 @@ namespace scrubby_webapi.Services.Context
                     Id=1,
                     Name="Wooden Chair",
                     Description="A chair that is brown",
-                    Tags="wood, living room, bedroom, office ",
+                    Tags="living room, bedroom, office ",
                 },
                 new SpaceItemsStaticAPIModel() {
                     Id=2,
                     Name="Lamp",
-                    Description="A lamp that is shiny",
-                    Tags="bright, metal, living room, bedroom, office ",
+                    Description="A lamp",
+                    Tags="living room, bedroom, office ",
                 },
                 new SpaceItemsStaticAPIModel() {
                     Id=3,
@@ -672,13 +675,13 @@ namespace scrubby_webapi.Services.Context
                     Id=30,
                     Name="Cabinet",
                     Description="",
-                    Tags="",
+                    Tags="bathroom",
                 },
                   new SpaceItemsStaticAPIModel() {
                     Id=31,
                     Name="Vanity",
                     Description="",
-                    Tags="",
+                    Tags="bathroom",
                 },
                   new SpaceItemsStaticAPIModel() {
                     Id=32,
@@ -708,7 +711,7 @@ namespace scrubby_webapi.Services.Context
                     Id=36,
                     Name="TV Stand",
                     Description="",
-                    Tags="living roo",
+                    Tags="living room",
                 },
                    new SpaceItemsStaticAPIModel() {
                     Id=37,
@@ -764,30 +767,48 @@ namespace scrubby_webapi.Services.Context
                     Description="",
                     Tags="garage",
                 },
-                  new SpaceItemsStaticAPIModel() {
+                   new SpaceItemsStaticAPIModel() {
                     Id=46,
+                    Name="Work Station",
+                    Description="",
+                    Tags="garage",
+                },
+                  new SpaceItemsStaticAPIModel() {
+                    Id=47,
                     Name="Grass",
                     Description="",
                     Tags="yard",
                 },
                    new SpaceItemsStaticAPIModel() {
-                    Id=47,
+                    Id=48,
                     Name="Tree",
                     Description="",
                     Tags="yard",
                 },
 
                    new SpaceItemsStaticAPIModel() {
-                    Id=48,
+                    Id=49,
                     Name="Plants",
                     Description="",
                     Tags="yard",
                 },
                    new SpaceItemsStaticAPIModel() {
-                    Id=49,
+                    Id=50,
                     Name="laundry",
                     Description="",
-                    Tags="laundryroom",
+                    Tags="laundry room",
+                },
+                 new SpaceItemsStaticAPIModel() {
+                    Id=51,
+                    Name="Carpet Floor",
+                    Description="A floor that is made of carpet",
+                    Tags="living room, bedroom",
+                },
+                     new SpaceItemsStaticAPIModel() {
+                    Id=52,
+                    Name="Trash",
+                    Description="A Trashbin",
+                    Tags="kitchen",
                 },
                 
             };
@@ -797,24 +818,24 @@ namespace scrubby_webapi.Services.Context
                 new TasksInfoStaticAPIModel() {
                     Id=1,
                     Name="Clean toilet",
-                    Description="Clean the toilet using wax on and wax off",
+                    Description="Clean the toilet using a sanitizer",
                     Tags="toilet",
                     Time="15 min",
-                    coins=20
+                    coins=15
                 },
                 new TasksInfoStaticAPIModel() {
                     Id=2,
                     Name="Make bed",
-                    Description="Make bed using military style",
+                    Description="Remove the comforter, make sure the fitted sheet is clean and stretched. Lay out your top sheet an put your comforter on, then add the pillows.",
                     Tags="bed",
-                    Time="5 min",
+                    Time="10 min",
                     coins=10
                 },
                 new TasksInfoStaticAPIModel() {
                     Id=3,
                     Name="Wash dishes",
-                    Description="Load your dishwasher with dirty dishes.",
-                    Tags="",
+                    Description="Load your dishwasher with dirty dishes. Make sure the dishes don't have a lot of food on them.",
+                    Tags="dishwasher",
                     Time="10 min",
                     coins=15
                 },
@@ -829,33 +850,33 @@ namespace scrubby_webapi.Services.Context
                 new TasksInfoStaticAPIModel() {
                     Id=5,
                     Name="Dust",
-                    Description="Dust the furniture",
-                    Tags="dust, swifter",
+                    Description="Dust the piece of furniture",
+                    Tags="chair, table, monitor, keyboard, bookshelf, dresser, drawer, nightstand, cabinet, TV, Cabinets",
                     Time="5 min",
                     coins=5
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=6,
                     Name="Change Bedsheets",
-                    Description="Remove old bedsheets and replace with clean sheets",
-                    Tags="",
-                    Time=" min",
-                    coins=5
+                    Description="Remove old bedsheets and replace with clean sheets. Remove the comforter, make sure the fitted sheet is clean and stretched. Lay out your top sheet an put your comforter on, then add the pillows.",
+                    Tags="bed",
+                    Time="10 min",
+                    coins=10
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=7,
                     Name="Polish",
                     Description="Polish the wood surface",
-                    Tags="",
-                    Time=" min",
+                    Tags="wood, wooden, Wooden Chair, Wooden Table, Dresser, Drawer Chest, Nightstand, TV Stand ",
+                    Time="5 min",
                     coins=5
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=8,
                     Name="Scrub",
                     Description="",
-                    Tags="",
-                    Time=" min",
+                    Tags="toilet, sink ",
+                    Time="5 min",
                     coins=5
                 },
                  new TasksInfoStaticAPIModel() {
@@ -870,16 +891,16 @@ namespace scrubby_webapi.Services.Context
                     Id=10,
                     Name="Organize",
                     Description="Organize the items on the surface",
-                    Tags="",
+                    Tags="Work Station, Countertops, Bookshelf",
                     Time=" min",
                     coins=5
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=11,
-                    Name="Shine",
+                    Name="Shine Glass Surface",
                     Description="",
-                    Tags="",
-                    Time=" min",
+                    Tags="Glass Table, Vanity, Mirror ",
+                    Time="5 min",
                     coins=5
                 },
                  new TasksInfoStaticAPIModel() {
@@ -894,65 +915,73 @@ namespace scrubby_webapi.Services.Context
                     Id=13,
                     Name="Sweep",
                     Description="",
-                    Tags="",
-                    Time=" min",
-                    coins=5
+                    Tags="Ceramic Tile Floor, Concrete Floor, Vinyl Floor",
+                    Time="10 min",
+                    coins=10
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=14,
-                    Name="Vaccum under",
-                    Description="",
-                    Tags="",
-                    Time=" min",
-                    coins=5
+                    Name="Sweep under",
+                    Description="Sweep or vaccum under the furniture",
+                    Tags="chair, couch",
+                    Time="10 min",
+                    coins=10
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=15,
                     Name="Vaccum",
-                    Description="",
-                    Tags="",
-                    Time=" min",
-                    coins=5
+                    Description="Vaccume the carpet with a vaccum cleaner",
+                    Tags="Carpet Floor",
+                    Time="15 min",
+                    coins=15
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=16,
                     Name="Mop",
                     Description="",
-                    Tags="",
-                    Time=" min",
-                    coins=5
+                    Tags="Wooden Floor, Vinyl Floor, Ceramic Tile Floor",
+                    Time="15 min",
+                    coins=15
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=17,
-                    Name="Clear Expired",
-                    Description="",
-                    Tags="",
-                    Time=" min",
-                    coins=5
+                    Name="Trim Tree",
+                    Description="Trim the tree to make sure it looks good",
+                    Tags="tree",
+                    Time="20 min",
+                    coins=20
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=18,
                     Name="Remove trash",
-                    Description="",
-                    Tags="",
-                    Time=" min",
+                    Description="Take the trash outside and put a new trash lining",
+                    Tags="trash",
+                    Time="5 min",
                     coins=5
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=19,
-                    Name="",
-                    Description="",
-                    Tags="",
-                    Time=" min",
-                    coins=5
+                    Name="Mow the Lawn",
+                    Description="Cut the grass on the lawn with a lawn mower ",
+                    Tags="grass",
+                    Time=" 20 min",
+                    coins=20
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=20,
-                    Name="",
-                    Description="",
-                    Tags="",
-                    Time=" min",
-                    coins=5
+                    Name="Water the plants",
+                    Description="Water the plants and give them fertilizer if needed",
+                    Tags="plants",
+                    Time="15 min",
+                    coins=15
+                },
+                 new TasksInfoStaticAPIModel() {
+                    Id=21,
+                    Name="Remove expired food",
+                    Description="Check the fridge and make sure all expired food are removed",
+                    Tags="fridge ",
+                    Time="15 min",
+                    coins=15
                 },
                 
             };

@@ -73,6 +73,12 @@ namespace scrubby_webapi.Models
             return _data.UpdatePassword(newPassword);
         }
 
+        [HttpPost("ChildFreeBool/{userId}")]
+        public bool ChildFreeBool(int userId)
+        {
+            return _data.ChildFreeBool(userId);
+        }
+
 
     }
 }

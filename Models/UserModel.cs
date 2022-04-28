@@ -16,6 +16,7 @@ namespace scrubby_webapi.Models
         public bool IsDeleted { get; set; }
         public string? Name { get; set; }
         public int Points { get; set; }
+        public bool IsChildFree { get; set; }
         public UserModel() { }
     }
 }

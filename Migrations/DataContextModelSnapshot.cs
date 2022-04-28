@@ -208,11 +208,11 @@ namespace scrubby_webapi.Migrations
                     b.Property<string>("DependentPhoto")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -226,8 +226,8 @@ namespace scrubby_webapi.Migrations
                             DependentCoins = 5000,
                             DependentName = "Taylor",
                             DependentPhoto = "",
-                            UserId = 3,
-                            isDeleted = false
+                            IsDeleted = false,
+                            UserId = 3
                         },
                         new
                         {
@@ -236,8 +236,8 @@ namespace scrubby_webapi.Migrations
                             DependentCoins = 2000,
                             DependentName = "Sammy",
                             DependentPhoto = "",
-                            UserId = 3,
-                            isDeleted = false
+                            IsDeleted = false,
+                            UserId = 3
                         },
                         new
                         {
@@ -246,8 +246,8 @@ namespace scrubby_webapi.Migrations
                             DependentCoins = 100,
                             DependentName = "Jeff",
                             DependentPhoto = "",
-                            UserId = 3,
-                            isDeleted = true
+                            IsDeleted = true,
+                            UserId = 3
                         },
                         new
                         {
@@ -256,8 +256,8 @@ namespace scrubby_webapi.Migrations
                             DependentCoins = 7000,
                             DependentName = "Jessica",
                             DependentPhoto = "",
-                            UserId = 1,
-                            isDeleted = false
+                            IsDeleted = false,
+                            UserId = 1
                         },
                         new
                         {
@@ -266,8 +266,8 @@ namespace scrubby_webapi.Migrations
                             DependentCoins = 4000,
                             DependentName = "Tony",
                             DependentPhoto = "",
-                            UserId = 2,
-                            isDeleted = false
+                            IsDeleted = false,
+                            UserId = 2
                         });
                 });
 
@@ -314,11 +314,11 @@ namespace scrubby_webapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("SpaceId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -328,32 +328,32 @@ namespace scrubby_webapi.Migrations
                         new
                         {
                             Id = 1,
-                            SpaceId = 1,
-                            isDeleted = true
+                            IsDeleted = true,
+                            SpaceId = 1
                         },
                         new
                         {
                             Id = 2,
-                            SpaceId = 2,
-                            isDeleted = false
+                            IsDeleted = false,
+                            SpaceId = 2
                         },
                         new
                         {
                             Id = 3,
-                            SpaceId = 3,
-                            isDeleted = true
+                            IsDeleted = true,
+                            SpaceId = 3
                         },
                         new
                         {
                             Id = 4,
-                            SpaceId = 4,
-                            isDeleted = false
+                            IsDeleted = false,
+                            SpaceId = 4
                         },
                         new
                         {
                             Id = 5,
-                            SpaceId = 5,
-                            isDeleted = true
+                            IsDeleted = true,
+                            SpaceId = 5
                         });
                 });
 
@@ -371,22 +371,22 @@ namespace scrubby_webapi.Migrations
                     b.Property<string>("DateCreated")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("isArchived")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("itemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("productId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("taskId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -399,60 +399,60 @@ namespace scrubby_webapi.Migrations
                             Id = 1,
                             DateCompleted = "",
                             DateCreated = "4-19-2022",
-                            UserId = 2,
-                            isArchived = true,
-                            isDeleted = false,
-                            itemId = 1,
-                            productId = 3,
-                            taskId = 5
+                            IsArchived = true,
+                            IsDeleted = false,
+                            ItemId = 1,
+                            ProductId = 3,
+                            TaskId = 5,
+                            UserId = 2
                         },
                         new
                         {
                             Id = 2,
                             DateCompleted = "4-22-2022",
                             DateCreated = "4-21-2022",
-                            UserId = 2,
-                            isArchived = true,
-                            isDeleted = false,
-                            itemId = 1,
-                            productId = 3,
-                            taskId = 5
+                            IsArchived = true,
+                            IsDeleted = false,
+                            ItemId = 1,
+                            ProductId = 3,
+                            TaskId = 5,
+                            UserId = 2
                         },
                         new
                         {
                             Id = 3,
                             DateCompleted = "4-22-2022",
                             DateCreated = "4-21-2022",
-                            UserId = 3,
-                            isArchived = true,
-                            isDeleted = false,
-                            itemId = 1,
-                            productId = 3,
-                            taskId = 5
+                            IsArchived = true,
+                            IsDeleted = false,
+                            ItemId = 1,
+                            ProductId = 3,
+                            TaskId = 5,
+                            UserId = 3
                         },
                         new
                         {
                             Id = 4,
                             DateCompleted = "4-22-2022",
                             DateCreated = "4-21-2022",
-                            UserId = 1,
-                            isArchived = true,
-                            isDeleted = false,
-                            itemId = 1,
-                            productId = 3,
-                            taskId = 5
+                            IsArchived = true,
+                            IsDeleted = false,
+                            ItemId = 1,
+                            ProductId = 3,
+                            TaskId = 5,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 5,
                             DateCompleted = "4-22-2022",
                             DateCreated = "4-21-2022",
-                            UserId = 1,
-                            isArchived = true,
-                            isDeleted = false,
-                            itemId = 1,
-                            productId = 3,
-                            taskId = 5
+                            IsArchived = true,
+                            IsDeleted = false,
+                            ItemId = 1,
+                            ProductId = 3,
+                            TaskId = 5,
+                            UserId = 1
                         });
                 });
 
@@ -464,13 +464,16 @@ namespace scrubby_webapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("CollectionId")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("isAccepted")
+                    b.Property<string>("InvitedUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsAccepted")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("isDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -481,37 +484,18 @@ namespace scrubby_webapi.Migrations
                         new
                         {
                             Id = 1,
-                            UserId = 1,
-                            isAccepted = true,
-                            isDeleted = false
+                            CollectionId = 2,
+                            InvitedUsername = "Peter",
+                            IsAccepted = true,
+                            IsDeleted = false
                         },
                         new
                         {
                             Id = 2,
-                            UserId = 2,
-                            isAccepted = true,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            UserId = 3,
-                            isAccepted = true,
-                            isDeleted = true
-                        },
-                        new
-                        {
-                            Id = 4,
-                            UserId = 4,
-                            isAccepted = true,
-                            isDeleted = true
-                        },
-                        new
-                        {
-                            Id = 5,
-                            UserId = 5,
-                            isAccepted = true,
-                            isDeleted = false
+                            CollectionId = 2,
+                            InvitedUsername = "Walaa",
+                            IsAccepted = true,
+                            IsDeleted = false
                         });
                 });
 
@@ -582,14 +566,14 @@ namespace scrubby_webapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CollectionId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SpaceCategory")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SpaceName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("collectionId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -599,65 +583,65 @@ namespace scrubby_webapi.Migrations
                         new
                         {
                             Id = 1,
+                            CollectionId = 1,
                             SpaceCategory = "Space Category",
-                            SpaceName = "Space Name",
-                            collectionId = 1
+                            SpaceName = "Space Name"
                         },
                         new
                         {
                             Id = 2,
+                            CollectionId = 1,
                             SpaceCategory = "Space Category",
-                            SpaceName = "Space Name",
-                            collectionId = 1
+                            SpaceName = "Space Name"
                         },
                         new
                         {
                             Id = 3,
+                            CollectionId = 1,
                             SpaceCategory = "Space Category",
-                            SpaceName = "Space Name",
-                            collectionId = 1
+                            SpaceName = "Space Name"
                         },
                         new
                         {
                             Id = 4,
+                            CollectionId = 1,
                             SpaceCategory = "Space Category",
-                            SpaceName = "Space Name",
-                            collectionId = 1
+                            SpaceName = "Space Name"
                         },
                         new
                         {
                             Id = 5,
+                            CollectionId = 1,
                             SpaceCategory = "Space Category",
-                            SpaceName = "Space Name",
-                            collectionId = 1
+                            SpaceName = "Space Name"
                         },
                         new
                         {
                             Id = 6,
+                            CollectionId = 3,
                             SpaceCategory = "Bathroom",
-                            SpaceName = "Master Bath",
-                            collectionId = 3
+                            SpaceName = "Master Bath"
                         },
                         new
                         {
                             Id = 7,
+                            CollectionId = 3,
                             SpaceCategory = "Bedroom",
-                            SpaceName = "Kids Bedroom",
-                            collectionId = 3
+                            SpaceName = "Kids Bedroom"
                         },
                         new
                         {
                             Id = 8,
+                            CollectionId = 3,
                             SpaceCategory = "Kitchen",
-                            SpaceName = "Kitchen",
-                            collectionId = 3
+                            SpaceName = "Kitchen"
                         },
                         new
                         {
                             Id = 9,
+                            CollectionId = 3,
                             SpaceCategory = "Living Room",
-                            SpaceName = "Loft",
-                            collectionId = 3
+                            SpaceName = "Loft"
                         });
                 });
 
@@ -755,14 +739,14 @@ namespace scrubby_webapi.Migrations
                             Id = 1,
                             Description = "A chair that is brown",
                             Name = "Wooden Chair",
-                            Tags = "wood, living room, bedroom, office "
+                            Tags = "living room, bedroom, office "
                         },
                         new
                         {
                             Id = 2,
-                            Description = "A lamp that is shiny",
+                            Description = "A lamp",
                             Name = "Lamp",
-                            Tags = "bright, metal, living room, bedroom, office "
+                            Tags = "living room, bedroom, office "
                         },
                         new
                         {
@@ -958,14 +942,14 @@ namespace scrubby_webapi.Migrations
                             Id = 30,
                             Description = "",
                             Name = "Cabinet",
-                            Tags = ""
+                            Tags = "bathroom"
                         },
                         new
                         {
                             Id = 31,
                             Description = "",
                             Name = "Vanity",
-                            Tags = ""
+                            Tags = "bathroom"
                         },
                         new
                         {
@@ -1000,7 +984,7 @@ namespace scrubby_webapi.Migrations
                             Id = 36,
                             Description = "",
                             Name = "TV Stand",
-                            Tags = "living roo"
+                            Tags = "living room"
                         },
                         new
                         {
@@ -1069,29 +1053,50 @@ namespace scrubby_webapi.Migrations
                         {
                             Id = 46,
                             Description = "",
-                            Name = "Grass",
-                            Tags = "yard"
+                            Name = "Work Station",
+                            Tags = "garage"
                         },
                         new
                         {
                             Id = 47,
                             Description = "",
-                            Name = "Tree",
+                            Name = "Grass",
                             Tags = "yard"
                         },
                         new
                         {
                             Id = 48,
                             Description = "",
-                            Name = "Plants",
+                            Name = "Tree",
                             Tags = "yard"
                         },
                         new
                         {
                             Id = 49,
                             Description = "",
+                            Name = "Plants",
+                            Tags = "yard"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Description = "",
                             Name = "laundry",
-                            Tags = "laundryroom"
+                            Tags = "laundry room"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Description = "A floor that is made of carpet",
+                            Name = "Carpet Floor",
+                            Tags = "living room, bedroom"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Description = "A Trashbin",
+                            Name = "Trash",
+                            Tags = "kitchen"
                         });
                 });
 
@@ -1126,27 +1131,27 @@ namespace scrubby_webapi.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Clean the toilet using wax on and wax off",
+                            Description = "Clean the toilet using a sanitizer",
                             Name = "Clean toilet",
                             Tags = "toilet",
                             Time = "15 min",
-                            coins = 20
+                            coins = 15
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Make bed using military style",
+                            Description = "Remove the comforter, make sure the fitted sheet is clean and stretched. Lay out your top sheet an put your comforter on, then add the pillows.",
                             Name = "Make bed",
                             Tags = "bed",
-                            Time = "5 min",
+                            Time = "10 min",
                             coins = 10
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Load your dishwasher with dirty dishes.",
+                            Description = "Load your dishwasher with dirty dishes. Make sure the dishes don't have a lot of food on them.",
                             Name = "Wash dishes",
-                            Tags = "",
+                            Tags = "dishwasher",
                             Time = "10 min",
                             coins = 15
                         },
@@ -1162,28 +1167,28 @@ namespace scrubby_webapi.Migrations
                         new
                         {
                             Id = 5,
-                            Description = "Dust the furniture",
+                            Description = "Dust the piece of furniture",
                             Name = "Dust",
-                            Tags = "dust, swifter",
+                            Tags = "chair, table, monitor, keyboard, bookshelf, dresser, drawer, nightstand, cabinet, TV, Cabinets",
                             Time = "5 min",
                             coins = 5
                         },
                         new
                         {
                             Id = 6,
-                            Description = "Remove old bedsheets and replace with clean sheets",
+                            Description = "Remove old bedsheets and replace with clean sheets. Remove the comforter, make sure the fitted sheet is clean and stretched. Lay out your top sheet an put your comforter on, then add the pillows.",
                             Name = "Change Bedsheets",
-                            Tags = "",
-                            Time = " min",
-                            coins = 5
+                            Tags = "bed",
+                            Time = "10 min",
+                            coins = 10
                         },
                         new
                         {
                             Id = 7,
                             Description = "Polish the wood surface",
                             Name = "Polish",
-                            Tags = "",
-                            Time = " min",
+                            Tags = "wood, wooden, Wooden Chair, Wooden Table, Dresser, Drawer Chest, Nightstand, TV Stand ",
+                            Time = "5 min",
                             coins = 5
                         },
                         new
@@ -1191,8 +1196,8 @@ namespace scrubby_webapi.Migrations
                             Id = 8,
                             Description = "",
                             Name = "Scrub",
-                            Tags = "",
-                            Time = " min",
+                            Tags = "toilet, sink ",
+                            Time = "5 min",
                             coins = 5
                         },
                         new
@@ -1209,7 +1214,7 @@ namespace scrubby_webapi.Migrations
                             Id = 10,
                             Description = "Organize the items on the surface",
                             Name = "Organize",
-                            Tags = "",
+                            Tags = "Work Station, Countertops, Bookshelf",
                             Time = " min",
                             coins = 5
                         },
@@ -1217,9 +1222,9 @@ namespace scrubby_webapi.Migrations
                         {
                             Id = 11,
                             Description = "",
-                            Name = "Shine",
-                            Tags = "",
-                            Time = " min",
+                            Name = "Shine Glass Surface",
+                            Tags = "Glass Table, Vanity, Mirror ",
+                            Time = "5 min",
                             coins = 5
                         },
                         new
@@ -1236,72 +1241,81 @@ namespace scrubby_webapi.Migrations
                             Id = 13,
                             Description = "",
                             Name = "Sweep",
-                            Tags = "",
-                            Time = " min",
-                            coins = 5
+                            Tags = "Ceramic Tile Floor, Concrete Floor, Vinyl Floor",
+                            Time = "10 min",
+                            coins = 10
                         },
                         new
                         {
                             Id = 14,
-                            Description = "",
-                            Name = "Vaccum under",
-                            Tags = "",
-                            Time = " min",
-                            coins = 5
+                            Description = "Sweep or vaccum under the furniture",
+                            Name = "Sweep under",
+                            Tags = "chair, couch",
+                            Time = "10 min",
+                            coins = 10
                         },
                         new
                         {
                             Id = 15,
-                            Description = "",
+                            Description = "Vaccume the carpet with a vaccum cleaner",
                             Name = "Vaccum",
-                            Tags = "",
-                            Time = " min",
-                            coins = 5
+                            Tags = "Carpet Floor",
+                            Time = "15 min",
+                            coins = 15
                         },
                         new
                         {
                             Id = 16,
                             Description = "",
                             Name = "Mop",
-                            Tags = "",
-                            Time = " min",
-                            coins = 5
+                            Tags = "Wooden Floor, Vinyl Floor, Ceramic Tile Floor",
+                            Time = "15 min",
+                            coins = 15
                         },
                         new
                         {
                             Id = 17,
-                            Description = "",
-                            Name = "Clear Expired",
-                            Tags = "",
-                            Time = " min",
-                            coins = 5
+                            Description = "Trim the tree to make sure it looks good",
+                            Name = "Trim Tree",
+                            Tags = "tree",
+                            Time = "20 min",
+                            coins = 20
                         },
                         new
                         {
                             Id = 18,
-                            Description = "",
+                            Description = "Take the trash outside and put a new trash lining",
                             Name = "Remove trash",
-                            Tags = "",
-                            Time = " min",
+                            Tags = "trash",
+                            Time = "5 min",
                             coins = 5
                         },
                         new
                         {
                             Id = 19,
-                            Description = "",
-                            Name = "",
-                            Tags = "",
-                            Time = " min",
-                            coins = 5
+                            Description = "Cut the grass on the lawn with a lawn mower ",
+                            Name = "Mow the Lawn",
+                            Tags = "grass",
+                            Time = " 20 min",
+                            coins = 20
                         },
                         new
                         {
                             Id = 20,
-                            Description = "",
-                            Name = "",
-                            Tags = "",
-                            Time = " min",
-                            coins = 5
+                            Description = "Water the plants and give them fertilizer if needed",
+                            Name = "Water the plants",
+                            Tags = "plants",
+                            Time = "15 min",
+                            coins = 15
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Description = "Check the fridge and make sure all expired food are removed",
+                            Name = "Remove expired food",
+                            Tags = "fridge ",
+                            Time = "15 min",
+                            coins = 15
                         });
                 });
 
@@ -1319,6 +1333,12 @@ namespace scrubby_webapi.Migrations
                     b.Property<string>("Hash")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsChildFree")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -1334,9 +1354,6 @@ namespace scrubby_webapi.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.ToTable("UserInfo");
@@ -1347,55 +1364,60 @@ namespace scrubby_webapi.Migrations
                             Id = 1,
                             Coins = 5000,
                             Hash = "BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
+                            IsChildFree = false,
+                            IsDeleted = false,
                             Photo = "",
                             Points = 0,
                             Salt = "6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
-                            Username = "JT",
-                            isDeleted = false
+                            Username = "JT"
                         },
                         new
                         {
                             Id = 2,
                             Coins = 1000,
                             Hash = "BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
+                            IsChildFree = false,
+                            IsDeleted = false,
                             Photo = "",
                             Points = 0,
                             Salt = "6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
-                            Username = "Angel",
-                            isDeleted = false
+                            Username = "Angel"
                         },
                         new
                         {
                             Id = 3,
                             Coins = 5000,
                             Hash = "BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
+                            IsChildFree = false,
+                            IsDeleted = false,
                             Photo = "",
                             Points = 0,
                             Salt = "6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
-                            Username = "Walaa",
-                            isDeleted = false
+                            Username = "Walaa"
                         },
                         new
                         {
                             Id = 4,
                             Coins = 50000,
                             Hash = "BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
+                            IsChildFree = false,
+                            IsDeleted = false,
                             Photo = "",
                             Points = 0,
                             Salt = "6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
-                            Username = "DB",
-                            isDeleted = false
+                            Username = "DB"
                         },
                         new
                         {
                             Id = 5,
                             Coins = 15000,
                             Hash = "BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
+                            IsChildFree = false,
+                            IsDeleted = false,
                             Photo = "",
                             Points = 0,
                             Salt = "6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
-                            Username = "Peter",
-                            isDeleted = false
+                            Username = "Peter"
                         });
                 });
 #pragma warning restore 612, 618

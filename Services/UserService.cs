@@ -194,6 +194,20 @@ namespace scrubby_webapi.Services
 
 
         
+         public bool ChildFreeBool(int userId)
+        {
+             UserModel foundUser = GetUserByID(userId);
+            bool result = false;
+            if(foundUser != null)
+            {
+                //A user was foundUser
+                foundUser.IsChildFree = !foundUser.IsChildFree;
+                _context.Update<UserModel>(foundUser);
+               result =  _context.SaveChanges() != 0;
+            }
+            return result;
+        
+        }
 
 
 

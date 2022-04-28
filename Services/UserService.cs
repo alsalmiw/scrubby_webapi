@@ -37,6 +37,25 @@ namespace scrubby_webapi.Services
         {
             return _context.UserInfo.SingleOrDefault(user => user.Id == ID);
         }
+
+         public UserDTO GetPublicUserInfoByID(int ID)
+        {
+              UserDTO userInfo = new UserDTO();
+              UserModel foundUser = GetUserByID(ID);
+               if(foundUser != null)
+            {
+                //A user was foundUser
+                userInfo.Id =foundUser.Id ;
+               userInfo.Name =  foundUser.Name ;
+                userInfo.Username=foundUser.Username;
+                userInfo.Photo=foundUser.Photo;
+                userInfo.Points =foundUser.Points;
+                userInfo.Coins= foundUser.Coins;
+                userInfo.IsDeleted=foundUser.IsDeleted;
+              
+            }
+            return userInfo;
+        }
          public PasswordDTO HashPassword(string? password)
         {
             PasswordDTO newHashedPassword = new PasswordDTO();

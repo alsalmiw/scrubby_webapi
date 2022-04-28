@@ -24,6 +24,13 @@ namespace scrubby_webapi.Models
         {
             return _data.AddUser(UserToAdd);
         }
+
+        [HttpGet("GetUserByID/{ID}")]
+        public UserModel GetUserByID(int ID)
+        {
+            return _data.GetUserByID(ID);
+        }
+
         [HttpPost("Login")]
         public IActionResult Login([FromBody] LoginDTO User){
             return _data.Login(User);

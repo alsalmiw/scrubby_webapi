@@ -79,6 +79,6 @@ namespace scrubby_webapi.Models
             return _data.ChildFreeBool(userId);
         }
 
-
+       
     }
 }

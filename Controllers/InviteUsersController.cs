@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Services;
 using scrubby_webapi.Models;
-
-
+using scrubby_webapi.Models.DTO;
 
 namespace scrubby_webapi.Controllers
 {
@@ -49,5 +48,12 @@ namespace scrubby_webapi.Controllers
         {
             return _data.AllInvitesByInvitedUsername(username);
         }
+
+         [HttpGet("GetAllUserInfoInviteRequests/{username}")]
+        public IEnumerable<UserDTO> GetAllUserInfoInviteRequests(string? username)
+        {
+            return _data.GetAllUserInfoInviteRequests(username);
+        }
+
     }
 }

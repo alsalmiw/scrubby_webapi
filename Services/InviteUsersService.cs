@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using scrubby_webapi.Services.Context;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.DTO;
+
 
 
 
@@ -83,6 +85,42 @@ namespace scrubby_webapi.Services
          public IEnumerable<InviteUsersModel> AllInvitesByInvitedUsername (string? username)
         {
           return _context.InvitesInfo.Where(user => user.InvitedUsername == username);
+        }
+
+           public IEnumerable<UserDTO> GetAllUserInfoInviteRequests(string? username)
+        {
+            List <UserDTO> Invitees = new List<UserDTO>();
+        
+            List<InviteUsersModel> findInvites = _context.InvitesInfo.Where(user => user.InvitedUsername == username).ToList();
+            List<UserModel> findUsers = new List<UserModel>();
+
+            if(findInvites!=null)
+            { 
+                    for(int i=0; i<findInvites.Count; i++)
+                    {
+                        UserModel userInList = new UserModel();
+                        userInList = _context.UserInfo.SingleOrDefault(user=> user.Id == findInvites[i].UserId);
+                        findUsers.Add(userInList);
+                    };
+
+                if(findUsers!=null){
+                    for(int j=0; j<findUsers.Count; j++)
+                    {
+                        UserDTO user= new UserDTO();
+                        user.Id=findUsers[j].Id;
+                        user.Name = findUsers[j].Name ;
+                        user.Username=findUsers[j].Username;
+                        user.Photo=findUsers[j].Photo;
+                        user.Points =findUsers[j].Points;
+                        user.Coins= findUsers[j].Coins;
+                        user.IsDeleted=findUsers[j].IsDeleted;
+
+                       Invitees.Add(user);
+                    }
+                } 
+            }
+
+            return Invitees;
         }
     }
 }

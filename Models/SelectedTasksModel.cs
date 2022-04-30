@@ -12,6 +12,8 @@ namespace scrubby_webapi.Models
         public int UserId { get; set; }
         public int TaskId { get; set; }
         public int ProductId { get; set; }
+
+        public int SpaceId { get; set; }
         public string? DateCreated { get; set; }
         public string? DateCompleted { get; set; }
         public bool IsDeleted { get; set; }

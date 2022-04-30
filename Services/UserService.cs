@@ -228,6 +228,20 @@ namespace scrubby_webapi.Services
         
         }
 
+         public bool AddDefaultAvatar(UserImageDTO avatar)
+        {
+             UserModel foundUser = GetUserByUserName(avatar.Username);
+             bool result = false;
+             if(foundUser != null)
+            {
+              
+                foundUser.Photo=avatar.Photo ;
+                _context.Update<UserModel>(foundUser);
+               result =  _context.SaveChanges() != 0;
+            }
+
+             return result;
+        }
 
 
     }

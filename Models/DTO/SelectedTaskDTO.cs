@@ -9,6 +9,7 @@ namespace scrubby_webapi.Models.DTO
     {
                 public int Id { get; set; } 
                 public int UserId { get; set; }
+                public int SpaceId { get; set; }
                 public string? Description { get; set; }
                 public string? Name { get; set; }
                 public string? Tags { get; set; }

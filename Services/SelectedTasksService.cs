@@ -18,9 +18,14 @@ namespace scrubby_webapi.Services
         {
             _context = context; 
         }
-        public IEnumerable<SelectedTasksModel> GetSelectedTaskByUserId(int id)
+        public IEnumerable<SelectedTasksModel> GetSelectedTaskById(int id)
         {
            return  _context.SelectedTasksInfo.Where(item => item.Id == id);
+        }
+
+         public IEnumerable<SelectedTasksModel> GetSelectedTaskByUserId(int userId)
+        {
+           return  _context.SelectedTasksInfo.Where(item => item.UserId == userId);
         }
         public bool UpdateSelectedTask(SelectedTasksModel selectedTaskToUpdate)
         {
@@ -37,7 +42,7 @@ namespace scrubby_webapi.Services
             List<SelectedTasksModel> newList = new List<SelectedTasksModel>();
             for (int i = 0; i < listOfSelectedItem.Count; i++)
             {
-                 List<TasksInfoStaticAPIModel> newTasks = new List<TasksInfoStaticAPIModel>();
+                List<TasksInfoStaticAPIModel> newTasks = new List<TasksInfoStaticAPIModel>();
                 newTasks = _context.TasksInfoStaticAPIInfo.Where(item => item.Tags.ToLower().Contains(listOfSelectedItem[i].Name.ToLower())).ToList();
                 Console.WriteLine(newTasks);
                 for (int j = 0; j < newTasks.Count; j++)
@@ -67,5 +72,36 @@ namespace scrubby_webapi.Services
 
 
         }
+
+         public IEnumerable<TasksInfoStaticAPIModel> getTasks (string? name)
+        {
+         
+           List<TasksInfoStaticAPIModel> newTasks = new List<TasksInfoStaticAPIModel>();
+
+           
+                
+                newTasks = _context.TasksInfoStaticAPIInfo.Where(item => item.Tags.ToLower().Contains(name.ToLower())).ToList();
+              
+            return newTasks;
+        }
+
+         public List<TasksInfoStaticAPIModel> getTasksByUserID(int userID)
+        {
+            List <SelectedTasksModel> allTasksByUser = GetSelectedTaskByUserId(userID).ToList();
+            List<TasksInfoStaticAPIModel> SelectedTasks = new List<TasksInfoStaticAPIModel>();
+
+            for (int i = 0; i < allTasksByUser.Count; i++)
+            {
+                TasksInfoStaticAPIModel findTask = _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id == allTasksByUser[i].TaskId);
+                if(findTask != null)
+                {
+                    SelectedTasks.Add(findTask);
+                }
+            }
+
+            return SelectedTasks;
+
+        }
+
     }
 }

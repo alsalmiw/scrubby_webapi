@@ -29,5 +29,11 @@ namespace scrubby_webapi.Controllers
             return _data.GetTasksInfoStaticAPIByTags(Tags);
         }
 
+          [HttpGet("GetAllTasks")]
+        public IEnumerable<TasksInfoStaticAPIModel> GetAllTasks()
+        {
+            return _data.GetAllTasks();
+        }
+
     }
 }

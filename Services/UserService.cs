@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.Static;
 using scrubby_webapi.Models.DTO;
 using scrubby_webapi.Services.Context;
 using System.Text;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.Serialization.Formatters;
 
 namespace scrubby_webapi.Services
 {
@@ -243,6 +245,109 @@ namespace scrubby_webapi.Services
              return result;
         }
 
+         public UserDataDTO GetUserData(string? username)
+        {
+            UserDataDTO userData = new UserDataDTO();
+            UserDTO UserInfo = GetUserPublicInfoByUserName(username);
+            if(UserInfo != null)
+            {   
+                userData.userInfo = UserInfo;
+
+                List<DependentModel> UsersKids = UserKids(UserInfo.Id);
+                if(UsersKids != null)
+                {
+                    userData.Children = UsersKids;
+                }
+
+
+                 List<CollectionsDTO> spaceCollections =GetCollectionByUserId(UserInfo.Id);
+            if (spaceCollections != null)
+            {
+                userData.Spaces = spaceCollections;
+            }
+            }
+            
+            return userData;
+        }
+
+        public List <DependentModel> UserKids (int id)
+        {
+            return _context.DependentInfo.Where(child => child.UserId == id).ToList();
+        }
+
+        public List<CollectionsDTO> GetCollectionByUserId(int UserId)
+        {
+            List<CollectionsDTO> SpaceCollectionsDTO = new List<CollectionsDTO>();
+            List<SpaceCollectionModel> collections = new List<SpaceCollectionModel>();
+            collections= _context.SpaceCollectionInfo.Where(item => item.UserId == UserId).ToList();
+
+            if(collections != null)
+            {
+                for(int i=0; i<collections.Count; i++)
+                {
+                    CollectionsDTO oneCollection = new CollectionsDTO();
+                    oneCollection.Id = collections[i].Id;
+                    oneCollection.CollectionName = collections[i].CollectionName;
+                    oneCollection.IsDeleted = collections[i].IsDeleted;
+                    oneCollection.Rooms = GetRoomsByCollectionID(collections[i].Id);
+
+                    SpaceCollectionsDTO.Add(oneCollection);
+                }
+            }
+
+            return SpaceCollectionsDTO;
+        }
+
+        public List<SpacesDTO> GetRoomsByCollectionID(int id)
+        {
+            List <SpacesDTO> spaceByCollectionIdDTO = new List<SpacesDTO>();
+            List<SpaceInfoModel> spaces =  _context.SpaceInfo.Where(space => space.CollectionId==id).ToList();
+
+            if(spaces != null)
+            {
+                for(int i=0; i<spaces.Count; i++)
+                {
+                    SpacesDTO oneSpace = new SpacesDTO();
+                    oneSpace.Id = spaces[i].Id;
+                    oneSpace.SpaceName = spaces[i].SpaceName ;
+                    oneSpace.SpaceCategory= spaces[i].SpaceCategory ;
+                    oneSpace.Tasks = GetTasksBySpaceId(spaces[i].Id);
+
+                    spaceByCollectionIdDTO.Add(oneSpace);
+                }
+            }
+
+            return spaceByCollectionIdDTO;
+        }
+
+        public List<SelectedTasksDTO> GetTasksBySpaceId (int id)
+        {
+            List<SelectedTasksDTO> spaceTasksDTO = new List<SelectedTasksDTO>();
+            List <SelectedTasksModel> tasks = _context.SelectedTasksInfo.Where(task => task.SpaceId == id).ToList();
+
+            if(tasks != null)
+            {
+                for(int i=0; i<tasks.Count; i++)
+                {
+                    SelectedTasksDTO oneTask = new SelectedTasksDTO();
+                    oneTask.Id = tasks[i].Id;
+                    oneTask.DateCompleted = tasks[i].DateCompleted ;
+                    oneTask.DateCompleted= tasks[i].DateCompleted ;
+                    oneTask.IsDeleted = tasks[i].IsDeleted ;
+                    oneTask.IsArchived= tasks[i].IsArchived ;
+                    oneTask.Tasks = GetTaskByTaskID(tasks[i].TaskId);
+
+                    spaceTasksDTO.Add(oneTask);
+
+                }
+            }
+            return spaceTasksDTO;
+        }
+        
+        public TasksInfoStaticAPIModel GetTaskByTaskID(int id)
+        {
+            return _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id == id);
+        }
 
     }
 }

@@ -24,5 +24,10 @@ namespace scrubby_webapi.Services.Context
             return _context.TasksInfoStaticAPIInfo.Where(item => item.Tags.Contains(Tags.ToLower()));
         }
 
+         public IEnumerable<TasksInfoStaticAPIModel> GetAllTasks()
+        {
+            return _context.TasksInfoStaticAPIInfo;
+        }
+
     }
 }

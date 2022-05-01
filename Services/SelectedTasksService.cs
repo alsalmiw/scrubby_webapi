@@ -52,6 +52,7 @@ namespace scrubby_webapi.Services
                         newTask.ItemId = listOfSelectedItem[i].Id;
                         newTask.UserId = listOfSelectedItem[i].UserId;
                         newTask.TaskId = newTasks[j].Id;
+                        newTask.SpaceId= listOfSelectedItem[i].SpaceId;
                         //product id
                         DateTime date = DateTime.Now;
                         newTask.DateCreated = date.ToString("MM/dd/yyyy") ;

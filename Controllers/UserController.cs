@@ -85,6 +85,12 @@ namespace scrubby_webapi.Models
             return _data.AddDefaultAvatar(avatar);
         }
 
+         [HttpGet("GetUserData/{username}")]
+        public UserDataDTO GetUserData(string? username)
+        {
+            return _data.GetUserData(username);
+        }
+
        
     }
 }

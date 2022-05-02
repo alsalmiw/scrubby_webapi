@@ -149,5 +149,55 @@ namespace scrubby_webapi.Services
 
             return Invitees;
         }
+
+        public InvitesDTO GetInvitationsByUsername(string? username)
+        {
+             List <SentInvitesDTO> SentInvites = new List<SentInvitesDTO>();
+            List <RecievedInvitesDTO> RecievedInvites = new List<RecievedInvitesDTO>();
+            InvitesDTO userInvites = new InvitesDTO();
+
+            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(user => user.InviterUsername == username || user.InvitedUsername == username).ToList();
+
+            if(allInvitesForUser != null)
+            {
+                for(int i = 0; i < allInvitesForUser.Count; i++)
+                {
+                    if(allInvitesForUser[i].InviterUsername ==username)
+                    {
+                        SentInvitesDTO sentInvite = new SentInvitesDTO();
+                        sentInvite.Id=allInvitesForUser[i].Id;
+                         sentInvite.InvitedId=allInvitesForUser[i].InvitedId;
+                         sentInvite.InvitedUsername=allInvitesForUser[i].InvitedUsername;
+                         sentInvite.InvitedFullname=allInvitesForUser[i].InvitedFullname;
+                         sentInvite.InvitedPhoto=allInvitesForUser[i].InvitedPhoto;
+                         sentInvite.IsAccepted=allInvitesForUser[i].IsAccepted;
+                         sentInvite.IsDeleted=allInvitesForUser[i].IsDeleted;
+
+                        SentInvites.Add(sentInvite);
+                    }
+                   
+
+
+                    if(allInvitesForUser[i].InvitedUsername==username)
+                    {
+                        RecievedInvitesDTO recievedInvite = new RecievedInvitesDTO();
+                        recievedInvite.Id = allInvitesForUser[i].Id;
+                         recievedInvite.InviterId = allInvitesForUser[i].InviterId;
+                         recievedInvite.InviterUsername = allInvitesForUser[i].InviterUsername;
+                         recievedInvite.InviterFullname = allInvitesForUser[i].InviterFullname;
+                         recievedInvite.InviterPhoto = allInvitesForUser[i].InviterPhoto;
+                         recievedInvite.IsAccepted = allInvitesForUser[i].IsAccepted;
+                         recievedInvite.IsDeleted = allInvitesForUser[i].IsDeleted;
+
+                        RecievedInvites.Add(recievedInvite);
+                    }
+                }
+            }
+                userInvites.SentInvites = SentInvites;
+                userInvites.RecievedInvites = RecievedInvites;
+
+            return userInvites;
+        }
+
     }
 }

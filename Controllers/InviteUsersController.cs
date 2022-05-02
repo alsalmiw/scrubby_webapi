@@ -55,5 +55,11 @@ namespace scrubby_webapi.Controllers
             return _data.GetAllUserInfoInviteRequests(username);
         }
 
+        [HttpGet("GetInvitationsByUsername/{username}")]
+          public InvitesDTO GetInvitationsByUsername(string? username)
+        {
+            return _data.GetInvitationsByUsername(username);
+        }
+
     }
 }

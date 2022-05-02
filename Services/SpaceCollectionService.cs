@@ -28,7 +28,7 @@ namespace scrubby_webapi.Services
 
         public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUserId(int UserId)
         {
-            return _context.SpaceCollectionInfo.Where(item => item.Id == UserId);
+            return _context.SpaceCollectionInfo.Where(item => item.UserId == UserId);
         }
         public bool DeleteSpaceCollectionById(int Id)
         {

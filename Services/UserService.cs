@@ -17,7 +17,7 @@ using System.Runtime.Serialization.Formatters;
 
 namespace scrubby_webapi.Services
 {
-    public class UserService: ControllerBase
+    public class UserService : ControllerBase
     {
         private readonly DataContext _context;
         public UserService(DataContext context)
@@ -30,7 +30,7 @@ namespace scrubby_webapi.Services
             return _context.UserInfo.SingleOrDefault(user => user.Username == username) != null;
         }
 
-         public UserModel GetUserByUserName(string? username)
+        public UserModel GetUserByUserName(string? username)
         {
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
@@ -40,25 +40,25 @@ namespace scrubby_webapi.Services
             return _context.UserInfo.SingleOrDefault(user => user.Id == ID);
         }
 
-         public UserDTO GetPublicUserInfoByID(int ID)
+        public UserDTO GetPublicUserInfoByID(int ID)
         {
-              UserDTO userInfo = new UserDTO();
-              UserModel foundUser = GetUserByID(ID);
-               if(foundUser != null)
+            UserDTO userInfo = new UserDTO();
+            UserModel foundUser = GetUserByID(ID);
+            if (foundUser != null)
             {
                 //A user was foundUser
-                userInfo.Id =foundUser.Id ;
-               userInfo.Name =  foundUser.Name ;
-                userInfo.Username=foundUser.Username;
-                userInfo.Photo=foundUser.Photo;
-                userInfo.Points =foundUser.Points;
-                userInfo.Coins= foundUser.Coins;
-                userInfo.IsDeleted=foundUser.IsDeleted;
-              
+                userInfo.Id = foundUser.Id;
+                userInfo.Name = foundUser.Name;
+                userInfo.Username = foundUser.Username;
+                userInfo.Photo = foundUser.Photo;
+                userInfo.Points = foundUser.Points;
+                userInfo.Coins = foundUser.Coins;
+                userInfo.IsDeleted = foundUser.IsDeleted;
+
             }
             return userInfo;
         }
-         public PasswordDTO HashPassword(string? password)
+        public PasswordDTO HashPassword(string? password)
         {
             PasswordDTO newHashedPassword = new PasswordDTO();
             byte[] SaltBytes = new byte[64];
@@ -83,30 +83,31 @@ namespace scrubby_webapi.Services
 
 
 
-         public bool AddUser(CreateAccountDTO UserToAdd)
+        public bool AddUser(CreateAccountDTO UserToAdd)
         {
-             bool result = false;
+            bool result = false;
             if (!DoesUserExists(UserToAdd.Username))
             {
                 UserModel newUser = new UserModel();
-								newUser.Id = UserToAdd.Id; 
+                newUser.Id = UserToAdd.Id;
                 newUser.Username = UserToAdd.Username;
-                
+
                 var hashedPassword = HashPassword(UserToAdd.Password);
-             
+
                 newUser.Salt = hashedPassword.Salt;
                 newUser.Hash = hashedPassword.Hash;
-							
+
                 _context.Add(newUser);
 
-                result = _context.SaveChanges() != 0;   
+                result = _context.SaveChanges() != 0;
             }
             return result;
         }
 
-        public IActionResult Login([FromBody] LoginDTO user){
-            
-               IActionResult Result = Unauthorized();
+        public IActionResult Login([FromBody] LoginDTO user)
+        {
+
+            IActionResult Result = Unauthorized();
             if (DoesUserExists(user.Username))
             {
                 //true
@@ -133,28 +134,28 @@ namespace scrubby_webapi.Services
 
         public bool UpdateUsername(int id, string Username)
         {
-             UserModel foundUser = GetUserByID(id);
+            UserModel foundUser = GetUserByID(id);
             bool result = false;
-            if(foundUser != null)
+            if (foundUser != null)
             {
                 //A user was foundUser
                 foundUser.Username = Username;
                 _context.Update<UserModel>(foundUser);
-               result =  _context.SaveChanges() != 0;
+                result = _context.SaveChanges() != 0;
             }
             return result;
         }
 
         public bool DeleteUser(int id)
         {
-             UserModel foundUser = GetUserByID(id);
+            UserModel foundUser = GetUserByID(id);
             bool result = false;
-            if(foundUser != null)
+            if (foundUser != null)
             {
                 //A user was foundUser
                 foundUser.IsDeleted = true;
                 _context.Update<UserModel>(foundUser);
-               result =  _context.SaveChanges() != 0;
+                result = _context.SaveChanges() != 0;
             }
             return result;
         }
@@ -163,114 +164,119 @@ namespace scrubby_webapi.Services
             return _context.UserInfo;
         }
 
-        
+
         public bool UpdateName(UserDTO newName)
         {
             UserModel foundUser = GetUserByUserName(newName.Username);
             bool result = false;
-            if(foundUser != null)
+            if (foundUser != null)
             {
                 //A user was foundUser
                 foundUser.Name = newName.Name;
                 _context.Update<UserModel>(foundUser);
-               result =  _context.SaveChanges() != 0;
+                result = _context.SaveChanges() != 0;
             }
             return result;
         }
-        
-          public UserDTO GetUserPublicInfoByUserName(string username)
+
+        public UserDTO GetUserPublicInfoByUserName(string username)
         {
             UserDTO userInfo = new UserDTO();
-              UserModel foundUser = GetUserByUserName(username);
-               if(foundUser != null)
+            UserModel foundUser = GetUserByUserName(username);
+            if (foundUser != null)
             {
                 //A user was foundUser
-                userInfo.Id =foundUser.Id ;
-               userInfo.Name =  foundUser.Name ;
-                userInfo.Username=foundUser.Username;
-                userInfo.Photo=foundUser.Photo;
-                userInfo.Points =foundUser.Points;
-                userInfo.Coins= foundUser.Coins;
-                userInfo.IsDeleted=foundUser.IsDeleted;
-              
+                userInfo.Id = foundUser.Id;
+                userInfo.Name = foundUser.Name;
+                userInfo.Username = foundUser.Username;
+                userInfo.Photo = foundUser.Photo;
+                userInfo.Points = foundUser.Points;
+                userInfo.Coins = foundUser.Coins;
+                userInfo.IsDeleted = foundUser.IsDeleted;
+
             }
             return userInfo;
         }
 
         public bool UpdatePassword(LoginDTO newPassword)
         {
-             bool result = false;
+            bool result = false;
             UserModel foundUser = GetUserByUserName(newPassword.Username);
-              if(foundUser != null)
-              {
-                  var hashedPassword = HashPassword(newPassword.Password);
-                  foundUser.Hash = hashedPassword.Hash;
-                  foundUser.Salt = hashedPassword.Salt;
-                    _context.Update<UserModel>(foundUser);
-               result =  _context.SaveChanges() != 0;
-              }
+            if (foundUser != null)
+            {
+                var hashedPassword = HashPassword(newPassword.Password);
+                foundUser.Hash = hashedPassword.Hash;
+                foundUser.Salt = hashedPassword.Salt;
+                _context.Update<UserModel>(foundUser);
+                result = _context.SaveChanges() != 0;
+            }
 
             return result;
         }
 
 
-        
-         public bool ChildFreeBool(int userId)
+
+        public bool ChildFreeBool(int userId)
         {
-             UserModel foundUser = GetUserByID(userId);
+            UserModel foundUser = GetUserByID(userId);
             bool result = false;
-            if(foundUser != null)
+            if (foundUser != null)
             {
                 //A user was foundUser
                 foundUser.IsChildFree = !foundUser.IsChildFree;
                 _context.Update<UserModel>(foundUser);
-               result =  _context.SaveChanges() != 0;
+                result = _context.SaveChanges() != 0;
             }
             return result;
-        
+
         }
 
-         public bool AddDefaultAvatar(UserImageDTO avatar)
+        public bool AddDefaultAvatar(UserImageDTO avatar)
         {
-             UserModel foundUser = GetUserByUserName(avatar.Username);
-             bool result = false;
-             if(foundUser != null)
+            UserModel foundUser = GetUserByUserName(avatar.Username);
+            bool result = false;
+            if (foundUser != null)
             {
-              
-                foundUser.Photo=avatar.Photo ;
+
+                foundUser.Photo = avatar.Photo;
                 _context.Update<UserModel>(foundUser);
-               result =  _context.SaveChanges() != 0;
+                result = _context.SaveChanges() != 0;
             }
 
-             return result;
+            return result;
         }
 
-         public UserDataDTO GetUserData(string? username)
+        public UserDataDTO GetUserData(string? username)
         {
             UserDataDTO userData = new UserDataDTO();
             UserDTO UserInfo = GetUserPublicInfoByUserName(username);
-            if(UserInfo != null)
-            {   
+            if (UserInfo != null)
+            {
                 userData.userInfo = UserInfo;
 
                 List<DependentModel> UsersKids = UserKids(UserInfo.Id);
-                if(UsersKids != null)
+                if (UsersKids != null)
                 {
                     userData.Children = UsersKids;
                 }
 
+                List<CollectionsDTO> spaceCollections = GetCollectionByUserId(UserInfo.Id);
+                if (spaceCollections != null)
+                {
+                    userData.Spaces = spaceCollections;
+                }
 
-                 List<CollectionsDTO> spaceCollections =GetCollectionByUserId(UserInfo.Id);
-            if (spaceCollections != null)
-            {
-                userData.Spaces = spaceCollections;
+                InvitesDTO getUserInvites = GetInvitationInfoByUserId(UserInfo.Id);
+                if(getUserInvites != null)
+                {
+                    userData.Invitations = getUserInvites;
+                }
             }
-            }
-            
+
             return userData;
         }
 
-        public List <DependentModel> UserKids (int id)
+        public List<DependentModel> UserKids(int id)
         {
             return _context.DependentInfo.Where(child => child.UserId == id).ToList();
         }
@@ -279,11 +285,11 @@ namespace scrubby_webapi.Services
         {
             List<CollectionsDTO> SpaceCollectionsDTO = new List<CollectionsDTO>();
             List<SpaceCollectionModel> collections = new List<SpaceCollectionModel>();
-            collections= _context.SpaceCollectionInfo.Where(item => item.UserId == UserId).ToList();
+            collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId).ToList();
 
-            if(collections != null)
+            if (collections != null)
             {
-                for(int i=0; i<collections.Count; i++)
+                for (int i = 0; i < collections.Count; i++)
                 {
                     CollectionsDTO oneCollection = new CollectionsDTO();
                     oneCollection.Id = collections[i].Id;
@@ -300,17 +306,17 @@ namespace scrubby_webapi.Services
 
         public List<SpacesDTO> GetRoomsByCollectionID(int id)
         {
-            List <SpacesDTO> spaceByCollectionIdDTO = new List<SpacesDTO>();
-            List<SpaceInfoModel> spaces =  _context.SpaceInfo.Where(space => space.CollectionId==id).ToList();
+            List<SpacesDTO> spaceByCollectionIdDTO = new List<SpacesDTO>();
+            List<SpaceInfoModel> spaces = _context.SpaceInfo.Where(space => space.CollectionId == id).ToList();
 
-            if(spaces != null)
+            if (spaces != null)
             {
-                for(int i=0; i<spaces.Count; i++)
+                for (int i = 0; i < spaces.Count; i++)
                 {
                     SpacesDTO oneSpace = new SpacesDTO();
                     oneSpace.Id = spaces[i].Id;
-                    oneSpace.SpaceName = spaces[i].SpaceName ;
-                    oneSpace.SpaceCategory= spaces[i].SpaceCategory ;
+                    oneSpace.SpaceName = spaces[i].SpaceName;
+                    oneSpace.SpaceCategory = spaces[i].SpaceCategory;
                     oneSpace.Tasks = GetTasksBySpaceId(spaces[i].Id);
 
                     spaceByCollectionIdDTO.Add(oneSpace);
@@ -320,21 +326,21 @@ namespace scrubby_webapi.Services
             return spaceByCollectionIdDTO;
         }
 
-        public List<SelectedTasksDTO> GetTasksBySpaceId (int id)
+        public List<SelectedTasksDTO> GetTasksBySpaceId(int id)
         {
             List<SelectedTasksDTO> spaceTasksDTO = new List<SelectedTasksDTO>();
-            List <SelectedTasksModel> tasks = _context.SelectedTasksInfo.Where(task => task.SpaceId == id).ToList();
+            List<SelectedTasksModel> tasks = _context.SelectedTasksInfo.Where(task => task.SpaceId == id).ToList();
 
-            if(tasks != null)
+            if (tasks != null)
             {
-                for(int i=0; i<tasks.Count; i++)
+                for (int i = 0; i < tasks.Count; i++)
                 {
                     SelectedTasksDTO oneTask = new SelectedTasksDTO();
                     oneTask.Id = tasks[i].Id;
-                    oneTask.DateCompleted = tasks[i].DateCompleted ;
-                    oneTask.DateCompleted= tasks[i].DateCompleted ;
-                    oneTask.IsDeleted = tasks[i].IsDeleted ;
-                    oneTask.IsArchived= tasks[i].IsArchived ;
+                    oneTask.DateCompleted = tasks[i].DateCompleted;
+                    oneTask.DateCompleted = tasks[i].DateCompleted;
+                    oneTask.IsDeleted = tasks[i].IsDeleted;
+                    oneTask.IsArchived = tasks[i].IsArchived;
                     oneTask.Tasks = GetTaskByTaskID(tasks[i].TaskId);
 
                     spaceTasksDTO.Add(oneTask);
@@ -343,10 +349,59 @@ namespace scrubby_webapi.Services
             }
             return spaceTasksDTO;
         }
-        
+
         public TasksInfoStaticAPIModel GetTaskByTaskID(int id)
         {
             return _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id == id);
+        }
+
+        public InvitesDTO GetInvitationInfoByUserId(int id){
+
+            List <SentInvitesDTO> SentInvites = new List<SentInvitesDTO>();
+            List <RecievedInvitesDTO> RecievedInvites = new List<RecievedInvitesDTO>();
+            InvitesDTO userInvites = new InvitesDTO();
+
+            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(user => user.InviterId == id || user.InvitedId == id).ToList();
+
+            if(allInvitesForUser != null)
+            {
+                for(int i = 0; i < allInvitesForUser.Count; i++)
+                {
+                    if(allInvitesForUser[i].InviterId==id)
+                    {
+                        SentInvitesDTO sentInvite = new SentInvitesDTO();
+                        sentInvite.Id=allInvitesForUser[i].Id;
+                         sentInvite.InvitedId=allInvitesForUser[i].InvitedId;
+                         sentInvite.InvitedUsername=allInvitesForUser[i].InvitedUsername;
+                         sentInvite.InvitedFullname=allInvitesForUser[i].InvitedFullname;
+                         sentInvite.InvitedPhoto=allInvitesForUser[i].InvitedPhoto;
+                         sentInvite.IsAccepted=allInvitesForUser[i].IsAccepted;
+                         sentInvite.IsDeleted=allInvitesForUser[i].IsDeleted;
+
+                        SentInvites.Add(sentInvite);
+                    }
+                   
+
+
+                    if(allInvitesForUser[i].InvitedId==id)
+                    {
+                        RecievedInvitesDTO recievedInvite = new RecievedInvitesDTO();
+                        recievedInvite.Id = allInvitesForUser[i].Id;
+                         recievedInvite.InviterId = allInvitesForUser[i].InviterId;
+                         recievedInvite.InviterUsername = allInvitesForUser[i].InviterUsername;
+                         recievedInvite.InviterFullname = allInvitesForUser[i].InviterFullname;
+                         recievedInvite.InviterPhoto = allInvitesForUser[i].InviterPhoto;
+                         recievedInvite.IsAccepted = allInvitesForUser[i].IsAccepted;
+                         recievedInvite.IsDeleted = allInvitesForUser[i].IsDeleted;
+
+                        RecievedInvites.Add(recievedInvite);
+                    }
+                }
+            }
+                userInvites.SentInvites = SentInvites;
+                userInvites.RecievedInvites = RecievedInvites;
+
+            return userInvites;
         }
 
     }

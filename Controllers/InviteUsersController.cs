@@ -19,7 +19,7 @@ namespace scrubby_webapi.Controllers
             _data = dataFromInviteService;
         }
         [HttpPost("InviteUser")]
-        public bool InviteUser (InviteUsersModel newUser)
+        public bool InviteUser (InviteDTO newUser)
         {
             return _data.InviteUser(newUser);
         }

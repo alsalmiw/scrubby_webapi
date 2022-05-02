@@ -37,8 +37,12 @@ namespace scrubby_webapi.Services.Context
             var InvitedUsers = new List<InviteUsersModel>(){
                  new InviteUsersModel(){
                   Id =1,
-                  UserId =3,
+                  InviterId =3,
+                  InviterUsername = "Walaa",
+                  InviterFullname = "Walaa AlSalmi",
+                  InvitedId = 5,
                   InvitedUsername ="Peter",
+                  InvitedFullname = "Peter Vang",
                   IsAccepted =false,
                   IsDeleted  = false,
                  }

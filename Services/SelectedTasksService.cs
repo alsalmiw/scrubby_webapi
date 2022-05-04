@@ -104,5 +104,35 @@ namespace scrubby_webapi.Services
 
         }
 
+        public List<SelectedTasksDTO> GetTasksBySpaceId(int spaceId)
+        {
+            List<SelectedTasksDTO> spaceTasksDTO = new List<SelectedTasksDTO>();
+            List<SelectedTasksModel> tasks = _context.SelectedTasksInfo.Where(task => task.SpaceId == spaceId).ToList();
+
+            if (tasks != null)
+            {
+                for (int i = 0; i < tasks.Count; i++)
+                {
+                    SelectedTasksDTO oneTask = new SelectedTasksDTO();
+                    oneTask.Id = tasks[i].Id;
+                    oneTask.DateCompleted = tasks[i].DateCompleted;
+                    oneTask.DateCompleted = tasks[i].DateCompleted;
+                    oneTask.IsDeleted = tasks[i].IsDeleted;
+                    oneTask.IsArchived = tasks[i].IsArchived;
+                    oneTask.Task = GetTaskByTaskID(tasks[i].TaskId);
+                    oneTask.Item = _context.SpaceItemsStaticAPIInfo.SingleOrDefault(item => item.Id == tasks[i].ItemId);
+                    spaceTasksDTO.Add(oneTask);
+
+                }
+            }
+            return spaceTasksDTO;
+        }
+
+        public TasksInfoStaticAPIModel GetTaskByTaskID(int id)
+        {
+            return _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id == id);
+        }
+
+
     }
 }

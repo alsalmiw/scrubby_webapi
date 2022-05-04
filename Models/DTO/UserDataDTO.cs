@@ -12,6 +12,7 @@ namespace scrubby_webapi.Models.DTO
         public List<DependentModel>? Children { get; set; }
         public List<CollectionsDTO>? Spaces { get; set; }
         public InvitesDTO? Invitations { get; set; }
+        public List <ScoreBoardPointsDTO>? ScoreBoard { get; set; }
 
 
     }

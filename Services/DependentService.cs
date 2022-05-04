@@ -33,5 +33,26 @@ namespace scrubby_webapi.Services
         {
             return _context.DependentInfo.Where(d => d.UserId == userId);
         }
+
+        public DependentModel GetDependentById (int id)
+        {
+            return _context.DependentInfo.SingleOrDefault(d => d.Id == id);
+        }
+        public DependentModel NewCoinAmount(DependentModel newAmount)
+        {
+                DependentModel childInfo = GetDependentById(newAmount.Id);
+              
+            bool result = false;
+            if (childInfo != null)
+            {
+                //A user was foundUser
+                childInfo.DependentCoins = newAmount.DependentCoins;
+                _context.Update<DependentModel>(childInfo);
+                result = _context.SaveChanges() != 0;
+
+               
+            }
+            return result? childInfo : null;
+        }
     }
 }

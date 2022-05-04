@@ -324,6 +324,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=11,
                     DependentPhoto="",
                     DependentCoins=5000,
+                    DependentPoints=0,
                     IsDeleted=false
                 },
                 new DependentModel(){
@@ -333,6 +334,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=8,
                     DependentPhoto="",
                     DependentCoins=2000,
+                    DependentPoints=0,
                     IsDeleted=false
                 },
                 new DependentModel(){
@@ -342,6 +344,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=15,
                     DependentPhoto="",
                     DependentCoins=100,
+                    DependentPoints=0,
                     IsDeleted=true
                 },
                 new DependentModel(){
@@ -351,6 +354,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=8,
                     DependentPhoto="",
                     DependentCoins=7000,
+                    DependentPoints=0,
                     IsDeleted=false
                 },
                 new DependentModel(){
@@ -360,6 +364,7 @@ namespace scrubby_webapi.Services.Context
                     DependentAge=17,
                     DependentPhoto="",
                     DependentCoins=4000,
+                    DependentPoints=0,
                     IsDeleted=false
                 },
             };

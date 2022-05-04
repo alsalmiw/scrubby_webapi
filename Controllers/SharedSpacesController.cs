@@ -23,6 +23,7 @@ namespace scrubby_webapi.Controllers
         public bool CreateSharedSpaces(SharedSpacesModel spaceToCreate)
         {
             return _data.CreateSharedSpaces(spaceToCreate);
+            
         }
         [HttpPost("DeleteSharedSpacesById/{Id}")]
         public bool DeleteSharedSpacesById(int Id)

@@ -61,5 +61,11 @@ namespace scrubby_webapi.Controllers
             return _data.getTasksByUserID(userID);
         }
 
+        [HttpGet("GetTasksBySpaceId/{spaceId}")]
+         public List<SelectedTasksDTO> GetTasksBySpaceId(int spaceId)
+        {
+            return _data.GetTasksBySpaceId(spaceId);
+        }
+
     }
 }

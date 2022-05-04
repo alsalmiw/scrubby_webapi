@@ -198,6 +198,25 @@ namespace scrubby_webapi.Services
             return userInfo;
         }
 
+        public UserDTO GetUserPublicInfoByID(int id)
+        {
+            UserDTO userInfo = new UserDTO();
+            UserModel foundUser = GetUserByID(id);
+            if (foundUser != null)
+            {
+                //A user was foundUser
+                userInfo.Id = foundUser.Id;
+                userInfo.Name = foundUser.Name;
+                userInfo.Username = foundUser.Username;
+                userInfo.Photo = foundUser.Photo;
+                userInfo.Points = foundUser.Points;
+                userInfo.Coins = foundUser.Coins;
+                userInfo.IsDeleted = foundUser.IsDeleted;
+
+            }
+            return userInfo;
+        }
+
         public bool UpdatePassword(LoginDTO newPassword)
         {
             bool result = false;
@@ -272,13 +291,18 @@ namespace scrubby_webapi.Services
                     userData.Invitations = getUserInvites;
                 }
             }
+            List <ScoreBoardPointsDTO> ScoreBoardInfo = ScoreBoardList(username);
+                if(ScoreBoardInfo != null)
+                {
+                    userData.ScoreBoard = ScoreBoardInfo;
+                }
 
             return userData;
         }
 
         public List<DependentModel> UserKids(int id)
         {
-            return _context.DependentInfo.Where(child => child.UserId == id).ToList();
+            return _context.DependentInfo.Where(child => child.UserId == id && child.IsDeleted==false).ToList();
         }
 
         public List<CollectionsDTO> GetCollectionByUserId(int UserId)
@@ -341,7 +365,9 @@ namespace scrubby_webapi.Services
                     oneTask.DateCompleted = tasks[i].DateCompleted;
                     oneTask.IsDeleted = tasks[i].IsDeleted;
                     oneTask.IsArchived = tasks[i].IsArchived;
-                    oneTask.Tasks = GetTaskByTaskID(tasks[i].TaskId);
+                    oneTask.Task = GetTaskByTaskID(tasks[i].TaskId);
+                    oneTask.Item = _context.SpaceItemsStaticAPIInfo.SingleOrDefault(item => item.Id == tasks[i].ItemId);
+
 
                     spaceTasksDTO.Add(oneTask);
 
@@ -402,6 +428,84 @@ namespace scrubby_webapi.Services
                 userInvites.RecievedInvites = RecievedInvites;
 
             return userInvites;
+        }
+
+        public List <ScoreBoardPointsDTO> ScoreBoardList (string? username)
+        {
+
+            List <ScoreBoardPointsDTO> ScoresInfo = new List<ScoreBoardPointsDTO>();
+            ScoreBoardPointsDTO usersScoreInfo = new ScoreBoardPointsDTO();
+
+            UserModel foundUser = GetUserByUserName(username);
+            if(foundUser != null)
+            {
+                usersScoreInfo.Name=foundUser.Name;
+                usersScoreInfo.Points=foundUser.Points;
+                ScoresInfo.Add(usersScoreInfo);
+
+                List<DependentModel> UsersKids = UserKids(foundUser.Id);
+                  if(UsersKids!=null)
+                  {
+                      for(int i=0;i<UsersKids.Count; i++)
+                      {
+                        ScoreBoardPointsDTO kidScore = new ScoreBoardPointsDTO();
+                        kidScore.Name=UsersKids[i].DependentName;
+                        kidScore.Points=UsersKids[i].DependentPoints;
+                        ScoresInfo.Add(kidScore);
+                      }
+                  }
+
+                List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(user => user.InviterId == foundUser.Id && user.IsDeleted == false && user.IsAccepted==true).ToList();
+
+                List <UserModel> invitedUsersInfo = new List<UserModel>();
+
+                if (allInvitesForUser!= null){
+                    for(int k=0; k<allInvitesForUser.Count; k++)
+                     {
+                        UserModel invited = _context.UserInfo.FirstOrDefault(user => user.Id == allInvitesForUser[k].InvitedId);
+                        invitedUsersInfo.Add(invited);
+                    }
+
+                }
+
+                if(invitedUsersInfo!=null){
+                    for(int j=0;j<invitedUsersInfo.Count;j++)
+                    {
+                        ScoreBoardPointsDTO invitedScore = new ScoreBoardPointsDTO();
+                        invitedScore.Name=invitedUsersInfo[j].Name;
+                        invitedScore.Points=invitedUsersInfo[j].Points;
+                        ScoresInfo.Add(invitedScore);
+
+                    }
+                }
+
+
+            }
+          
+
+            return ScoresInfo;
+
+
+            
+        }
+
+         public UserDTO NewCoinAmount(UserDTO newAmount)
+        {
+                UserDTO userInfo =new UserDTO();
+               UserModel foundUser = GetUserByID(newAmount.Id);
+            bool result = false;
+            if (foundUser != null)
+            {
+                //A user was foundUser
+                foundUser.Coins = newAmount.Coins;
+                _context.Update<UserModel>(foundUser);
+                result = _context.SaveChanges() != 0;
+
+                if(result){
+                    userInfo = GetUserPublicInfoByID(foundUser.Id);
+                }
+            }
+            return userInfo;
         }
 
     }

@@ -31,6 +31,13 @@ namespace scrubby_webapi.Models
             return _data.GetPublicUserInfoByID(ID);
         }
 
+        [HttpGet("GetUserData/{username}")]
+        public UserDataDTO GetUserData(string? username)
+        {
+            return _data.GetUserData(username);
+        }
+
+
         [HttpPost("Login")]
         public IActionResult Login([FromBody] LoginDTO User){
             return _data.Login(User);
@@ -85,12 +92,12 @@ namespace scrubby_webapi.Models
             return _data.AddDefaultAvatar(avatar);
         }
 
-         [HttpGet("GetUserData/{username}")]
-        public UserDataDTO GetUserData(string? username)
+         [HttpPost("NewCoinAmount")]
+        public UserDTO NewCoinAmount(UserDTO newAmount)
         {
-            return _data.GetUserData(username);
+            return _data.NewCoinAmount(newAmount);
         }
-
+        
        
     }
 }

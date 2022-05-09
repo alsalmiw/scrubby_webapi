@@ -38,7 +38,7 @@ namespace scrubby_webapi.Services
             if(foundUser != null)
             {
                 //A user was foundUser
-                foundUser.SelectedTasksId = SelectedTasksId;
+                foundUser.AssignedTaskId = SelectedTasksId;
                 _context.Update<AssignedTasksUsersModel>(foundUser);
                result =  _context.SaveChanges() != 0;
             }

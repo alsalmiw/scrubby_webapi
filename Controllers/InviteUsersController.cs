@@ -36,6 +36,13 @@ namespace scrubby_webapi.Controllers
             return _data.DeleteInvite(userId, invitedUsername);
         }
 
+         [HttpPost("DeleteInvitation/{inviteId}")]
+        public bool DeleteInvitation (int inviteId)
+        {
+            return _data.DeleteInvitation(inviteId);
+        }
+
+
         [HttpGet("AllInvitesByID/{userID}")]
 
         public IEnumerable<InviteUsersModel> AllInvitesByID (int userId)

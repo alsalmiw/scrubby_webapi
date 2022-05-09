@@ -90,10 +90,28 @@ namespace scrubby_webapi.Services
             return _context.InvitesInfo.SingleOrDefault(invite => invite.InviterId == userId && invite.InvitedUsername == invitedUsername && invite.IsDeleted == false && invite.IsAccepted == false);
         }
 
+         public InviteUsersModel FindInviteByInviteId(int id)
+        {
+            return _context.InvitesInfo.SingleOrDefault(invite => invite.Id == id);
+        }
+
         public bool DeleteInvite(int userId, string? invitedUsername)
         {
             bool result = false;
             InviteUsersModel foundInvite = FindInvite(userId, invitedUsername);
+            if (foundInvite != null)
+            {
+                foundInvite.IsDeleted = true;
+                _context.Update<InviteUsersModel>(foundInvite);
+                result = _context.SaveChanges() != 0;
+            }
+            return result;
+        }
+
+        public bool DeleteInvitation (int inviteId)
+        {
+            bool result = false;
+            InviteUsersModel foundInvite = FindInviteByInviteId(inviteId);
             if (foundInvite != null)
             {
                 foundInvite.IsDeleted = true;
@@ -156,7 +174,7 @@ namespace scrubby_webapi.Services
             List <RecievedInvitesDTO> RecievedInvites = new List<RecievedInvitesDTO>();
             InvitesDTO userInvites = new InvitesDTO();
 
-            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(user => user.InviterUsername == username || user.InvitedUsername == username).ToList();
+            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(invite => (invite.InviterUsername == username || invite.InvitedUsername == username) && invite.IsDeleted!=true).ToList();
 
             if(allInvitesForUser != null)
             {

@@ -31,7 +31,7 @@ namespace scrubby_webapi.Services
 
        public IEnumerable<DependentModel> GetDependantByUserId (int userId)
         {
-            return _context.DependentInfo.Where(d => d.UserId == userId);
+            return _context.DependentInfo.Where(d => d.UserId == userId && d.IsDeleted==false);
         }
 
         public DependentModel GetDependentById (int id)

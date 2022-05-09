@@ -286,23 +286,23 @@ namespace scrubby_webapi.Services
                 }
 
                 InvitesDTO getUserInvites = GetInvitationInfoByUserId(UserInfo.Id);
-                if(getUserInvites != null)
+                if (getUserInvites != null)
                 {
                     userData.Invitations = getUserInvites;
                 }
             }
-            List <ScoreBoardPointsDTO> ScoreBoardInfo = ScoreBoardList(username);
-                if(ScoreBoardInfo != null)
-                {
-                    userData.ScoreBoard = ScoreBoardInfo;
-                }
+            List<ScoreBoardPointsDTO> ScoreBoardInfo = ScoreBoardList(username);
+            if (ScoreBoardInfo != null)
+            {
+                userData.ScoreBoard = ScoreBoardInfo;
+            }
 
             return userData;
         }
 
         public List<DependentModel> UserKids(int id)
         {
-            return _context.DependentInfo.Where(child => child.UserId == id && child.IsDeleted==false).ToList();
+            return _context.DependentInfo.Where(child => child.UserId == id && child.IsDeleted == false).ToList();
         }
 
         public List<CollectionsDTO> GetCollectionByUserId(int UserId)
@@ -320,6 +320,7 @@ namespace scrubby_webapi.Services
                     oneCollection.CollectionName = collections[i].CollectionName;
                     oneCollection.IsDeleted = collections[i].IsDeleted;
                     oneCollection.Rooms = GetRoomsByCollectionID(collections[i].Id);
+                    oneCollection.SharedWith = GetSharedCollectionWithByCollectionId(collections[i].Id);
 
                     SpaceCollectionsDTO.Add(oneCollection);
                 }
@@ -348,6 +349,29 @@ namespace scrubby_webapi.Services
             }
 
             return spaceByCollectionIdDTO;
+        }
+
+        public List<SharedSpacesDTO> GetSharedCollectionWithByCollectionId(int id)
+        {
+
+            List<SharedSpacesDTO> sharedSpacesDTO = new List<SharedSpacesDTO>();
+
+            List<SharedSpacesModel> sharedCollection = _context.SharedSpacesInfo.Where(collection => collection.CollectionId == id && (collection.IsDeleted == false && collection.IsAccepted == true)).ToList();
+
+            for (int i = 0; i < sharedCollection.Count; i++)
+            {
+                SharedSpacesDTO sharedSpaceWith = new SharedSpacesDTO();
+                sharedSpaceWith.Id = sharedCollection[i].Id;
+                UserModel findInvited = GetUserByUserName(sharedCollection[i].InvitedUsername);
+                sharedSpaceWith.InvitedId = findInvited.Id;
+                sharedSpaceWith.InvitedUsername = findInvited.Username;
+                sharedSpaceWith.InvitedName = findInvited.Name;
+
+                sharedSpacesDTO.Add(sharedSpaceWith);
+            }
+
+            return sharedSpacesDTO;
+
         }
 
         public List<SelectedTasksDTO> GetTasksBySpaceId(int id)
@@ -381,99 +405,102 @@ namespace scrubby_webapi.Services
             return _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id == id);
         }
 
-        public InvitesDTO GetInvitationInfoByUserId(int id){
+        public InvitesDTO GetInvitationInfoByUserId(int id)
+        {
 
-            List <SentInvitesDTO> SentInvites = new List<SentInvitesDTO>();
-            List <RecievedInvitesDTO> RecievedInvites = new List<RecievedInvitesDTO>();
+            List<SentInvitesDTO> SentInvites = new List<SentInvitesDTO>();
+            List<RecievedInvitesDTO> RecievedInvites = new List<RecievedInvitesDTO>();
             InvitesDTO userInvites = new InvitesDTO();
 
-            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(user => user.InviterId == id || user.InvitedId == id).ToList();
+            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(invite => (invite.InviterId == id || invite.InvitedId == id) && invite.IsDeleted != true).ToList();
 
-            if(allInvitesForUser != null)
+            if (allInvitesForUser != null)
             {
-                for(int i = 0; i < allInvitesForUser.Count; i++)
+                for (int i = 0; i < allInvitesForUser.Count; i++)
                 {
-                    if(allInvitesForUser[i].InviterId==id)
+                    if (allInvitesForUser[i].InviterId == id)
                     {
                         SentInvitesDTO sentInvite = new SentInvitesDTO();
-                        sentInvite.Id=allInvitesForUser[i].Id;
-                         sentInvite.InvitedId=allInvitesForUser[i].InvitedId;
-                         sentInvite.InvitedUsername=allInvitesForUser[i].InvitedUsername;
-                         sentInvite.InvitedFullname=allInvitesForUser[i].InvitedFullname;
-                         sentInvite.InvitedPhoto=allInvitesForUser[i].InvitedPhoto;
-                         sentInvite.IsAccepted=allInvitesForUser[i].IsAccepted;
-                         sentInvite.IsDeleted=allInvitesForUser[i].IsDeleted;
+                        sentInvite.Id = allInvitesForUser[i].Id;
+                        sentInvite.InvitedId = allInvitesForUser[i].InvitedId;
+                        sentInvite.InvitedUsername = allInvitesForUser[i].InvitedUsername;
+                        sentInvite.InvitedFullname = allInvitesForUser[i].InvitedFullname;
+                        sentInvite.InvitedPhoto = allInvitesForUser[i].InvitedPhoto;
+                        sentInvite.IsAccepted = allInvitesForUser[i].IsAccepted;
+                        sentInvite.IsDeleted = allInvitesForUser[i].IsDeleted;
 
                         SentInvites.Add(sentInvite);
                     }
-                   
 
 
-                    if(allInvitesForUser[i].InvitedId==id)
+
+                    if (allInvitesForUser[i].InvitedId == id)
                     {
                         RecievedInvitesDTO recievedInvite = new RecievedInvitesDTO();
                         recievedInvite.Id = allInvitesForUser[i].Id;
-                         recievedInvite.InviterId = allInvitesForUser[i].InviterId;
-                         recievedInvite.InviterUsername = allInvitesForUser[i].InviterUsername;
-                         recievedInvite.InviterFullname = allInvitesForUser[i].InviterFullname;
-                         recievedInvite.InviterPhoto = allInvitesForUser[i].InviterPhoto;
-                         recievedInvite.IsAccepted = allInvitesForUser[i].IsAccepted;
-                         recievedInvite.IsDeleted = allInvitesForUser[i].IsDeleted;
+                        recievedInvite.InviterId = allInvitesForUser[i].InviterId;
+                        recievedInvite.InviterUsername = allInvitesForUser[i].InviterUsername;
+                        recievedInvite.InviterFullname = allInvitesForUser[i].InviterFullname;
+                        recievedInvite.InviterPhoto = allInvitesForUser[i].InviterPhoto;
+                        recievedInvite.IsAccepted = allInvitesForUser[i].IsAccepted;
+                        recievedInvite.IsDeleted = allInvitesForUser[i].IsDeleted;
 
                         RecievedInvites.Add(recievedInvite);
                     }
                 }
             }
-                userInvites.SentInvites = SentInvites;
-                userInvites.RecievedInvites = RecievedInvites;
+            userInvites.SentInvites = SentInvites;
+            userInvites.RecievedInvites = RecievedInvites;
 
             return userInvites;
         }
 
-        public List <ScoreBoardPointsDTO> ScoreBoardList (string? username)
+        public List<ScoreBoardPointsDTO> ScoreBoardList(string? username)
         {
 
-            List <ScoreBoardPointsDTO> ScoresInfo = new List<ScoreBoardPointsDTO>();
+            List<ScoreBoardPointsDTO> ScoresInfo = new List<ScoreBoardPointsDTO>();
             ScoreBoardPointsDTO usersScoreInfo = new ScoreBoardPointsDTO();
 
             UserModel foundUser = GetUserByUserName(username);
-            if(foundUser != null)
+            if (foundUser != null)
             {
-                usersScoreInfo.Name=foundUser.Name;
-                usersScoreInfo.Points=foundUser.Points;
+                usersScoreInfo.Name = foundUser.Name;
+                usersScoreInfo.Points = foundUser.Points;
                 ScoresInfo.Add(usersScoreInfo);
 
                 List<DependentModel> UsersKids = UserKids(foundUser.Id);
-                  if(UsersKids!=null)
-                  {
-                      for(int i=0;i<UsersKids.Count; i++)
-                      {
+                if (UsersKids != null)
+                {
+                    for (int i = 0; i < UsersKids.Count; i++)
+                    {
                         ScoreBoardPointsDTO kidScore = new ScoreBoardPointsDTO();
-                        kidScore.Name=UsersKids[i].DependentName;
-                        kidScore.Points=UsersKids[i].DependentPoints;
+                        kidScore.Name = UsersKids[i].DependentName;
+                        kidScore.Points = UsersKids[i].DependentPoints;
                         ScoresInfo.Add(kidScore);
-                      }
-                  }
+                    }
+                }
 
-                List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(user => user.InviterId == foundUser.Id && user.IsDeleted == false && user.IsAccepted==true).ToList();
+                List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(user => user.InviterId == foundUser.Id && user.IsDeleted == false && user.IsAccepted == true).ToList();
 
-                List <UserModel> invitedUsersInfo = new List<UserModel>();
+                List<UserModel> invitedUsersInfo = new List<UserModel>();
 
-                if (allInvitesForUser!= null){
-                    for(int k=0; k<allInvitesForUser.Count; k++)
-                     {
+                if (allInvitesForUser != null)
+                {
+                    for (int k = 0; k < allInvitesForUser.Count; k++)
+                    {
                         UserModel invited = _context.UserInfo.FirstOrDefault(user => user.Id == allInvitesForUser[k].InvitedId);
                         invitedUsersInfo.Add(invited);
                     }
 
                 }
 
-                if(invitedUsersInfo!=null){
-                    for(int j=0;j<invitedUsersInfo.Count;j++)
+                if (invitedUsersInfo != null)
+                {
+                    for (int j = 0; j < invitedUsersInfo.Count; j++)
                     {
                         ScoreBoardPointsDTO invitedScore = new ScoreBoardPointsDTO();
-                        invitedScore.Name=invitedUsersInfo[j].Name;
-                        invitedScore.Points=invitedUsersInfo[j].Points;
+                        invitedScore.Name = invitedUsersInfo[j].Name;
+                        invitedScore.Points = invitedUsersInfo[j].Points;
                         ScoresInfo.Add(invitedScore);
 
                     }
@@ -481,18 +508,18 @@ namespace scrubby_webapi.Services
 
 
             }
-          
+
 
             return ScoresInfo;
 
 
-            
+
         }
 
-         public UserDTO NewCoinAmount(UserDTO newAmount)
+        public UserDTO NewCoinAmount(UserDTO newAmount)
         {
-                UserDTO userInfo =new UserDTO();
-               UserModel foundUser = GetUserByID(newAmount.Id);
+            UserDTO userInfo = new UserDTO();
+            UserModel foundUser = GetUserByID(newAmount.Id);
             bool result = false;
             if (foundUser != null)
             {
@@ -501,7 +528,8 @@ namespace scrubby_webapi.Services
                 _context.Update<UserModel>(foundUser);
                 result = _context.SaveChanges() != 0;
 
-                if(result){
+                if (result)
+                {
                     userInfo = GetUserPublicInfoByID(foundUser.Id);
                 }
             }

@@ -116,7 +116,6 @@ namespace scrubby_webapi.Services
         public IEnumerable<UserDTO> GetAllUserInfoInviteRequests(string? username)
         {
             List<UserDTO> Invitees = new List<UserDTO>();
-
             List<InviteUsersModel> findInvites = _context.InvitesInfo.Where(user => user.InvitedUsername == username).ToList();
             List<UserModel> findUsers = new List<UserModel>();
 

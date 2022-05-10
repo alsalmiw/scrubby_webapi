@@ -42,5 +42,28 @@ namespace scrubby_webapi.Controllers
         {
             return _data.NewCoinAmount(newAmount);
         }
+        //
+
+
+
+
+
+         
+
+          
+
+           
+
+
+
+
+
+
+            
+
+             
+
+
+             
     }
 }

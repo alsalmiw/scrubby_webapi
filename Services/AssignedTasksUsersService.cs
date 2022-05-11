@@ -16,9 +16,39 @@ namespace scrubby_webapi.Services
             _context = context;
         }
 
-        public AssignedTasksUsersModel GetAllAssignedTasksUsersById(int id)
+        
+        public bool AddUserAssignedTasks(List<AssignedTasksUsersModel> listOfAssignedTasks)
         {
-            return _context.AssignedTasksUsersInfo.SingleOrDefault(user => user.Id == id);
+            bool result = false;
+            for(int i = 0; i < listOfAssignedTasks.Count; i++){
+
+                AssignedTasksUsersModel foundTask = _context.AssignedTasksUsersInfo.SingleOrDefault(task => task.UserId == listOfAssignedTasks[i].UserId && task.SpaceId == listOfAssignedTasks[i].SpaceId && task.AssignedTaskId == listOfAssignedTasks[i].AssignedTaskId && task.DateCreated== listOfAssignedTasks[i].DateCreated && task.IsDeleted==false);
+                if(foundTask == null)
+                {
+                     _context.Add(listOfAssignedTasks[i]);
+                    result = _context.SaveChanges() !=0;
+                }
+                else{
+                    foundTask.IsDeleted = true;
+                    _context.Update<AssignedTasksUsersModel>(foundTask);
+                    result = _context.SaveChanges() !=0;
+                }
+            }
+           
+            return result;
+        }
+
+         public bool DeleteAssignedTaskUserByTaskId(int Id)
+        {
+             AssignedTasksUsersModel AssignedTask = GetAllAssignedTasksById(Id);
+
+            AssignedTask.IsDeleted = true;
+            _context.Update<AssignedTasksUsersModel>(AssignedTask);
+            return _context.SaveChanges() != 0;
+        }
+        public AssignedTasksUsersModel GetAllAssignedTasksById(int id)
+        {
+            return _context.AssignedTasksUsersInfo.SingleOrDefault(task => task.Id == id);
         }
 
         public IEnumerable<AssignedTasksUsersModel> GetAllAssignedTasksUsersByUserId(int userId)
@@ -32,7 +62,7 @@ namespace scrubby_webapi.Services
 
         public bool UpdateAssignedTasksUsers(int id, int SelectedTasksId)
         {
-            AssignedTasksUsersModel foundUser = GetAllAssignedTasksUsersById(id);
+            AssignedTasksUsersModel foundUser = GetAllAssignedTasksById(id);
 
             bool result = false;
             if(foundUser != null)

@@ -19,13 +19,25 @@ namespace scrubby_webapi.Controllers
             _data = _dataFromService;
         }
 
-        [HttpGet("GetAllAssignedTasksUsersById/{Id}")]
+        [HttpGet("GetAllAssignedTasksById/{Id}")]
 
-        public AssignedTasksUsersModel GetAllAssignedTasksUsersById(int id)
+        public AssignedTasksUsersModel GetAllAssignedTasksById(int id)
         {
-            return _data.GetAllAssignedTasksUsersById(id);
+            return _data.GetAllAssignedTasksById(id);
         }
 
+          [HttpPost("AddUserAssignedTasks")]
+        public bool AddUserAssignedTasks(List<AssignedTasksUsersModel> listOfAssignedTasks)
+        {
+            return _data.AddUserAssignedTasks(listOfAssignedTasks);
+        }
+
+        [HttpPost("DeleteAssignedTaskUserByTaskId/{Id}")]
+
+          public bool DeleteAssignedTaskUserByTaskId(int Id)
+        {
+             return _data.DeleteAssignedTaskUserByTaskId(Id);
+        }
         //missing service
 
         [HttpGet("GetDateCreatedAssignedTasksUsersById/{Id}")]

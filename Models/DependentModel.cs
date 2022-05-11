@@ -16,6 +16,7 @@ namespace scrubby_webapi.Models
         public int DependentPoints { get; set; }
 
         public bool IsDeleted { get; set; }
+        public int DependentPassCode { get; set; }
 
         public DependentModel(){}
     }

@@ -20,6 +20,27 @@ namespace scrubby_webapi.Services
             return _context.SaveChanges() !=0;
         }
 
+        public bool AddChildAssignedTasks(List<AssignedTasksChildModel> listOfAssignedTasks)
+        {
+            bool result = false;
+            for(int i = 0; i < listOfAssignedTasks.Count; i++){
+
+                AssignedTasksChildModel foundTask = _context.AssignedTasksChildInfo.SingleOrDefault(task => task.ChildId == listOfAssignedTasks[i].ChildId && task.SpaceId == listOfAssignedTasks[i].SpaceId && task.AssignedTaskId == listOfAssignedTasks[i].AssignedTaskId && task.DateCreated== listOfAssignedTasks[i].DateCreated && task.IsDeleted==false);
+                if(foundTask == null)
+                {
+                     _context.Add(listOfAssignedTasks[i]);
+                    result = _context.SaveChanges() !=0;
+                }
+                else{
+                    foundTask.IsDeleted = true;
+                    _context.Update<AssignedTasksChildModel>(foundTask);
+                    result = _context.SaveChanges() !=0;
+                }
+            }
+           
+            return result;
+        }
+
         //update date completed
         public bool UpdateAssignedTasksChildByIdAndDateCom(int Id, string? DateCompleted)
         {

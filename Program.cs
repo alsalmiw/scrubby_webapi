@@ -30,7 +30,7 @@ builder.Services.AddDbContext<DataContext>(Options => Options.UseSqlServer(Conne
 
 builder.Services.AddCors(options => {
 options.AddPolicy("ScrubbyPolicy",
-builder => {builder.WithOrigins("http://localhost:19000","http://localhost:3000", "http://localhost:19001","http://localhost:19002")
+builder => {builder.WithOrigins("http://localhost:19000","http://localhost:3000", "http://localhost:3001", "http://localhost:3002", "http://localhost:19001","http://localhost:19002")
     .AllowAnyHeader()
     .AllowAnyMethod();
 });

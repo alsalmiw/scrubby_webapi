@@ -414,45 +414,45 @@ namespace scrubby_webapi.Services.Context
 
                 new AssignedTasksUsersModel(){
                     Id=1,
-                    UserIdTasked=4,
-                    UserIdOwner=4,
-                    SelectedTasksId=5,
+                    UserId=4,
+                    SpaceId=4,
+                    AssignedTaskId=5,
                     DateCreated="4-21-2022",
                     DateCompleted="4-22-2022",
                     Repeat=2
                 },
                 new AssignedTasksUsersModel(){
                     Id=2,
-                    UserIdTasked=3,
-                    UserIdOwner=3,
-                    SelectedTasksId=3,
+                    UserId=3,
+                    SpaceId=3,
+                    AssignedTaskId=3,
                     DateCreated="4-10-2022",
                     DateCompleted="4-12-2022",
                     Repeat=3
                 },
                 new AssignedTasksUsersModel(){
                     Id=3,
-                    UserIdTasked=1,
-                    UserIdOwner=1,
-                    SelectedTasksId=2,
+                    UserId=1,
+                    SpaceId=1,
+                    AssignedTaskId=2,
                     DateCreated="4-1-2022",
                     DateCompleted="4-3-2022",
                     Repeat=1
                 },
                 new AssignedTasksUsersModel(){
                     Id=4,
-                    UserIdTasked=2,
-                    UserIdOwner=2,
-                    SelectedTasksId=4,
+                    UserId=2,
+                    SpaceId=2,
+                    AssignedTaskId=4,
                     DateCreated="4-20-2022",
                     DateCompleted="4-20-2022",
                     Repeat=1
                 },
                 new AssignedTasksUsersModel(){
                     Id=5,
-                    UserIdTasked=2,
-                    UserIdOwner=2,
-                    SelectedTasksId=1,
+                    UserId=2,
+                    SpaceId=2,
+                    AssignedTaskId=1,
                     DateCreated="3-30-2022",
                     DateCompleted="3-31-2022",
                     Repeat=2
@@ -464,8 +464,8 @@ namespace scrubby_webapi.Services.Context
             var assignedTasksChildData = new List<AssignedTasksChildModel>() {
                 new AssignedTasksChildModel() {
                     Id=1,
-                    UserId=1,
-                    SelectedTasksId=1,
+                    ChildId=1,
+                    AssignedTaskId=1,
                     DateCreated="03/30/2022",
                     DateCompleted="04/02/2022",
                     IsDeleted=false,
@@ -473,8 +473,8 @@ namespace scrubby_webapi.Services.Context
                 },
                 new AssignedTasksChildModel() {
                     Id=2,
-                    UserId=2,
-                    SelectedTasksId=2,
+                    ChildId=2,
+                    AssignedTaskId=2,
                     DateCreated="03/31/2022",
                     DateCompleted="04/03/2022",
                     IsDeleted=false,
@@ -482,8 +482,8 @@ namespace scrubby_webapi.Services.Context
                 },
                 new AssignedTasksChildModel() {
                     Id=3,
-                    UserId=3,
-                    SelectedTasksId=3,
+                    ChildId=3,
+                    AssignedTaskId=3,
                     DateCreated="04/01/2022",
                     DateCompleted="04/04/2022",
                     IsDeleted=false,
@@ -491,8 +491,8 @@ namespace scrubby_webapi.Services.Context
                 },
                 new AssignedTasksChildModel() {
                     Id=4,
-                    UserId=4,
-                    SelectedTasksId=4,
+                    ChildId=4,
+                    AssignedTaskId=4,
                     DateCreated="04/02/2022",
                     DateCompleted="04/05/2022",
                     IsDeleted=false,
@@ -500,8 +500,8 @@ namespace scrubby_webapi.Services.Context
                 },
                 new AssignedTasksChildModel() {
                     Id=5,
-                    UserId=5,
-                    SelectedTasksId=5,
+                    ChildId=5,
+                    AssignedTaskId=5,
                     DateCreated="04/03/2022",
                     DateCompleted="04/06/2022",
                     IsDeleted=false,

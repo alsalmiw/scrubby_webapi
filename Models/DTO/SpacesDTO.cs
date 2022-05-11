@@ -12,5 +12,6 @@ namespace scrubby_webapi.Models.DTO
         public string? SpaceCategory { get; set; }
 
         public List <SelectedTasksDTO>? Tasks { get; set; }
+        public List <AssignedTasksDTO>? TasksAssigned { get; set; }
     }
 }

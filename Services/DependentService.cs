@@ -54,5 +54,16 @@ namespace scrubby_webapi.Services
             }
             return result? childInfo : null;
         }
+
+        public DependentModel UpdatedChildPassCode(DependentModel passCodeUpdate)
+        {
+            DependentModel childInfo = GetDependentById(passCodeUpdate.Id);
+
+            bool result = false;
+            if(childInfo !=null)
+            {
+                childInfo.depe
+            }
+        }
     }
 }

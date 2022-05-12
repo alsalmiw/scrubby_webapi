@@ -34,7 +34,7 @@ namespace scrubby_webapi.Controllers
         [HttpGet("GetDependantByUserId/{userId}")]
         public IEnumerable<DependentModel> GetDependantByUserId (int userId)
         {
-            return _data.GetDependantByUserId(userId);
+            return _data.GetDependantByUserId(userId);  
         }
 
         [HttpPost("NewCoinAmount")]
@@ -42,7 +42,11 @@ namespace scrubby_webapi.Controllers
         {
             return _data.NewCoinAmount(newAmount);
         }
-        //
+        [HttpPost("UpdatePassCode")]
+        public DependentModel UpdatedChildPassCode(DependentModel passCodeUpdate)
+        {
+            return _data.UpdatedChildPassCode(passCodeUpdate)
+        }
 
 
 

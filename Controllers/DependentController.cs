@@ -45,7 +45,7 @@ namespace scrubby_webapi.Controllers
         [HttpPost("UpdatePassCode")]
         public DependentModel UpdatedChildPassCode(DependentModel passCodeUpdate)
         {
-            return _data.UpdatedChildPassCode(passCodeUpdate)
+            return _data.UpdatedChildPassCode(passCodeUpdate);
         }
 
 

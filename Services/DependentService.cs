@@ -62,8 +62,11 @@ namespace scrubby_webapi.Services
             bool result = false;
             if(childInfo !=null)
             {
-                childInfo.depe
+                childInfo.DependentPassCode = passCodeUpdate.DependentPassCode;
+                _context.Update<DependentModel>(childInfo);
+                result = _context.SaveChanges()!=0;
             }
+            return result? childInfo :null;
         }
     }
 }

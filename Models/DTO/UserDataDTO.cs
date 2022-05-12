@@ -19,4 +19,4 @@ namespace scrubby_webapi.Models.DTO
 
 
     }
-}
+}        

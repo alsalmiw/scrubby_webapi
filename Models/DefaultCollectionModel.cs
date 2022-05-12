@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace scrubby_webapi.Models
 {
-    public class SpaceCollectionModel
+    public class DefaultCollectionModel
     {
         public int Id { get; set; }
-        public string? CollectionName { get; set; }
-        public bool IsDeleted { get; set; }
-        public int UserId { get; set; }
+        public int UserId { get; set; } 
+        public int CollectionId { get; set; }   
         public bool IsDefault { get; set; }
-        public SpaceCollectionModel () {}
+
+        public DefaultCollectionModel(){}
     }
 }

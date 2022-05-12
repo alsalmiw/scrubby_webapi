@@ -317,6 +317,7 @@ namespace scrubby_webapi.Services
                 {
                     DependentDTO oneChild = new DependentDTO();
                     oneChild.Id = childrenInfo[i].Id;
+                    oneChild.UserId = childrenInfo[i].UserId;
                     oneChild.DependentName=childrenInfo[i].DependentName;
                     oneChild.DependentAge=childrenInfo[i].DependentAge;
                     oneChild.DependentPhoto=childrenInfo[i].DependentPhoto;
@@ -396,6 +397,7 @@ namespace scrubby_webapi.Services
                     oneCollection.Id = collections[i].Id;
                     oneCollection.CollectionName = collections[i].CollectionName;
                     oneCollection.IsDeleted = collections[i].IsDeleted;
+                     oneCollection.IsDefault = collections[i].IsDefault;
                     oneCollection.Rooms = GetRoomsByCollectionID(collections[i].Id);
                     oneCollection.SharedWith = GetSharedCollectionWithByCollectionId(collections[i].Id);
 

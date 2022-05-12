@@ -21,6 +21,7 @@ builder.Services.AddScoped<AssignedTasksUsersService>();
 builder.Services.AddScoped<TasksInfoStaticAPIService>();
 builder.Services.AddScoped<CleaningProductsStaticAPIService>();
 builder.Services.AddScoped<SpaceItemsStaticAPIService>();
+builder.Services.AddScoped<DefaultCollectionService>();
 
 
 

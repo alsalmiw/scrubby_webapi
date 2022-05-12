@@ -24,6 +24,8 @@ namespace scrubby_webapi.Services.Context
          public DbSet<SpaceItemsStaticAPIModel> SpaceItemsStaticAPIInfo { get; set; }
          public DbSet<CleaningProductsStaticAPIModel> CleaningProductsStaticAPIInfo { get; set; }
 
+         public DbSet<DefaultCollectionModel> DefaultCollectionInfo { get; set; }
+
          
         public DataContext(DbContextOptions options) : base(options) {}
 

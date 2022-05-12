@@ -115,10 +115,7 @@ namespace scrubby_webapi.Services
                 {
                     SelectedTasksDTO oneTask = new SelectedTasksDTO();
                     oneTask.Id = tasks[i].Id;
-                    oneTask.DateCompleted = tasks[i].DateCompleted;
-                    oneTask.DateCompleted = tasks[i].DateCompleted;
                     oneTask.IsDeleted = tasks[i].IsDeleted;
-                    oneTask.IsArchived = tasks[i].IsArchived;
                     oneTask.Task = GetTaskByTaskID(tasks[i].TaskId);
                     oneTask.Item = _context.SpaceItemsStaticAPIInfo.SingleOrDefault(item => item.Id == tasks[i].ItemId);
                     spaceTasksDTO.Add(oneTask);

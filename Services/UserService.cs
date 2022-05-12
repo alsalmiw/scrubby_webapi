@@ -343,6 +343,7 @@ namespace scrubby_webapi.Services
                     oneSpace.SpaceName = spaces[i].SpaceName;
                     oneSpace.SpaceCategory = spaces[i].SpaceCategory;
                     oneSpace.Tasks = GetTasksBySpaceId(spaces[i].Id);
+                    oneSpace.TasksAssigned = GetAllAssignedTasksBySpaceId(spaces[i].Id);
 
                     spaceByCollectionIdDTO.Add(oneSpace);
                 }
@@ -350,6 +351,179 @@ namespace scrubby_webapi.Services
 
             return spaceByCollectionIdDTO;
         }
+
+        // public List<AssignedUsersDTO> GetAssignedUsersBySpaceId(int id)
+        // {
+        //         List<AssignedUsersDTO> Assingments = new List<AssignedUsersDTO>();
+        //         List<AssignedTasksUsersModel> AssignedUsers = _context.AssignedTasksUsersInfo.Where(assignment => assignment.SpaceId == id).ToList();
+        //         if(AssignedUsers.Count!= 0)
+        //         {
+
+        //             for(int i = 0; i < AssignedUsers.Count; i++){
+        //             AssignedUsersDTO oneAssigned = new AssignedUsersDTO();
+        //             UserModel findUser = _context.UserInfo.SingleOrDefault(user => user.Id == AssignedUsers[i].UserId);
+        //             oneAssigned.Id=AssignedUsers[i].Id;
+        //             oneAssigned.Name = findUser.Name;
+        //             oneAssigned.IsChild=false;
+        //             oneAssigned.AssignedTasks = GetAllAssignedTasksByUserId(AssignedUsers[i].Id);
+        //             Assingments.Add(oneAssigned);
+        //             }
+        //         }
+                
+
+        //         List<AssignedTasksChildModel> AssignedChildren = _context.AssignedTasksChildInfo.Where(assignment => assignment.SpaceId == id).ToList();
+        //         if(AssignedChildren.Count!=0)
+        //         {
+        //              for(int i = 0; i < AssignedUsers.Count; i++){
+        //             AssignedUsersDTO oneAssigned = new AssignedUsersDTO();
+        //             DependentModel findChild = _context.DependentInfo.SingleOrDefault(child => child.Id == AssignedUsers[i].Id);
+        //             oneAssigned.Id=AssignedUsers[i].Id;
+        //             oneAssigned.Name = findChild.DependentName;
+        //             oneAssigned.IsChild=true;
+        //             oneAssigned.AssignedTasks = GetAllAssignedTasksByChildId(AssignedUsers[i].Id);
+        //             Assingments.Add(oneAssigned);
+        //         }
+        //         }
+                
+               
+            
+        //     return Assingments;
+        // }
+
+        public List<AssignedTasksDTO>GetAllAssignedTasksBySpaceId(int id){
+            
+            List<AssignedTasksDTO> AssignedTasks = new List<AssignedTasksDTO>();
+            List<AssignedTasksDTO> AssignedUsers = GetAllAssignedUserTasksBySpaceId(id);
+            List<AssignedTasksDTO> AssignedChildren = GetAllAssignedChildTasksBySpaceId(id);
+
+             if(AssignedUsers.Count!=0)
+             {
+                    for(int i = 0; i < AssignedUsers.Count; i++)
+                    {
+                        AssignedTasks.Add(AssignedUsers[i]);
+                    }
+             }
+
+             if(AssignedChildren.Count!=0)
+             {
+                     for(int i = 0; i < AssignedChildren.Count; i++)
+                    {
+                        AssignedTasks.Add(AssignedChildren[i]);
+                    }
+
+             }
+           
+           return AssignedTasks;
+
+        }
+
+         public List<AssignedTasksDTO>GetAllAssignedUserTasksBySpaceId(int id){
+
+            List<AssignedTasksUsersModel> AssignedUsers = _context.AssignedTasksUsersInfo.Where(assignment => assignment.SpaceId == id && assignment.IsDeleted==false).ToList();
+
+              List<AssignedTasksDTO> AssignedTasks = new List<AssignedTasksDTO>();
+
+
+                if(AssignedUsers.Count!=0)
+                {
+                     for(int i = 0; i < AssignedUsers.Count; i++)
+                    {
+                    UserModel findUser = _context.UserInfo.SingleOrDefault(user => user.Id == AssignedUsers[i].UserId);
+
+                    AssignedTasksDTO oneTask = new AssignedTasksDTO();
+                    oneTask.Id = AssignedUsers[i].Id;
+                    oneTask.UserId = AssignedUsers[i].UserId;
+                    oneTask.Name = findUser.Name;
+                    oneTask.AssignedTaskId= AssignedUsers[i].AssignedTaskId;
+                    oneTask.DateScheduled = AssignedUsers[i].DateCreated;
+                    oneTask.DateCompleted= AssignedUsers[i].DateCompleted;
+                    oneTask.IsCompleted = AssignedUsers[i].IsCompleted;
+                    oneTask.IsChild=false;
+                    AssignedTasks.Add(oneTask);
+                    }
+                }
+               
+            return AssignedTasks;
+                
+                
+        }
+
+
+         public List<AssignedTasksDTO>GetAllAssignedChildTasksBySpaceId(int id){
+
+            List<AssignedTasksChildModel> AssignedChildren = _context.AssignedTasksChildInfo.Where(assignment => assignment.SpaceId == id && assignment.IsDeleted==false).ToList();
+            
+            List<AssignedTasksDTO> AssignedTasks = new List<AssignedTasksDTO>();
+            
+                if(AssignedChildren.Count!=0)
+                {
+                     for(int i = 0; i < AssignedChildren.Count; i++)
+                    {
+                     DependentModel findChild = _context.DependentInfo.SingleOrDefault(child => child.Id == AssignedChildren[i].Id);
+
+                    AssignedTasksDTO oneTask = new AssignedTasksDTO();
+                    oneTask.Id = AssignedChildren[i].Id;
+                    oneTask.UserId = AssignedChildren[i].ChildId;
+                    oneTask.Name = findChild.DependentName;
+                    oneTask.AssignedTaskId= AssignedChildren[i].AssignedTaskId;
+                    oneTask.DateScheduled = AssignedChildren[i].DateCreated;
+                    oneTask.DateCompleted= AssignedChildren[i].DateCompleted;
+                    oneTask.IsCompleted = AssignedChildren[i].IsCompleted;
+                    oneTask.IsChild=true;
+                    AssignedTasks.Add(oneTask);
+                    }
+                }
+               
+            return AssignedTasks;
+        }
+
+
+
+        public List<AssignedTasksDTO>GetAllAssignedTasksByUserId(int id){
+                List<AssignedTasksUsersModel> AssignedUsers = _context.AssignedTasksUsersInfo.Where(assignment => assignment.UserId == id && assignment.IsDeleted==false).ToList();
+                List<AssignedTasksDTO> AssignedTasks = new List<AssignedTasksDTO>();
+
+
+                if(AssignedUsers.Count!=0)
+                {
+                     for(int i = 0; i < AssignedUsers.Count; i++)
+                    {
+                    AssignedTasksDTO oneTask = new AssignedTasksDTO();
+                    oneTask.Id = AssignedUsers[i].Id;
+                    oneTask.UserId = AssignedUsers[i].Id;
+                    oneTask.AssignedTaskId= AssignedUsers[i].AssignedTaskId;
+                    oneTask.DateScheduled = AssignedUsers[i].DateCreated;
+                    oneTask.DateCompleted= AssignedUsers[i].DateCompleted;
+                    oneTask.IsCompleted = AssignedUsers[i].IsCompleted;
+                    AssignedTasks.Add(oneTask);
+                    }
+                }
+               
+            return AssignedTasks;
+        }
+
+         public List<AssignedTasksDTO>GetAllAssignedTasksByChildId(int id){
+                List<AssignedTasksChildModel> AssignedChildren = _context.AssignedTasksChildInfo.Where(assignment => assignment.ChildId == id && assignment.IsDeleted==false).ToList();
+                List<AssignedTasksDTO> AssignedTasks = new List<AssignedTasksDTO>();
+
+                if(AssignedChildren.Count!=0)
+                {
+                     for(int i = 0; i < AssignedChildren.Count; i++)
+                    {
+                    AssignedTasksDTO oneTask = new AssignedTasksDTO();
+                    oneTask.Id = AssignedChildren[i].Id;
+                    oneTask.UserId = AssignedChildren[i].Id;
+                    oneTask.AssignedTaskId= AssignedChildren[i].AssignedTaskId;
+                    oneTask.DateScheduled = AssignedChildren[i].DateCreated;
+                    oneTask.DateCompleted= AssignedChildren[i].DateCompleted;
+                    oneTask.IsCompleted = AssignedChildren[i].IsCompleted;
+                    AssignedTasks.Add(oneTask);
+                    }
+                }
+                
+            return AssignedTasks;
+        }
+
 
         public List<SharedSpacesDTO> GetSharedCollectionWithByCollectionId(int id)
         {

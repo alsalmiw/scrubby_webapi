@@ -264,7 +264,7 @@ namespace scrubby_webapi.Services
 
             return result;
         }
-
+//-----------USER DATA----------------//
         public UserDataDTO GetUserData(string? username)
         {
             UserDataDTO userData = new UserDataDTO();
@@ -297,13 +297,26 @@ namespace scrubby_webapi.Services
                 userData.ScoreBoard = ScoreBoardInfo;
             }
 
-            List<ScheduleAssignedTasksDTO> myTasksUsers = GetMyScheduledTasksByUserId(UserInfo.Id);
-            if(myTasksUsers!=null)
+            List<ScheduleCollectionsDTO> myTasks = GetMyTaskedCollectionsByUserId(UserInfo.Id);
+            if(myTasks!=null)
             {
-                userData.MyScheduledTasks = myTasksUsers;
+                userData.MySchedule = myTasks;
             }
 
             return userData;
+        }
+
+        public List <ScheduleCollectionsDTO> GetMyTaskedCollectionsByUserId(int id)
+        {
+
+             List<ScheduleCollectionsDTO> MyAndInvitedCollections = new List<ScheduleCollectionsDTO>();
+
+             List<ScheduleCollectionsDTO> MyCollections = GetScheduleCollectionByUserId(id);
+            List<ScheduleCollectionsDTO> InvitedCollections =GetSharedCollectionInfoByUserId(id);
+            MyAndInvitedCollections.AddRange(MyCollections);
+            MyAndInvitedCollections.AddRange(InvitedCollections);
+
+           return MyAndInvitedCollections;
         }
 
         public List<DependentDTO> UserKids(int id)
@@ -324,7 +337,7 @@ namespace scrubby_webapi.Services
                     oneChild.DependentCoins=childrenInfo[i].DependentCoins;
                     oneChild.DependentPoints=childrenInfo[i].DependentPoints;
                     oneChild.DependentPassCode=childrenInfo[i].DependentPassCode;
-                    oneChild.ScheduledTasks = GetMyScheduledTasksByDependentId(childrenInfo[i].Id);
+                   oneChild.ScheduledTasks = GetScheduleCollectionsKidsUsingUserId(id, childrenInfo[i].Id);
 
                     childrenDetails.Add(oneChild);
                 }
@@ -333,56 +346,76 @@ namespace scrubby_webapi.Services
             return childrenDetails;
         }
 
-        public List<ScheduleAssignedTasksDTO> GetMyScheduledTasksByUserId(int Id)
+        public List <ScheduleCollectionsDTO> GetScheduleCollectionsKidsUsingUserId(int userId, int kidsId)
         {
-            List<ScheduleAssignedTasksDTO> scheduledTasks = new List<ScheduleAssignedTasksDTO>();
-            List<AssignedTasksUsersModel> Tasks =  _context.AssignedTasksUsersInfo.Where(task => task.UserId == Id && task.IsDeleted==false).ToList();
-            if(Tasks.Count!=null)
+           List<ScheduleCollectionsDTO> SpaceCollectionsDTO = new List<ScheduleCollectionsDTO>();
+            List<SpaceCollectionModel> collections = _context.SpaceCollectionInfo.Where(item => item.UserId == userId).ToList();
+
+            if (collections != null)
             {
-                for(int i=0; i<Tasks.Count; i++)
+                for (int i = 0; i < collections.Count; i++)
                 {
-                    ScheduleAssignedTasksDTO oneTaskInfo =new ScheduleAssignedTasksDTO();
-                    oneTaskInfo.Id = Tasks[i].Id;
-                    oneTaskInfo.SpaceId= Tasks[i].SpaceId;
-                    oneTaskInfo.DateCreated= Tasks[i].DateCreated;
-                    oneTaskInfo.DateCompleted= Tasks[i].DateCompleted;
-                    oneTaskInfo.IsCompleted= Tasks[i].IsCompleted;
-                    SelectedTasksModel findTask = _context.SelectedTasksInfo.SingleOrDefault(t => t.Id == Tasks[i].AssignedTaskId);
-                    oneTaskInfo.Task = _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id== findTask.TaskId);
-                    oneTaskInfo.Item = _context.SpaceItemsStaticAPIInfo.SingleOrDefault(item => item.Id == findTask.ItemId);
-
-
-                     scheduledTasks.Add(oneTaskInfo);
+                    ScheduleCollectionsDTO oneCollection = new ScheduleCollectionsDTO();
+                    oneCollection.Id = collections[i].Id;
+                    oneCollection.CollectionName = collections[i].CollectionName;
+                    oneCollection.Rooms = GetScheduledRoomsByCollectionIDKidsId(collections[i].Id, kidsId);
+                    SpaceCollectionsDTO.Add(oneCollection);
                 }
             }
 
-            return scheduledTasks;
+            return SpaceCollectionsDTO;
         }
 
-           public List<ScheduleAssignedTasksDTO> GetMyScheduledTasksByDependentId(int Id)
+        public List<ScheduleSpacesDTO> GetScheduledRoomsByCollectionIDKidsId (int id, int childId)
         {
-            List<ScheduleAssignedTasksDTO> scheduledTasks = new List<ScheduleAssignedTasksDTO>();
-            List<AssignedTasksChildModel> Tasks =  _context.AssignedTasksChildInfo.Where(task => task.ChildId == Id && task.IsDeleted==false).ToList();
-            if(Tasks.Count!=null)
-            {
-                for(int i=0; i<Tasks.Count; i++)
-                {
-                    ScheduleAssignedTasksDTO oneTaskInfo =new ScheduleAssignedTasksDTO();
-                    oneTaskInfo.Id = Tasks[i].Id;
-                    oneTaskInfo.SpaceId= Tasks[i].SpaceId;
-                    oneTaskInfo.DateCreated= Tasks[i].DateCreated;
-                    oneTaskInfo.DateCompleted= Tasks[i].DateCompleted;
-                    oneTaskInfo.IsCompleted= Tasks[i].IsCompleted;
-                    SelectedTasksModel findTask = _context.SelectedTasksInfo.SingleOrDefault(t => t.Id == Tasks[i].AssignedTaskId);
-                    oneTaskInfo.Task = _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id== findTask.TaskId);
-                    oneTaskInfo.Item = _context.SpaceItemsStaticAPIInfo.SingleOrDefault(item => item.Id == findTask.ItemId);
+             List<ScheduleSpacesDTO> spaceByCollectionIdDTO = new List<ScheduleSpacesDTO>();
+            List<SpaceInfoModel> spaces = _context.SpaceInfo.Where(space => space.CollectionId == id).ToList();
 
-                     scheduledTasks.Add(oneTaskInfo);
+            if (spaces != null)
+            {
+                for (int i = 0; i < spaces.Count; i++)
+                {
+                    ScheduleSpacesDTO oneSpace = new ScheduleSpacesDTO();
+                    oneSpace.Id = spaces[i].Id;
+                    oneSpace.SpaceName = spaces[i].SpaceName;
+                    oneSpace.SpaceCategory = spaces[i].SpaceCategory;
+
+                    oneSpace.TasksAssigned = GetAllAssignedTasksByChildId(childId, spaces[i].Id);
+
+                    spaceByCollectionIdDTO.Add(oneSpace);
                 }
             }
 
-         return scheduledTasks;
+            return spaceByCollectionIdDTO;
         }
+
+        public List<SelectedTasksDTO>GetAllAssignedTasksByChildId(int id, int spaceId){
+                List<AssignedTasksChildModel> AssignedUser = _context.AssignedTasksChildInfo.Where(assignment => assignment.ChildId == id && assignment.IsDeleted==false && assignment.SpaceId == spaceId).ToList();
+
+                List<SelectedTasksDTO> AssignedTasks = new List<SelectedTasksDTO>();
+
+
+                if(AssignedUser!=null)
+                {
+                     for(int i = 0; i < AssignedUser.Count; i++)
+                    {
+                    SelectedTasksDTO oneTask = new SelectedTasksDTO();
+                    oneTask.Id = AssignedUser[i].Id;
+                    oneTask.DateCreated = AssignedUser[i].DateCreated;
+                    oneTask.DateCompleted= AssignedUser[i].DateCompleted;
+                    oneTask.IsCompleted = AssignedUser[i].IsCompleted;
+                    SelectedTasksModel taskInfo = _context.SelectedTasksInfo.SingleOrDefault(selectedTask => selectedTask.Id == AssignedUser[i].AssignedTaskId);
+
+                    oneTask.Task = GetTaskByTaskID(taskInfo.TaskId);
+                    oneTask.Item = _context.SpaceItemsStaticAPIInfo.SingleOrDefault(item => item.Id == taskInfo.ItemId);
+                    AssignedTasks.Add(oneTask);
+
+                    }
+                }
+               
+            return AssignedTasks;
+        }
+
         public List<CollectionsDTO> GetCollectionByUserId(int UserId)
         {
             List<CollectionsDTO> SpaceCollectionsDTO = new List<CollectionsDTO>();
@@ -397,7 +430,6 @@ namespace scrubby_webapi.Services
                     oneCollection.Id = collections[i].Id;
                     oneCollection.CollectionName = collections[i].CollectionName;
                     oneCollection.IsDeleted = collections[i].IsDeleted;
-                     oneCollection.IsDefault = collections[i].IsDefault;
                     oneCollection.Rooms = GetRoomsByCollectionID(collections[i].Id);
                     oneCollection.SharedWith = GetSharedCollectionWithByCollectionId(collections[i].Id);
 
@@ -407,6 +439,28 @@ namespace scrubby_webapi.Services
 
             return SpaceCollectionsDTO;
         }
+
+         public List<ScheduleCollectionsDTO> GetScheduleCollectionByUserId(int UserId)
+        {
+            List<ScheduleCollectionsDTO> SpaceCollectionsDTO = new List<ScheduleCollectionsDTO>();
+            List<SpaceCollectionModel> collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId).ToList();
+
+            if (collections != null)
+            {
+                for (int i = 0; i < collections.Count; i++)
+                {
+                    ScheduleCollectionsDTO oneCollection = new ScheduleCollectionsDTO();
+                    oneCollection.Id = collections[i].Id;
+                    oneCollection.CollectionName = collections[i].CollectionName;
+                    oneCollection.Rooms = GetScheduledRoomsByCollectionID(collections[i].Id, UserId);
+                    SpaceCollectionsDTO.Add(oneCollection);
+                }
+            }
+
+            return SpaceCollectionsDTO;
+        }
+
+        
 
         public List<SpacesDTO> GetRoomsByCollectionID(int id)
         {
@@ -491,7 +545,7 @@ namespace scrubby_webapi.Services
 
 
          public List<AssignedTasksDTO>GetAllAssignedChildTasksBySpaceId(int id){
-
+                // issue here findChild
             List<AssignedTasksChildModel> AssignedChildren = _context.AssignedTasksChildInfo.Where(assignment => assignment.SpaceId == id && assignment.IsDeleted==false).ToList();
             
             List<AssignedTasksDTO> AssignedTasks = new List<AssignedTasksDTO>();
@@ -500,7 +554,7 @@ namespace scrubby_webapi.Services
                 {
                      for(int i = 0; i < AssignedChildren.Count; i++)
                     {
-                     DependentModel findChild = _context.DependentInfo.SingleOrDefault(child => child.Id == AssignedChildren[i].Id);
+                     DependentModel findChild = _context.DependentInfo.SingleOrDefault(child => child.Id == AssignedChildren[i].ChildId);
 
                     AssignedTasksDTO oneTask = new AssignedTasksDTO();
                     oneTask.Id = AssignedChildren[i].Id;
@@ -520,23 +574,27 @@ namespace scrubby_webapi.Services
 
 
 
-        public List<AssignedTasksDTO>GetAllAssignedTasksByUserId(int id){
-                List<AssignedTasksUsersModel> AssignedUsers = _context.AssignedTasksUsersInfo.Where(assignment => assignment.UserId == id && assignment.IsDeleted==false).ToList();
-                List<AssignedTasksDTO> AssignedTasks = new List<AssignedTasksDTO>();
+        public List<SelectedTasksDTO>GetAllAssignedTasksByUserId(int id, int spaceId){
+                List<AssignedTasksUsersModel> AssignedUser = _context.AssignedTasksUsersInfo.Where(assignment => assignment.UserId == id && assignment.IsDeleted==false && assignment.SpaceId == spaceId).ToList();
+
+                List<SelectedTasksDTO> AssignedTasks = new List<SelectedTasksDTO>();
 
 
-                if(AssignedUsers.Count!=0)
+                if(AssignedUser.Count!=0)
                 {
-                     for(int i = 0; i < AssignedUsers.Count; i++)
+                     for(int i = 0; i < AssignedUser.Count; i++)
                     {
-                    AssignedTasksDTO oneTask = new AssignedTasksDTO();
-                    oneTask.Id = AssignedUsers[i].Id;
-                    oneTask.UserId = AssignedUsers[i].Id;
-                    oneTask.AssignedTaskId= AssignedUsers[i].AssignedTaskId;
-                    oneTask.DateScheduled = AssignedUsers[i].DateCreated;
-                    oneTask.DateCompleted= AssignedUsers[i].DateCompleted;
-                    oneTask.IsCompleted = AssignedUsers[i].IsCompleted;
+                    SelectedTasksDTO oneTask = new SelectedTasksDTO();
+                    oneTask.Id = AssignedUser[i].Id;
+                    oneTask.DateCreated = AssignedUser[i].DateCreated;
+                    oneTask.DateCompleted= AssignedUser[i].DateCompleted;
+                    oneTask.IsCompleted = AssignedUser[i].IsCompleted;
+                    SelectedTasksModel taskInfo = _context.SelectedTasksInfo.SingleOrDefault(selectedTask => selectedTask.Id == AssignedUser[i].AssignedTaskId);
+
+                    oneTask.Task = GetTaskByTaskID(taskInfo.TaskId);
+                    oneTask.Item = _context.SpaceItemsStaticAPIInfo.SingleOrDefault(item => item.Id == taskInfo.ItemId);
                     AssignedTasks.Add(oneTask);
+
                     }
                 }
                
@@ -587,6 +645,52 @@ namespace scrubby_webapi.Services
 
             return sharedSpacesDTO;
 
+        }
+
+        public List<ScheduleCollectionsDTO> GetSharedCollectionInfoByUserId(int id)
+        {
+
+            List<ScheduleCollectionsDTO> sharedCollections = new List<ScheduleCollectionsDTO>();
+            UserModel findInvited = GetUserByID(id);
+            List<SharedSpacesModel> sharedCollection = _context.SharedSpacesInfo.Where(collection => collection.InvitedUsername == findInvited.Username && (collection.IsDeleted == false && collection.IsAccepted == true)).ToList();
+
+            for (int i = 0; i < sharedCollection.Count; i++)
+            {
+                SpaceCollectionModel findCollection  = _context.SpaceCollectionInfo.SingleOrDefault(item => item.Id ==sharedCollection[i].CollectionId);
+
+               ScheduleCollectionsDTO oneCollection = new ScheduleCollectionsDTO();
+                    oneCollection.Id = sharedCollection[i].CollectionId;
+                    oneCollection.CollectionName = findCollection.CollectionName;
+                    oneCollection.Rooms = GetScheduledRoomsByCollectionID(sharedCollection[i].Id, id);
+                 
+                sharedCollections.Add(oneCollection);
+            }
+
+            return sharedCollections;
+
+        }
+
+        public List<ScheduleSpacesDTO> GetScheduledRoomsByCollectionID(int id, int userId)
+        {
+            List<ScheduleSpacesDTO> spaceByCollectionIdDTO = new List<ScheduleSpacesDTO>();
+            List<SpaceInfoModel> spaces = _context.SpaceInfo.Where(space => space.CollectionId == id).ToList();
+
+            if (spaces != null)
+            {
+                for (int i = 0; i < spaces.Count; i++)
+                {
+                    ScheduleSpacesDTO oneSpace = new ScheduleSpacesDTO();
+                    oneSpace.Id = spaces[i].Id;
+                    oneSpace.SpaceName = spaces[i].SpaceName;
+                    oneSpace.SpaceCategory = spaces[i].SpaceCategory;
+
+                    oneSpace.TasksAssigned = GetAllAssignedTasksByUserId(userId, spaces[i].Id);
+
+                    spaceByCollectionIdDTO.Add(oneSpace);
+                }
+            }
+
+            return spaceByCollectionIdDTO;
         }
 
         public List<SelectedTasksDTO> GetTasksBySpaceId(int id)

@@ -9,8 +9,7 @@ namespace scrubby_webapi.Models.DTO
     {
         public int Id { get; set; }
         public string? CollectionName { get; set; }
-        public bool IsDeleted { get; set; }
-        public bool IsDefault { get; set; }
+        public bool? IsDeleted { get; set; }
 
         public List<SpacesDTO>? Rooms { get; set; }
         public List<SharedSpacesDTO>? SharedWith { get; set; }

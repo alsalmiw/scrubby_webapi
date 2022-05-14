@@ -16,6 +16,6 @@ namespace scrubby_webapi.Models.DTO
         public int DependentPoints { get; set; }
         public int DependentPassCode { get; set; }
         
-        public List <ScheduleAssignedTasksDTO>? ScheduledTasks { get; set; }
+        public List <ScheduleCollectionsDTO>? ScheduledTasks { get; set; }
     }
 }

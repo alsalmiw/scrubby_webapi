@@ -12,6 +12,7 @@ namespace scrubby_webapi.Models.DTO
         public string? DateCreated { get; set; }
         public string? DateCompleted { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsCompleted { get; set; }
         public bool IsArchived { get; set; }
 
         public TasksInfoStaticAPIModel? Task { get; set; }

@@ -26,6 +26,9 @@ namespace scrubby_webapi.Services.Context
 
          public DbSet<DefaultCollectionModel> DefaultCollectionInfo { get; set; }
 
+         public DbSet<DefaultCollectionDependentModel> DefaultCollectionDependentInfo { get; set; }
+
+
          
         public DataContext(DbContextOptions options) : base(options) {}
 

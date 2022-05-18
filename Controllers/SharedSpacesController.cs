@@ -45,5 +45,11 @@ namespace scrubby_webapi.Controllers
         {
             return _data.GetSharedSpacesByUserId(UserId);
         }
+
+        [HttpGet("GetSharedSpacesByInvitedAndInviterUsername/{InvitedUsername}/{InviterUsername}")]
+        public IEnumerable<SharedSpacesModel> GetSharedSpacesByInvitedAndInviterUsername(string InvitedUsername, string InviterUsername)
+        {
+            return _data.GetSharedSpacesByInvitedAndInviterUsername(InvitedUsername, InviterUsername);
+        }
     }
 }

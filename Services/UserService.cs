@@ -401,7 +401,7 @@ namespace scrubby_webapi.Services
                     {
                     SelectedTasksDTO oneTask = new SelectedTasksDTO();
                     oneTask.Id = AssignedUser[i].Id;
-                    oneTask.DateCreated = AssignedUser[i].DateCreated;
+                    oneTask.DateScheduled = AssignedUser[i].DateCreated;
                     oneTask.DateCompleted= AssignedUser[i].DateCompleted;
                     oneTask.IsCompleted = AssignedUser[i].IsCompleted;
                     SelectedTasksModel taskInfo = _context.SelectedTasksInfo.SingleOrDefault(selectedTask => selectedTask.Id == AssignedUser[i].AssignedTaskId);
@@ -586,7 +586,7 @@ namespace scrubby_webapi.Services
                     {
                     SelectedTasksDTO oneTask = new SelectedTasksDTO();
                     oneTask.Id = AssignedUser[i].Id;
-                    oneTask.DateCreated = AssignedUser[i].DateCreated;
+                    oneTask.DateScheduled = AssignedUser[i].DateCreated;
                     oneTask.DateCompleted= AssignedUser[i].DateCompleted;
                     oneTask.IsCompleted = AssignedUser[i].IsCompleted;
                     SelectedTasksModel taskInfo = _context.SelectedTasksInfo.SingleOrDefault(selectedTask => selectedTask.Id == AssignedUser[i].AssignedTaskId);

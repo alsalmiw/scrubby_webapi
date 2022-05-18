@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using scrubby_webapi.Services;
 using scrubby_webapi.Services.Context;
+using scrubby_webapi.Models;
+using Microsoft.AspNetCore.StaticFiles;
+using Azure.Storage.Blobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,19 +13,20 @@ builder.Services.AddScoped<InviteUsersService>();
 builder.Services.AddScoped<DependentService>();
 builder.Services.AddScoped<SelectedTasksService>();
 builder.Services.AddScoped<SelectedItemsInSpaceService>();
-
 builder.Services.AddScoped<SharedSpacesService>();
-
 builder.Services.AddScoped<SpaceInfoService>();
 builder.Services.AddScoped<SpaceCollectionService>();
 builder.Services.AddScoped<AssignedTasksChildService>();
-
 builder.Services.AddScoped<AssignedTasksUsersService>();
 builder.Services.AddScoped<TasksInfoStaticAPIService>();
 builder.Services.AddScoped<CleaningProductsStaticAPIService>();
 builder.Services.AddScoped<SpaceItemsStaticAPIService>();
 builder.Services.AddScoped<DefaultCollectionService>();
+builder.Services.AddScoped<PhotosService>();
 
+builder.Services.Configure<AzureStorageConfig>(builder.Configuration.GetSection("AzureStorageConfig"));
+builder.Services.AddScoped<IContentTypeProvider, FileExtensionContentTypeProvider>();
+builder.Services.AddScoped(x => new BlobServiceClient(builder.Configuration.GetSection("AzureStorageConfig").GetValue<string>("AzureBlobStorage")));
 
 
 var ConnectionString = builder.Configuration.GetConnectionString("MyScrubbyString");

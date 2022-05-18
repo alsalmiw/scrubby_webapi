@@ -9,6 +9,7 @@ namespace scrubby_webapi.Models
     {
         public int Id { get; set; }
         public string? InvitedUsername { get; set; }
+        public string? InviterUsername { get; set; }
         public int CollectionId { get; set; }
         public bool? IsDeleted { get; set; }
         public bool? IsAccepted { get; set; }

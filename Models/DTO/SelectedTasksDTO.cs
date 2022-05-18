@@ -9,7 +9,7 @@ namespace scrubby_webapi.Models.DTO
     public class SelectedTasksDTO
     {
         public int Id { get; set; } 
-        public string? DateCreated { get; set; }
+        public string? DateScheduled { get; set; }
         public string? DateCompleted { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsCompleted { get; set; }

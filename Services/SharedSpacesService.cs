@@ -43,7 +43,7 @@ namespace scrubby_webapi.Services
 
         public IEnumerable<SharedSpacesModel> GetSharedSpacesByInvitedAndInviterUsername(string InvitedUsername, string InviterUsername)
         {
-            return _context.SharedSpacesInfo.Where(item => item.InvitedUsername == InvitedUsername && item.InviterUsername == InvitedUsername);
+            return _context.SharedSpacesInfo.Where(item => item.InvitedUsername == InvitedUsername && item.InviterUsername == InviterUsername);
         }
     }
         

@@ -11,6 +11,7 @@ namespace scrubby_webapi.Models
         public int ChildId { get; set; } 
         public int CollectionId { get; set; }   
         public bool IsDefault { get; set; }
+        public bool IsDeleted { get; set; }
 
         public DefaultCollectionDependentModel(){}
     }

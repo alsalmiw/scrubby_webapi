@@ -24,7 +24,7 @@ namespace scrubby_webapi.Services
 
             DependentModel findChild = _context.DependentInfo.SingleOrDefault(child => child.Id == childId);
 
-            DefaultCollectionDependentModel findDefault = _context.DefaultCollectionDependentInfo.SingleOrDefault(collection => collection.ChildId == findChild.Id && collection.IsDefault==true);
+            DefaultCollectionDependentModel findDefault = _context.DefaultCollectionDependentInfo.SingleOrDefault(collection => collection.ChildId == findChild.Id && collection.IsDefault==true && collection.IsDeleted == false);
 
             List<SpaceCollectionModel> collectionsByUserId = _context.SpaceCollectionInfo.Where(collection => collection.UserId == findChild.UserId).ToList();
 

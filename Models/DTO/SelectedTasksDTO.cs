@@ -14,6 +14,7 @@ namespace scrubby_webapi.Models.DTO
         public bool IsDeleted { get; set; }
         public bool IsCompleted { get; set; }
         public bool IsArchived { get; set; }
+        public bool IsRequestedApproval { get; set; }
 
         public TasksInfoStaticAPIModel? Task { get; set; }
         public SpaceItemsStaticAPIModel? Item { get; set; }

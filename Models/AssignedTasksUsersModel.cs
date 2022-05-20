@@ -24,6 +24,7 @@ namespace scrubby_webapi.Models
         public bool IsCompleted { get; set; }
         public bool IsDeleted { get; set; }
 
+
         public int Repeat { get; set; }
 
         public AssignedTasksUsersModel(){}

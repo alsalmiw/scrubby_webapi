@@ -97,6 +97,20 @@ namespace scrubby_webapi.Services
             return _context.AssignedTasksUsersInfo.Where(user => user.Id == userId);
         }
         
+         public bool UpdateUserTaskToCompleted(int TaskId)
+        {
+             AssignedTasksUsersModel findTask = _context.AssignedTasksUsersInfo.SingleOrDefault(item => item.Id == TaskId);
+                bool result = false;
+             if(findTask != null){
+                DateTime thisDay = DateTime.Today;
+                findTask.IsCompleted = true;
+                findTask.DateCompleted = thisDay.ToString("d");
+               _context.Update<AssignedTasksUsersModel>(findTask);
+               result =_context.SaveChanges() != 0;
+               }
+               return  result;
+        }
+        
          
 
 

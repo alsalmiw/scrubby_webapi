@@ -15,6 +15,8 @@ namespace scrubby_webapi.Models
         public string? DateCompleted { get; set; }
         public bool IsCompleted { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsRequestedApproval { get; set; }
+
         public int Repeat { get; set; }
         public AssignedTasksChildModel (){}
     }

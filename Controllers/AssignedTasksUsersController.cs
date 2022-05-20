@@ -81,6 +81,12 @@ namespace scrubby_webapi.Controllers
             return _data.UpdateAssignedTasksUsers(Id, SelectedTasksId);
         }
 
+        [HttpPost("UpdateUserTaskToCompleted/{TaskId}")]
+
+        public bool UpdateUserTaskToCompleted(int TaskId)
+        {
+            return _data.UpdateUserTaskToCompleted(TaskId);
+        }
         
         
 

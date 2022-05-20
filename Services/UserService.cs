@@ -404,6 +404,7 @@ namespace scrubby_webapi.Services
                     oneTask.DateScheduled = AssignedUser[i].DateCreated;
                     oneTask.DateCompleted= AssignedUser[i].DateCompleted;
                     oneTask.IsCompleted = AssignedUser[i].IsCompleted;
+                    oneTask.IsRequestedApproval = AssignedUser[i].IsRequestedApproval;
                     SelectedTasksModel taskInfo = _context.SelectedTasksInfo.SingleOrDefault(selectedTask => selectedTask.Id == AssignedUser[i].AssignedTaskId);
 
                     oneTask.Task = GetTaskByTaskID(taskInfo.TaskId);

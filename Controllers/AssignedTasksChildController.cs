@@ -64,5 +64,18 @@ namespace scrubby_webapi.Controllers
              return _data.DeletedAssignedTasksChildById(Id);
         }
 
+         [HttpPost("SubmitTaskChildApproval/{taskId}")]
+        public bool SubmitTaskChildApproval(int taskId)
+        {
+             return _data.SubmitTaskChildApproval(taskId);
+        }
+
+           [HttpPost("ApproveTaskForCompletionChild/{taskId}")]
+        public bool ApproveTaskForCompletionChild(int taskId)
+        {
+             return _data.ApproveTaskForCompletionChild(taskId);
+        }
+
+
     }
 }

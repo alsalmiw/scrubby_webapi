@@ -86,5 +86,32 @@ namespace scrubby_webapi.Services
             return _context.SaveChanges() != 0;
         }
 
+         public bool SubmitTaskChildApproval(int taskId)
+        {
+             AssignedTasksChildModel findTask = _context.AssignedTasksChildInfo.SingleOrDefault(item => item.Id == taskId);
+                bool result = false;
+             if(findTask != null){
+                findTask.IsRequestedApproval = true;
+               _context.Update<AssignedTasksChildModel>(findTask);
+               result =_context.SaveChanges() != 0;
+               }
+               return  result;
+        }
+
+    
+        public bool ApproveTaskForCompletionChild(int taskId)
+        {
+              AssignedTasksChildModel findTask = _context.AssignedTasksChildInfo.SingleOrDefault(item => item.Id == taskId);
+                bool result = false;
+             if(findTask != null){
+                DateTime thisDay = DateTime.Today;
+                findTask.IsCompleted = true;
+                findTask.DateCompleted = thisDay.ToString("d");
+               _context.Update<AssignedTasksChildModel>(findTask);
+               result =_context.SaveChanges() != 0;
+               }
+               return  result;
+        }
+
     }
 }

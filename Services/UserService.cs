@@ -91,7 +91,9 @@ namespace scrubby_webapi.Services
                 UserModel newUser = new UserModel();
                 newUser.Id = UserToAdd.Id;
                 newUser.Username = UserToAdd.Username;
-
+                newUser.Photo = UserToAdd.Photo;
+                newUser.Name = UserToAdd.Fullname;
+                
                 var hashedPassword = HashPassword(UserToAdd.Password);
 
                 newUser.Salt = hashedPassword.Salt;

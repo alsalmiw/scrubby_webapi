@@ -32,7 +32,7 @@ namespace scrubby_webapi.Services
                     foundTask.IsDeleted = true;
                     _context.Update<AssignedTasksUsersModel>(foundTask);
                     result = _context.SaveChanges() !=0;
-                }
+                } 
             }
            
             return result;

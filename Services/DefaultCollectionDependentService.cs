@@ -149,5 +149,24 @@ namespace scrubby_webapi.Services
                
             return AssignedTasks;
         }
+
+           public bool CreateChildDefaultSchedule(int childId, int collectionId)
+        {
+            List <DefaultCollectionDependentModel> findAllEntries = _context.DefaultCollectionDependentInfo.Where(collection => collection.ChildId == childId && collection.IsDeleted==false).ToList();
+            for(int i = 0; i < findAllEntries.Count; i++){
+                findAllEntries[i].IsDefault = false;
+                _context.Update<DefaultCollectionDependentModel>(findAllEntries[i]);
+                _context.SaveChanges();
+            }
+            DefaultCollectionDependentModel AddDefault = new DefaultCollectionDependentModel();
+            AddDefault.Id = 0;
+            AddDefault.ChildId = childId;
+            AddDefault.CollectionId =collectionId;
+            AddDefault.IsDefault = true;
+            AddDefault.IsDeleted=false;
+
+             _context.Add(AddDefault);
+            return _context.SaveChanges() !=0;
+        }
     }
 }

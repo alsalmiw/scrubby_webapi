@@ -36,9 +36,19 @@ namespace scrubby_webapi.Services
             bool result = false;
             if(foundSpaceCollection != null)
             {
-                foundSpaceCollection.IsDeleted = !foundSpaceCollection.IsDeleted;
+                foundSpaceCollection.IsDeleted = true;
                 _context.Update<SpaceCollectionModel>(foundSpaceCollection);
                 result = _context.SaveChanges() != 0;
+            }
+            List<DefaultCollectionModel> findDefault = _context.DefaultCollectionInfo.Where(item => item.CollectionId == Id).ToList();
+            if(findDefault.Count>0)
+            {
+                for (int i = 0; i < findDefault.Count; i++)
+                {
+                    findDefault[i].IsDeleted = true;
+                    _context.Update<DefaultCollectionModel>(findDefault[i]);
+                    result = _context.SaveChanges() != 0;
+                }
             }
             return result;
         }

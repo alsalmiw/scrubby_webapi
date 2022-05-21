@@ -39,30 +39,32 @@ namespace scrubby_webapi.Services.Context
         }
         private void SeedData(ModelBuilder builder)
         {
-            var InvitedUsers = new List<InviteUsersModel>(){
-                 new InviteUsersModel(){
-                  Id =1,
-                  InviterId =3,
-                  InviterUsername = "Walaa",
-                  InviterFullname = "Walaa AlSalmi",
-                  InvitedId = 5,
-                  InvitedUsername ="Peter",
-                  InvitedFullname = "Peter Vang",
-                  IsAccepted =false,
-                  IsDeleted  = false,
-                 }
-             };
-            builder.Entity<InviteUsersModel>().HasData(InvitedUsers);
+            // var InvitedUsers = new List<InviteUsersModel>(){
+            //      new InviteUsersModel(){
+            //       Id =1,
+            //       InviterId =3,
+            //       InviterUsername = "Walaa",
+            //       InviterFullname = "Walaa AlSalmi",
+            //       InvitedId = 5,
+            //       InvitedUsername ="Peter",
+            //       InvitedFullname = "Peter Vang",
+            //       IsAccepted =false,
+            //       IsDeleted  = false,
+            //      }
+            //  };
+            // builder.Entity<InviteUsersModel>().HasData(InvitedUsers);
 
             var userData = new List<UserModel>()
             {
                 new UserModel(){
                     Id=1,
                     Username= "JT",
+                    Name = "JT",
                     Salt ="6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
-                    Photo="",
+                    Photo="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar1.png",
                     Coins= 5000,
+                    Points = 600,
                     IsDeleted=false,
                     IsChildFree=false
 
@@ -70,10 +72,12 @@ namespace scrubby_webapi.Services.Context
                 new UserModel(){
                     Id=2,
                     Username= "Angel",
+                    Name = "Angel Pantoja",
                     Salt ="6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
-                    Photo="",
+                    Photo="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar2.png",
                     Coins= 1000,
+                    Points = 1000,
                     IsDeleted=false,
                     IsChildFree=false
 
@@ -81,10 +85,12 @@ namespace scrubby_webapi.Services.Context
                 new UserModel(){
                     Id=3,
                     Username= "Walaa",
+                    Name = "Walaa AlSalmi",
                     Salt ="6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
-                    Photo="",
+                    Photo="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar3.png",
                     Coins= 5000,
+                    Points= 1000,
                     IsDeleted=false,
                     IsChildFree=false
 
@@ -92,10 +98,12 @@ namespace scrubby_webapi.Services.Context
                 new UserModel(){
                     Id=4,
                     Username= "DB",
+                    Name = "DB",
                     Salt ="6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
-                    Photo="",
+                    Photo="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar4.png",
                     Coins= 50000,
+                    Points= 50000,
                     IsDeleted=false,
                     IsChildFree=false
 
@@ -103,10 +111,12 @@ namespace scrubby_webapi.Services.Context
                 new UserModel(){
                     Id=5,
                     Username= "Peter",
+                    Name= "Peter Vang",
                     Salt ="6oyIFN+J/zb3uaje2+GP98c/WdMgNb9Rwbn3Wyi51i+OUta55QsZFkrTqbJy9hiothKp95mleCPySEZOIOcPIg==",
                     Hash  ="BBvCTG4MF3e0YvDBW7mPkimgpAOpbP7HUkNb8YRmHjM8KdNBKFRRgctlBZV/WZ0GfasEBS8qJCuPB0Z4rOalX0UuAxkqmoBznghkV+lmxmIod+25vzFPjuSYhN7QvWsfPvGf7Ze1w/qG3xQ6KBTgjTc+yKe9bcaQPFBjiYPVnM1RYsUPC3RG47Q27K2xqCOQTtdvaAUEhoDgaCLi3zyi+e750FEZ6e9y1HObs4Zsnl2Yk4AwkFZ8IZBnHlXoDyy1b1ICIG7+CggJdDkiNJxv57BRlNqijDwfE+6vBujqvr7a5kgzWgGoEMBsqLpFNv7j7sIJVBjevmyV3X8eDAY68g==",
-                    Photo="",
+                    Photo="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar5.png",
                     Coins= 15000,
+                    Points= 15000,
                     IsDeleted=false,
                     IsChildFree=false
 
@@ -327,50 +337,55 @@ namespace scrubby_webapi.Services.Context
                     UserId=3,
                     DependentName="Taylor",
                     DependentAge=11,
-                    DependentPhoto="",
+                    DependentPhoto="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar6.png",
                     DependentCoins=5000,
                     DependentPoints=0,
-                    IsDeleted=false
+                    IsDeleted=false,
+                    DependentPassCode= 0
                 },
                 new DependentModel(){
                     Id=2,
                     UserId=3,
                     DependentName="Sammy",
                     DependentAge=8,
-                    DependentPhoto="",
+                    DependentPhoto="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar7.png",
                     DependentCoins=2000,
-                    DependentPoints=0,
-                    IsDeleted=false
+                    DependentPoints=6,
+                    IsDeleted=false,
+                    DependentPassCode= 0
                 },
                 new DependentModel(){
                     Id=3,
                     UserId=3,
                     DependentName="Jeff",
                     DependentAge=15,
-                    DependentPhoto="",
+                    DependentPhoto="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar8.png",
                     DependentCoins=100,
-                    DependentPoints=0,
-                    IsDeleted=true
+                    DependentPoints=5,
+                    IsDeleted=true,
+                    DependentPassCode= 0
                 },
                 new DependentModel(){
                     Id=4,
                     UserId=1,
                     DependentName="Jessica",
                     DependentAge=8,
-                    DependentPhoto="",
+                    DependentPhoto="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar9.png",
                     DependentCoins=7000,
-                    DependentPoints=0,
-                    IsDeleted=false
+                    DependentPoints=670,
+                    IsDeleted=false,
+                    DependentPassCode= 0
                 },
                 new DependentModel(){
                     Id=5,
                     UserId=2,
                     DependentName="Tony",
                     DependentAge=17,
-                    DependentPhoto="",
+                    DependentPhoto="https://scrubbystorage.blob.core.windows.net/scrubbystorage/avatar10.png",
                     DependentCoins=4000,
-                    DependentPoints=0,
-                    IsDeleted=false
+                    DependentPoints=50,
+                    IsDeleted=false,
+                    DependentPassCode= 0
                 },
             };
             builder.Entity<DependentModel>().HasData(dependentData);
@@ -608,7 +623,7 @@ namespace scrubby_webapi.Services.Context
                 },
                 new SpaceItemsStaticAPIModel() {
                     Id=16,
-                    Name="Air Mattress Bed",
+                    Name="Air Mattress",
                     Description="A bed that is inflated by air",
                     Tags="bedroom, attic",
                 },
@@ -836,7 +851,7 @@ namespace scrubby_webapi.Services.Context
             var tasksInfoStaticAPIData = new List<TasksInfoStaticAPIModel>() {
                 new TasksInfoStaticAPIModel() {
                     Id=1,
-                    Name="Clean toilet",
+                    Name="Clean",
                     Description="Clean the toilet using a sanitizer",
                     Tags="toilet",
                     Time="15 min",
@@ -844,7 +859,7 @@ namespace scrubby_webapi.Services.Context
                 },
                 new TasksInfoStaticAPIModel() {
                     Id=2,
-                    Name="Make bed",
+                    Name="Make",
                     Description="Remove the comforter, make sure the fitted sheet is clean and stretched. Lay out your top sheet an put your comforter on, then add the pillows.",
                     Tags="bed",
                     Time="10 min",
@@ -916,7 +931,7 @@ namespace scrubby_webapi.Services.Context
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=11,
-                    Name="Shine Glass Surface",
+                    Name="Shine Glass",
                     Description="",
                     Tags="Glass Table, Vanity, Mirror ",
                     Time="5 min",
@@ -972,7 +987,7 @@ namespace scrubby_webapi.Services.Context
                 },
                  new TasksInfoStaticAPIModel() {
                     Id=18,
-                    Name="Remove trash",
+                    Name="Remove ",
                     Description="Take the trash outside and put a new trash lining",
                     Tags="trash",
                     Time="5 min",

@@ -103,8 +103,24 @@ namespace scrubby_webapi.Services
         }
 
          public bool CreateUserDefaultSchedule(DefaultCollectionModel newDefault)
-        {
-            //UserModel findUser = _context.UserInfo.SingleOrDefault(user => user.Username == new);
+         {
+
+            List <DefaultCollectionModel> findAllEntries = _context.DefaultCollectionInfo.Where(collection => collection.UserId == newDefault.UserId && collection.IsDeleted==false).ToList();
+           if(findAllEntries.Count>0)
+           {
+                for(int i = 0; i < findAllEntries.Count; i++){
+                findAllEntries[i].IsDefault = false;
+                _context.Update<DefaultCollectionModel>(findAllEntries[i]);
+                _context.SaveChanges();
+                 }
+           }
+        
+             _context.DefaultCollectionInfo.AddAsync(newDefault);
+                return _context.SaveChanges() !=0;
+           
+        }
+
+                 //UserModel findUser = _context.UserInfo.SingleOrDefault(user => user.Username == new);
         //     List <DefaultCollectionModel> findAllEntries = _context.DefaultCollectionInfo.Where(collection => collection.UserId == findUser.Id && collection.IsDeleted==false).ToList();
         //    if(findAllEntries.Count>0)
         //    {
@@ -123,13 +139,6 @@ namespace scrubby_webapi.Services
             // AddDefault.IsDefault = true;
             // AddDefault.IsDeleted=false;
 
-             _context.Add(newDefault);
-            return _context.SaveChanges() !=0;
-       
-
-
-           
-        }
 
 
     }

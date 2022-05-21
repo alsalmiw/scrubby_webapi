@@ -178,6 +178,21 @@ namespace scrubby_webapi.Services
                 _context.Update<UserModel>(foundUser);
                 result = _context.SaveChanges() != 0;
             }
+              List <InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(invite => invite.InviterUsername == newName.Username || invite.InvitedUsername == newName.Username).ToList();
+            if(allInvitesForUser.Count>0){
+                for (int i = 0; i < allInvitesForUser.Count;i++){
+                    if(allInvitesForUser[i].InvitedUsername == newName.Username){
+                        allInvitesForUser[i].InvitedFullname = newName.Name;
+                        _context.Update<InviteUsersModel>(allInvitesForUser[i]);
+                         result = _context.SaveChanges() != 0;
+                    }
+                    else if(allInvitesForUser[i].InviterUsername == newName.Username){
+                        allInvitesForUser[i].InviterFullname = newName.Name;
+                         _context.Update<InviteUsersModel>(allInvitesForUser[i]);
+                         result = _context.SaveChanges() != 0;
+                    }
+                }
+            }
             return result;
         }
 
@@ -264,6 +279,21 @@ namespace scrubby_webapi.Services
                 result = _context.SaveChanges() != 0;
             }
 
+            List <InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(invite => invite.InviterUsername == avatar.Username || invite.InvitedUsername == avatar.Username).ToList();
+            if(allInvitesForUser.Count>0){
+                for (int i = 0; i < allInvitesForUser.Count;i++){
+                    if(allInvitesForUser[i].InvitedUsername == avatar.Username){
+                        allInvitesForUser[i].InvitedPhoto = avatar.Photo;
+                        _context.Update<InviteUsersModel>(allInvitesForUser[i]);
+                         result = _context.SaveChanges() != 0;
+                    }
+                    else if(allInvitesForUser[i].InviterUsername == avatar.Username){
+                        allInvitesForUser[i].InviterPhoto = avatar.Photo;
+                         _context.Update<InviteUsersModel>(allInvitesForUser[i]);
+                         result = _context.SaveChanges() != 0;
+                    }
+                }
+            }
             return result;
         }
 //-----------USER DATA----------------//

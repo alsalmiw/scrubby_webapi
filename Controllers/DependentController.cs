@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using scrubby_webapi.Services;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 
@@ -50,7 +51,11 @@ namespace scrubby_webapi.Controllers
 
 
 
-
+          [HttpGet("GetDependantDTOByChildId/{childId}")]
+        public DependentDTO GetDependantDTOByChildId (int childId)
+        {
+            return _data.GetDependantDTOByChildId(childId);  
+        }
 
          
 

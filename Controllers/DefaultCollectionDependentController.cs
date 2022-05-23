@@ -26,5 +26,11 @@ namespace scrubby_webapi.Models
         {
             return _data.ChildDefaultSchedule(childId);
         }
+
+          [HttpPost("CreateChildDefaultSchedule")]
+         public bool CreateChildDefaultSchedule(DefaultCollectionDependentModel newDefault)
+        {
+            return _data.CreateChildDefaultSchedule(newDefault);
+        }
     }
 }

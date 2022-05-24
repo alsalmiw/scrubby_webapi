@@ -16,6 +16,8 @@ namespace scrubby_webapi.Models.DTO
 
         public List <ScheduleCollectionsDTO>? MySchedule { get; set; }
 
+        public List<TasksHistoryDTO>? TasksHistory { get; set; }
+
 
 
     }

@@ -169,5 +169,10 @@ namespace scrubby_webapi.Services
             return _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id == id);
         }
 
+           public DependentModel GetDependantByChildId (int childId)
+        {
+              return _context.DependentInfo.SingleOrDefault(child => child.Id == childId);
+        }
+
     }
 }

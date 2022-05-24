@@ -106,7 +106,8 @@ namespace scrubby_webapi.Services
              if(findTask != null){
                 DateTime thisDay = DateTime.Today;
                 findTask.IsCompleted = true;
-                findTask.DateCompleted = thisDay.ToString("d");
+                findTask.IsRequestedApproval = false;
+                findTask.DateCompleted = thisDay.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.sss0Z");
                _context.Update<AssignedTasksChildModel>(findTask);
                result =_context.SaveChanges() != 0;
                }

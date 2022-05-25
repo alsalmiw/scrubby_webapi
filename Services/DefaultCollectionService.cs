@@ -106,40 +106,30 @@ namespace scrubby_webapi.Services
          {
 
             List <DefaultCollectionModel> findAllEntries = _context.DefaultCollectionInfo.Where(collection => collection.UserId == newDefault.UserId && collection.IsDeleted==false).ToList();
+            bool isCompleted=false;
            if(findAllEntries.Count>0)
            {
                 for(int i = 0; i < findAllEntries.Count; i++){
                 findAllEntries[i].IsDefault = false;
                 _context.Update<DefaultCollectionModel>(findAllEntries[i]);
                 _context.SaveChanges();
+                if(i == findAllEntries.Count-1)
+                {
+                     isCompleted=true;
+                }
                  }
-           }
-        
-             _context.DefaultCollectionInfo.AddAsync(newDefault);
-                return _context.SaveChanges() !=0;
+           }    
+                bool result = false;
+                if(isCompleted)
+                {
+                _context.DefaultCollectionInfo.AddAsync(newDefault);
+                    result= _context.SaveChanges() !=0;
+                }
+             return result;
            
         }
 
-                 //UserModel findUser = _context.UserInfo.SingleOrDefault(user => user.Username == new);
-        //     List <DefaultCollectionModel> findAllEntries = _context.DefaultCollectionInfo.Where(collection => collection.UserId == findUser.Id && collection.IsDeleted==false).ToList();
-        //    if(findAllEntries.Count>0)
-        //    {
-        //         for(int i = 0; i < findAllEntries.Count; i++){
-        //         findAllEntries[i].IsDefault = false;
-        //         _context.Update<DefaultCollectionModel>(findAllEntries[i]);
-        //         _context.SaveChanges();
-        //          }
-        //    }
-            
-    
-            // DefaultCollectionModel AddDefault = new DefaultCollectionModel();
-            // AddDefault.Id = 0;
-            // AddDefault.UserId = findUser.Id;
-            // AddDefault.CollectionId =collectionId;
-            // AddDefault.IsDefault = true;
-            // AddDefault.IsDeleted=false;
-
-
+                
 
     }
 }

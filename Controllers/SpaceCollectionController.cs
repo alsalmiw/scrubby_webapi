@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.DTO;
 using scrubby_webapi.Services;
 
 namespace scrubby_webapi.Controllers
@@ -30,7 +31,7 @@ namespace scrubby_webapi.Controllers
             return _data.GetSpaceCollectionById(Id);
         }
         [HttpGet("GetSpaceCollectionByUserId/{UserId}")]
-        public IEnumerable<SpaceCollectionModel>  GetSpaceCollectionByUserId(int UserId)
+        public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUserId(int UserId)
         {
             return _data.GetSpaceCollectionByUserId(UserId);
         }
@@ -46,6 +47,11 @@ namespace scrubby_webapi.Controllers
             return _data.UpdateSpaceCollectionNameByUserId(UserId, CollectionName);
         }
 
+        [HttpGet("GetAllTasksHistoryForMembers/{userId}")]
+        public List<TasksHistoryDTO> GetAllTasksHistoryForMembers(int userId)
+        {
+            return _data.GetAllTasksHistoryForMembers(userId);
+        }
 
     }
 }

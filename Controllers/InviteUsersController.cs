@@ -68,5 +68,11 @@ namespace scrubby_webapi.Controllers
             return _data.GetInvitationsByUsername(username);
         }
 
+        [HttpPost("DeleteAcceptedInvite/{userId}/{invitedUsername}")]
+public bool DeleteAcceptedInvite (int userId, string? invitedUsername)
+{
+  return _data.DeleteAcceptedInvite(userId, invitedUsername);
+}
+
     }
 }

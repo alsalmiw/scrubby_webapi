@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.DTO;
 using scrubby_webapi.Services.Context;
 
 namespace scrubby_webapi.Services
@@ -112,6 +113,35 @@ namespace scrubby_webapi.Services
                result =_context.SaveChanges() != 0;
                }
                return  result;
+        }
+
+        public List<AssignedTasksDTO> GetAllAssignedChildTasksBySpaceId(int id)
+        {
+            // issue here findChild
+            List<AssignedTasksChildModel> AssignedChildren = _context.AssignedTasksChildInfo.Where(assignment => assignment.SpaceId == id && assignment.IsDeleted == false).ToList();
+
+            List<AssignedTasksDTO> AssignedTasks = new List<AssignedTasksDTO>();
+
+            if (AssignedChildren.Count != 0)
+            {
+                for (int i = 0; i < AssignedChildren.Count; i++)
+                {
+                    DependentModel findChild = _context.DependentInfo.SingleOrDefault(child => child.Id == AssignedChildren[i].ChildId);
+
+                    AssignedTasksDTO oneTask = new AssignedTasksDTO();
+                    oneTask.Id = AssignedChildren[i].Id;
+                    oneTask.UserId = AssignedChildren[i].ChildId;
+                    oneTask.Name = findChild.DependentName;
+                    oneTask.AssignedTaskId = AssignedChildren[i].AssignedTaskId;
+                    oneTask.DateScheduled = AssignedChildren[i].DateCreated;
+                    oneTask.DateCompleted = AssignedChildren[i].DateCompleted;
+                    oneTask.IsCompleted = AssignedChildren[i].IsCompleted;
+                    oneTask.IsChild = true;
+                    AssignedTasks.Add(oneTask);
+                }
+            }
+
+            return AssignedTasks;
         }
 
     }

@@ -23,7 +23,6 @@ builder.Services.AddScoped<CleaningProductsStaticAPIService>();
 builder.Services.AddScoped<SpaceItemsStaticAPIService>();
 builder.Services.AddScoped<DefaultCollectionService>();
 builder.Services.AddScoped<DefaultCollectionDependentService>();
-
 builder.Services.AddScoped<PhotosService>();
 
 builder.Services.Configure<AzureStorageConfig>(builder.Configuration.GetSection("AzureStorageConfig"));

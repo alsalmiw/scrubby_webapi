@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.DTO;
 using scrubby_webapi.Services.Context;
 
 namespace scrubby_webapi.Services
@@ -44,6 +45,29 @@ namespace scrubby_webapi.Services
         public IEnumerable<SharedSpacesModel> GetSharedSpacesByInvitedAndInviterUsername(string InvitedUsername, string InviterUsername)
         {
             return _context.SharedSpacesInfo.Where(item => item.InvitedUsername == InvitedUsername && item.InviterUsername == InviterUsername);
+        }
+
+         public List<SharedSpacesDTO> GetSharedCollectionWithByCollectionId(int id)
+        {
+
+            List<SharedSpacesDTO> sharedSpacesDTO = new List<SharedSpacesDTO>();
+
+            List<SharedSpacesModel> sharedCollection = _context.SharedSpacesInfo.Where(collection => collection.CollectionId == id && (collection.IsDeleted == false && collection.IsAccepted == true)).ToList();
+
+            for (int i = 0; i < sharedCollection.Count; i++)
+            {
+                SharedSpacesDTO sharedSpaceWith = new SharedSpacesDTO();
+                sharedSpaceWith.Id = sharedCollection[i].Id;
+                UserModel findInvited = _context.UserInfo.SingleOrDefault(user=> user.Username==sharedCollection[i].InvitedUsername);
+                sharedSpaceWith.InvitedId = findInvited.Id;
+                sharedSpaceWith.InvitedUsername = findInvited.Username;
+                sharedSpaceWith.InvitedName = findInvited.Name;
+
+                sharedSpacesDTO.Add(sharedSpaceWith);
+            }
+
+            return sharedSpacesDTO;
+
         }
     }
         

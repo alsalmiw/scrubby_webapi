@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.DTO;
 using scrubby_webapi.Services;
 
 namespace scrubby_webapi.Controllers
@@ -87,26 +88,6 @@ namespace scrubby_webapi.Controllers
         {
             return _data.UpdateUserTaskToCompleted(TaskId);
         }
-        
-        
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-        
-
-
 
 
 

@@ -99,8 +99,10 @@ namespace scrubby_webapi.Services
                     SelectedTasksDTO oneTask = new SelectedTasksDTO();
                     oneTask.Id = AssignedUser[i].Id;
                     oneTask.DateScheduled = AssignedUser[i].DateCreated;
+                    oneTask.IsDeleted = AssignedUser[i].IsDeleted;
                     oneTask.DateCompleted = AssignedUser[i].DateCompleted;
                     oneTask.IsCompleted = AssignedUser[i].IsCompleted;
+                    oneTask.IsRequestedApproval = AssignedUser[i].IsRequestedApproval;
                     SelectedTasksModel taskInfo = _context.SelectedTasksInfo.SingleOrDefault(selectedTask => selectedTask.Id == AssignedUser[i].AssignedTaskId);
 
                     oneTask.Task = GetTaskByTaskID(taskInfo.TaskId);
@@ -121,18 +123,31 @@ namespace scrubby_webapi.Services
 
          public bool CreateChildDefaultSchedule(DefaultCollectionDependentModel newDefault)
         {
+            bool isRemoved = false;
                List <DefaultCollectionDependentModel> findAllEntries = _context.DefaultCollectionDependentInfo.Where(collection => collection.ChildId == newDefault.ChildId && collection.IsDeleted==false).ToList();
            if(findAllEntries.Count>0)
            {
                 for(int i = 0; i < findAllEntries.Count; i++){
                 findAllEntries[i].IsDefault = false;
                 _context.Update<DefaultCollectionDependentModel>(findAllEntries[i]);
-                _context.SaveChanges();
+                                
+                if(i==findAllEntries.Count-1)
+                {
+                     isRemoved = _context.SaveChanges()!=0;
+                }else{ 
+                    _context.SaveChanges();
+                }
+               
                  }
            }
-        
-             _context.DefaultCollectionDependentInfo.AddAsync(newDefault);
-                return _context.SaveChanges() !=0;
+           bool result = false;
+            if(isRemoved)
+            {
+                _context.DefaultCollectionDependentInfo.AddAsync(newDefault);
+                result= _context.SaveChanges() !=0;
+            }
+             
+                return result;
         }
       
     }

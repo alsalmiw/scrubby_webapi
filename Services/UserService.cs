@@ -341,11 +341,11 @@ namespace scrubby_webapi.Services
                 userData.ScoreBoard = ScoreBoardInfo;
             }
 
-            List<ScheduleCollectionsDTO> myTasks = GetMyTaskedCollectionsByUserId(UserInfo.Id);
-            if (myTasks != null)
-            {
-                userData.MySchedule = myTasks;
-            }
+            // List<ScheduleCollectionsDTO> myTasks = GetMyTaskedCollectionsByUserId(UserInfo.Id);
+            // if (myTasks != null)
+            // {
+            //     userData.MySchedule = myTasks;
+            // }
             List<TasksHistoryDTO> myTasksHistory = GetAllTasksHistoryForMembers(UserInfo.Id);
             if (myTasksHistory != null)
             {
@@ -386,7 +386,7 @@ namespace scrubby_webapi.Services
                     oneChild.DependentCoins = childrenInfo[i].DependentCoins;
                     oneChild.DependentPoints = childrenInfo[i].DependentPoints;
                     oneChild.DependentPassCode = childrenInfo[i].DependentPassCode;
-                    oneChild.ScheduledTasks = GetScheduleCollectionsKidsUsingUserId(id, childrenInfo[i].Id);
+                   oneChild.ScheduledTasks = GetScheduleCollectionsKidsUsingUserId(id, childrenInfo[i].Id);
 
                     childrenDetails.Add(oneChild);
                 }
@@ -973,6 +973,8 @@ namespace scrubby_webapi.Services
                  DateTime day = DateTime.Today.AddDays(-d);
                  dates.Add(day.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.sss0Z"));
             }
+
+        
            
             List<CollectionsDTO> spaceCollections = GetCollectionByUserId(userId);
             if (spaceCollections != null)
@@ -1027,6 +1029,8 @@ namespace scrubby_webapi.Services
 
 
         }
+
+        
 
         public string GetTaskNameByTaskID(int taskId, List<SelectedTasksDTO> tasks)
         {

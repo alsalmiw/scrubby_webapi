@@ -98,6 +98,11 @@ namespace scrubby_webapi.Models
             return _data.NewCoinAmount(newAmount);
         }
         //
+        [HttpPost("UpdateCoinsAndPoints")]
+        public UserDTO UpdateCoinsAndPoints(UserDTO NewCoinsAndPoints)
+        {
+            return _data.UpdateCoinsAndPoints(NewCoinsAndPoints);
+        }
        
        
     }

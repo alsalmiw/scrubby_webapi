@@ -182,7 +182,7 @@ namespace scrubby_webapi.Services
             if(childInfo != null)
             {
                 childInfo.DependentCoins +=  newPointsAndCoins.DependentCoins;
-                childInfo.DependentPoints += newPointsAndCoins.DependentPoints;
+                childInfo.DependentPoints += newPointsAndCoins.DependentCoins;
                 _context.Update<DependentModel>(childInfo);
                 result = _context.SaveChanges() != 0;
             }

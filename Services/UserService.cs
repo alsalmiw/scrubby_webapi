@@ -939,6 +939,29 @@ namespace scrubby_webapi.Services
             return userInfo;
         }
 
+
+        public UserDTO UpdateCoinsAndPoints(UserDTO NewCoinsAndPoints)
+        {
+            //return _data.UpdateCoinsAndPoints(NewCoinsAndPoints);
+            UserDTO userInfo = GetUserByID(NewCoinsAndPoints.Id);
+            UserModel foundUser = GetUserByID(newAmount.Id);
+            bool result = false;
+            if(foundUser != null)
+            {
+                foundUser.Coins != NewCoinsAndPoints.Coins;
+                foundUser.Points != NewCoinsAndPoints.Coins;
+                _context.Update<UserDTO>(userInfo);
+                result = _context.SaveChanges() !=0;
+                
+                if (result)
+                {
+                    userInfo = GetUserPublicInfoByID(foundUser.Id);
+                }
+
+            }
+            return result ? userInfo : null;
+        }
+
         //GET TASKS HISTORY FOR USER AND DEPENDENTS AND EVERYONE INVITED
 
         public List<TasksHistoryDTO> GetAllTasksHistoryForMembers(int userId)
@@ -1020,5 +1043,7 @@ namespace scrubby_webapi.Services
         }
 
     }
+
+
 
 }

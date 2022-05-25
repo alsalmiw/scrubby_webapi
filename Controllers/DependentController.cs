@@ -63,6 +63,11 @@ namespace scrubby_webapi.Controllers
             return _data.GetDependantByChildId(childId);  
         }
 
+        [HttpPost("UpdateDependentCoinsAndPoints")]
+        public DependentModel UpdateDependentCoinsAndPoints (DependentModel newPointsAndCoins)
+        {
+            return _data.UpdateDependentCoinsAndPoints(newPointsAndCoins);
+        }
          
 
           

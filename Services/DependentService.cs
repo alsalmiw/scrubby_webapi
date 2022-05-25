@@ -174,5 +174,22 @@ namespace scrubby_webapi.Services
               return _context.DependentInfo.SingleOrDefault(child => child.Id == childId);
         }
 
+            public DependentModel UpdateDependentCoinsAndPoints (DependentModel newPointsAndCoins)
+        {
+            DependentModel childInfo = GetDependentById(newPointsAndCoins.Id);
+
+            bool result = false;
+            if(childInfo != null)
+            {
+                childInfo.DependentCoins +=  newPointsAndCoins.DependentCoins;
+                childInfo.DependentPoints += newPointsAndCoins.DependentPoints;
+                _context.Update<DependentModel>(childInfo);
+                result = _context.SaveChanges() != 0;
+            }
+
+            return result ? childInfo : null;
+        }
+
+
     }
 }

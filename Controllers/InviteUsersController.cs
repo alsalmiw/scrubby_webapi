@@ -19,25 +19,25 @@ namespace scrubby_webapi.Controllers
             _data = dataFromInviteService;
         }
         [HttpPost("InviteUser")]
-        public bool InviteUser (InviteDTO newUser)
+        public bool InviteUser(InviteDTO newUser)
         {
             return _data.InviteUser(newUser);
         }
 
         [HttpPost("AcceptInvite/{userId}/{invitedUsername}")]
-        public bool AcceptInvite (int userId, string? invitedUsername)
+        public bool AcceptInvite(int userId, string? invitedUsername)
         {
             return _data.AcceptInvite(userId, invitedUsername);
         }
 
-         [HttpPost("DeleteInvite/{userId}/{invitedUsername}")]
-        public bool DeleteInvite (int userId, string? invitedUsername)
+        [HttpPost("DeleteInvite/{userId}/{invitedUsername}")]
+        public bool DeleteInvite(int userId, string? invitedUsername)
         {
             return _data.DeleteInvite(userId, invitedUsername);
         }
 
-         [HttpPost("DeleteInvitation/{inviteId}")]
-        public bool DeleteInvitation (int inviteId)
+        [HttpPost("DeleteInvitation/{inviteId}")]
+        public bool DeleteInvitation(int inviteId)
         {
             return _data.DeleteInvitation(inviteId);
         }
@@ -45,34 +45,42 @@ namespace scrubby_webapi.Controllers
 
         [HttpGet("AllInvitesByID/{userID}")]
 
-        public IEnumerable<InviteUsersModel> AllInvitesByID (int userId)
+        public IEnumerable<InviteUsersModel> AllInvitesByID(int userId)
         {
             return _data.AllInvitesByID(userId);
         }
 
         [HttpGet("AllInvitesByInvitedUsername/{username}")]
-         public IEnumerable<InviteUsersModel> AllInvitesByInvitedUsername (string? username)
+        public IEnumerable<InviteUsersModel> AllInvitesByInvitedUsername(string? username)
         {
             return _data.AllInvitesByInvitedUsername(username);
         }
 
-         [HttpGet("GetAllUserInfoInviteRequests/{username}")]
+        [HttpGet("GetAllUserInfoInviteRequests/{username}")]
         public IEnumerable<UserDTO> GetAllUserInfoInviteRequests(string? username)
         {
             return _data.GetAllUserInfoInviteRequests(username);
         }
 
         [HttpGet("GetInvitationsByUsername/{username}")]
-          public InvitesDTO GetInvitationsByUsername(string? username)
+        public InvitesDTO GetInvitationsByUsername(string? username)
         {
             return _data.GetInvitationsByUsername(username);
         }
 
         [HttpPost("DeleteAcceptedInvite/{userId}/{invitedUsername}")]
-public bool DeleteAcceptedInvite (int userId, string? invitedUsername)
-{
-  return _data.DeleteAcceptedInvite(userId, invitedUsername);
-}
+        public bool DeleteAcceptedInvite(int userId, string? invitedUsername)
+        {
+            return _data.DeleteAcceptedInvite(userId, invitedUsername);
+        }
+
+        [HttpPost("DeleteInvitation/{invitedUsername}/{inviterUsername}")]
+        public bool DeleteInvitation (string? invitedUsername, string? inviterUsername)
+        {
+            return _data.DeleteInvitation(invitedUsername, inviterUsername);
+        }
+
+
 
     }
 }

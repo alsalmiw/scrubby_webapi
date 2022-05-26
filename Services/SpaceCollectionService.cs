@@ -103,6 +103,7 @@ namespace scrubby_webapi.Services
 
         public List<TasksHistoryDTO> GetAllTasksHistoryForMembers(int userId)
         {
+            bool start = false;
             List<TasksHistoryDTO> AllTasksHistory = new List<TasksHistoryDTO>();
             List<string> dates = new List<string>();
             for (int d = 0; d < 50; d++)
@@ -110,11 +111,18 @@ namespace scrubby_webapi.Services
 
                 DateTime day = DateTime.Today.AddDays(-d);
                 dates.Add(day.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.sss0Z"));
+                if(d==49){
+                    start=true;
+                }
             }
 
+            if(start){
 
+           
 
             List<CollectionsDTO> spaceCollections = GetCollectionByUserId(userId);
+
+
             if (spaceCollections != null)
             {
 
@@ -154,6 +162,7 @@ namespace scrubby_webapi.Services
                     }
                 }
 
+            }
             }
             return AllTasksHistory;
 

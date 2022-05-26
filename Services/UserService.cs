@@ -22,10 +22,12 @@ namespace scrubby_webapi.Services
         private readonly DataContext _context;
 
         private readonly DependentService _depService;
-        public UserService(DataContext context, DependentService depService)
+        private readonly SpaceCollectionService _spaceCollection;
+        public UserService(DataContext context, DependentService depService, SpaceCollectionService spaceCollection)
         {
             _context = context;
             _depService = depService;
+            _spaceCollection = spaceCollection;
         }
 
         public bool DoesUserExists(string? username)
@@ -341,16 +343,16 @@ namespace scrubby_webapi.Services
                 userData.ScoreBoard = ScoreBoardInfo;
             }
 
-            // List<ScheduleCollectionsDTO> myTasks = GetMyTaskedCollectionsByUserId(UserInfo.Id);
-            // if (myTasks != null)
-            // {
-            //     userData.MySchedule = myTasks;
-            // }
-            List<TasksHistoryDTO> myTasksHistory = GetAllTasksHistoryForMembers(UserInfo.Id);
-            if (myTasksHistory != null)
+            List<ScheduleCollectionsDTO> myTasks = GetMyTaskedCollectionsByUserId(UserInfo.Id);
+            if (myTasks != null)
             {
-                userData.TasksHistory = myTasksHistory;
+                userData.MySchedule = myTasks;
             }
+            // List<TasksHistoryDTO> myTasksHistory = _spaceCollection.GetAllTasksHistoryForMembers(UserInfo.Id);
+            // if (myTasksHistory != null)
+            // {
+            //     userData.TasksHistory = myTasksHistory;
+            // }
 
             return userData;
         }

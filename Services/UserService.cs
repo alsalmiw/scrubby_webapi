@@ -943,8 +943,8 @@ namespace scrubby_webapi.Services
         public UserDTO UpdateCoinsAndPoints(UserDTO NewCoinsAndPoints)
         {
             //return _data.UpdateCoinsAndPoints(NewCoinsAndPoints);
-            UserDTO userInfo = GetUserByID(NewCoinsAndPoints.Id);
-            UserModel foundUser = GetUserByID(newAmount.Id);
+            UserDTO userInfo = new UserDTO();
+            UserModel foundUser = GetUserByID(NewCoinsAndPoints.Id);
             bool result = false;
             if(foundUser != null)
             {

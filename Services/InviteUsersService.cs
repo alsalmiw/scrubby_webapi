@@ -235,5 +235,32 @@ namespace scrubby_webapi.Services
             return userInvites;
         }
 
+         public bool DeleteInvitation (string? invitedUsername, string? inviterUsername)
+        {
+            bool result = false;
+            List <InviteUsersModel> findInvite = _context.InvitesInfo.Where(invite => invite.InvitedUsername == invitedUsername && invite.InviterUsername == inviterUsername && invite.IsDeleted == false).ToList();
+            if(findInvite != null)
+            {
+                for(int i = 0; i < findInvite.Count; i++)
+                {
+                    findInvite[i].IsDeleted = true;
+                    _context.Update<InviteUsersModel>(findInvite[i]);
+                    _context.SaveChanges();
+                }
+      
+                List<SharedSpacesModel> findShared = _context.SharedSpacesInfo.Where(shared => shared.InvitedUsername == invitedUsername && shared.InviterUsername==inviterUsername && shared.IsDeleted == false).ToList();
+                if(findShared != null)
+                {
+                    for(int j = 0; j < findShared.Count; j++)
+                    {
+                        findShared[j].IsDeleted = true;
+                         _context.Update<SharedSpacesModel>(findShared[j]);
+                         result = _context.SaveChanges() != 0;
+
+                    }
+                }
+            }
+            return result;
+        }
     }
 }

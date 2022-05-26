@@ -18,8 +18,15 @@ namespace scrubby_webapi.Services
 
         public bool CreateSharedSpaces(SharedSpacesModel spaceToCreate)
         {
-            _context.Add(spaceToCreate);
-            return _context.SaveChanges() !=0;
+            bool result = false;
+            List <SharedSpacesModel> findShared = _context.SharedSpacesInfo.Where(shared => shared.InvitedUsername == spaceToCreate.InvitedUsername && shared.InviterUsername == spaceToCreate.InviterUsername && shared.IsDeleted==false && shared.CollectionId==spaceToCreate.CollectionId ).ToList();
+            if(findShared ==null)
+            {
+                 _context.Add(spaceToCreate);
+             result =_context.SaveChanges() !=0;
+            }
+            return result;
+           
         }
         public bool DeleteSharedSpacesById(int Id)
         {
@@ -44,7 +51,7 @@ namespace scrubby_webapi.Services
 
         public IEnumerable<SharedSpacesModel> GetSharedSpacesByInvitedAndInviterUsername(string InvitedUsername, string InviterUsername)
         {
-            return _context.SharedSpacesInfo.Where(item => item.InvitedUsername == InvitedUsername && item.InviterUsername == InviterUsername);
+            return _context.SharedSpacesInfo.Where(item => item.InvitedUsername == InvitedUsername && item.InviterUsername == InviterUsername && item.IsDeleted==false);
         }
 
          public List<SharedSpacesDTO> GetSharedCollectionWithByCollectionId(int id)

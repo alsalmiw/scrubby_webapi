@@ -950,8 +950,8 @@ namespace scrubby_webapi.Services
             bool result = false;
             if(foundUser != null)
             {
-                foundUser.Coins != NewCoinsAndPoints.Coins;
-                foundUser.Points != NewCoinsAndPoints.Coins;
+                foundUser.Coins = NewCoinsAndPoints.Coins;
+                foundUser.Points = NewCoinsAndPoints.Coins;
                 _context.Update<UserDTO>(userInfo);
                 result = _context.SaveChanges() !=0;
                 

@@ -68,6 +68,12 @@ namespace scrubby_webapi.Controllers
         {
             return _data.UpdateDependentCoinsAndPoints(newPointsAndCoins);
         }
+
+        [HttpPost("ChangeChildName")]
+        public bool ChangeChildName (ChildNameDTO NewName)
+        {
+            return _data.ChangeChildName(NewName);
+        }
          
 
           

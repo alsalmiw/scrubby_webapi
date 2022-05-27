@@ -190,6 +190,15 @@ namespace scrubby_webapi.Services
             return result ? childInfo : null;
         }
 
+        public bool ChangeChildName (ChildNameDTO NewName)
+        {
+            DependentModel findChild = _context.DependentInfo.SingleOrDefault(child => child.Id ==NewName.ChildId);
+            findChild.DependentName = NewName.FullName;
+             _context.Update<DependentModel>(findChild);
+         return _context.SaveChanges() != 0;
+
+        }
+
 
     }
 }

@@ -881,6 +881,7 @@ namespace scrubby_webapi.Services
                         ScoreBoardPointsDTO kidScore = new ScoreBoardPointsDTO();
                         kidScore.Name = UsersKids[i].DependentName;
                         kidScore.Points = UsersKids[i].DependentPoints;
+                        kidScore.Photo=UsersKids[i].DependentPhoto;
                         kidScore.IsChild = true;
                         ScoresInfo.Add(kidScore);
                     }
@@ -907,6 +908,7 @@ namespace scrubby_webapi.Services
                         ScoreBoardPointsDTO invitedScore = new ScoreBoardPointsDTO();
                         invitedScore.Name = invitedUsersInfo[j].Name;
                         invitedScore.Points = invitedUsersInfo[j].Points;
+                        invitedScore.Photo = invitedUsersInfo[j].Photo;
                         invitedScore.IsChild=false;
                         ScoresInfo.Add(invitedScore);
 

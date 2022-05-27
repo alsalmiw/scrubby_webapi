@@ -9,5 +9,6 @@ namespace scrubby_webapi.Models.DTO
     {
         public string? Name { get; set; }
         public int Points { get; set; }
+        public bool IsChild { get; set; }
     }
 }

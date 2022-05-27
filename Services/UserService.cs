@@ -348,11 +348,11 @@ namespace scrubby_webapi.Services
             {
                 userData.MySchedule = myTasks;
             }
-            // List<TasksHistoryDTO> myTasksHistory = _spaceCollection.GetAllTasksHistoryForMembers(UserInfo.Id);
-            // if (myTasksHistory != null)
-            // {
-            //     userData.TasksHistory = myTasksHistory;
-            // }
+            List<TasksHistoryDTO> myTasksHistory = _spaceCollection.GetAllTasksHistoryForMembers(UserInfo.Id);
+            if (myTasksHistory != null)
+            {
+                userData.TasksHistory = myTasksHistory;
+            }
 
             return userData;
         }
@@ -881,6 +881,7 @@ namespace scrubby_webapi.Services
                         ScoreBoardPointsDTO kidScore = new ScoreBoardPointsDTO();
                         kidScore.Name = UsersKids[i].DependentName;
                         kidScore.Points = UsersKids[i].DependentPoints;
+                        kidScore.IsChild = true;
                         ScoresInfo.Add(kidScore);
                     }
                 }
@@ -906,6 +907,7 @@ namespace scrubby_webapi.Services
                         ScoreBoardPointsDTO invitedScore = new ScoreBoardPointsDTO();
                         invitedScore.Name = invitedUsersInfo[j].Name;
                         invitedScore.Points = invitedUsersInfo[j].Points;
+                        invitedScore.IsChild=false;
                         ScoresInfo.Add(invitedScore);
 
                     }

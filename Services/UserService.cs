@@ -277,9 +277,9 @@ namespace scrubby_webapi.Services
 
         }
 
-        public bool AddDefaultAvatar(UserImageDTO avatar)
+        public bool ChangeAvatarImage(ImageDTO avatar)
         {
-            UserModel foundUser = GetUserByUserName(avatar.Username);
+            UserModel foundUser = GetUserByID(avatar.Id);
             bool result = false;
             if (foundUser != null)
             {
@@ -289,18 +289,18 @@ namespace scrubby_webapi.Services
                 result = _context.SaveChanges() != 0;
             }
 
-            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(invite => invite.InviterUsername == avatar.Username || invite.InvitedUsername == avatar.Username).ToList();
+            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(invite => invite.InviterId == avatar.Id || invite.InvitedId == avatar.Id).ToList();
             if (allInvitesForUser.Count > 0)
             {
                 for (int i = 0; i < allInvitesForUser.Count; i++)
                 {
-                    if (allInvitesForUser[i].InvitedUsername == avatar.Username)
+                    if (allInvitesForUser[i].InvitedId == avatar.Id)
                     {
                         allInvitesForUser[i].InvitedPhoto = avatar.Photo;
                         _context.Update<InviteUsersModel>(allInvitesForUser[i]);
                         result = _context.SaveChanges() != 0;
                     }
-                    else if (allInvitesForUser[i].InviterUsername == avatar.Username)
+                    else if (allInvitesForUser[i].InviterId == avatar.Id)
                     {
                         allInvitesForUser[i].InviterPhoto = avatar.Photo;
                         _context.Update<InviteUsersModel>(allInvitesForUser[i]);

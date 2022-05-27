@@ -74,6 +74,12 @@ namespace scrubby_webapi.Controllers
         {
             return _data.ChangeChildName(NewName);
         }
+
+        [HttpPost("ChangeDependentAvatarImage")]
+        public bool ChangeDependentAvatarImage(ImageDTO avatar)
+        {
+            return _data.ChangeDependentAvatarImage(avatar);
+        }
          
 
           

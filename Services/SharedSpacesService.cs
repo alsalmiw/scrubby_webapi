@@ -19,8 +19,8 @@ namespace scrubby_webapi.Services
         public bool CreateSharedSpaces(SharedSpacesModel spaceToCreate)
         {
             bool result = false;
-            List <SharedSpacesModel> findShared = _context.SharedSpacesInfo.Where(shared => shared.InvitedUsername == spaceToCreate.InvitedUsername && shared.InviterUsername == spaceToCreate.InviterUsername && shared.IsDeleted==false && shared.CollectionId==spaceToCreate.CollectionId ).ToList();
-            if(findShared ==null)
+            SharedSpacesModel findShared = _context.SharedSpacesInfo.SingleOrDefault(shared => shared.InvitedUsername == spaceToCreate.InvitedUsername && shared.InviterUsername == spaceToCreate.InviterUsername && shared.IsDeleted==false && shared.CollectionId==spaceToCreate.CollectionId );
+            if(findShared==null)
             {
                  _context.Add(spaceToCreate);
              result =_context.SaveChanges() !=0;

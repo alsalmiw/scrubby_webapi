@@ -199,6 +199,17 @@ namespace scrubby_webapi.Services
 
         }
 
+         public bool ChangeDependentAvatarImage(ImageDTO avatar)
+        {
+                DependentModel childInfo = GetDependentById(avatar.Id);
+                childInfo.DependentPhoto=avatar.Photo;
+                 _context.Update<DependentModel>(childInfo);
+                return _context.SaveChanges() != 0;
+
+
+        }
+         
+
 
     }
 }

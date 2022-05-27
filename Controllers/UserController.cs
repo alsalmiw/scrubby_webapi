@@ -86,10 +86,10 @@ namespace scrubby_webapi.Models
             return _data.ChildFreeBool(userId);
         }
 
-         [HttpPost("AddDefaultAvatar")]
-        public bool AddDefaultAvatar(UserImageDTO avatar)
+         [HttpPost("ChangeAvatarImage")]
+        public bool ChangeAvatarImage(ImageDTO avatar)
         {
-            return _data.AddDefaultAvatar(avatar);
+            return _data.ChangeAvatarImage(avatar);
         }
 
          [HttpPost("NewCoinAmount")]

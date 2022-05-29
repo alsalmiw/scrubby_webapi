@@ -18,7 +18,29 @@ namespace scrubby_webapi.Services
             _context = context; 
         }
 
-       
+        public ScheduleCollectionsDTO GetUserDefaultScheduleByUserId(int id)
+        {
+           UserModel findUser = _context.UserInfo.SingleOrDefault(user => user.Id == id);
+           ScheduleCollectionsDTO collectionDTO = new ScheduleCollectionsDTO();
+             DefaultCollectionModel findDefault = _context.DefaultCollectionInfo.SingleOrDefault(collection => collection.UserId == findUser.Id && collection.IsDefault==true && collection.IsDeleted==false);
+
+            List<SpaceCollectionModel> collectionsByUserId = _context.SpaceCollectionInfo.Where(collection => collection.UserId == findUser.Id).ToList();
+
+            if(findDefault == null)
+            {
+                collectionDTO.Id = collectionsByUserId[0].Id;
+                collectionDTO.CollectionName = collectionsByUserId[0].CollectionName;
+                 collectionDTO.Rooms = GetDefaultScheduledRoomsByCollectionID(collectionsByUserId[0].Id, findUser.Id);
+            }else{
+                SpaceCollectionModel defaultCollection =  _context.SpaceCollectionInfo.SingleOrDefault(collection => collection.Id == findDefault.CollectionId);
+
+                collectionDTO.Id = defaultCollection.Id;
+                collectionDTO.CollectionName = defaultCollection.CollectionName;
+                 collectionDTO.Rooms = GetDefaultScheduledRoomsByCollectionID(defaultCollection.Id, findUser.Id);
+            }
+            return collectionDTO;
+
+        }
 
         public ScheduleCollectionsDTO UserDefaultSchedule(string username)
         {

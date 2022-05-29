@@ -35,6 +35,14 @@ namespace scrubby_webapi.Controllers
         {
             return _data.GetSpaceCollectionByUserId(UserId);
         }
+
+           [HttpGet("GetSpaceCollectionByUsername/{username}")]
+        public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUsername(string? username)
+        {
+            return _data.GetSpaceCollectionByUsername(username);
+        }
+
+
         [HttpPost("DeleteSpaceCollectionById/{Id}")]
         public bool DeleteSpaceCollectionById(int Id)
         {

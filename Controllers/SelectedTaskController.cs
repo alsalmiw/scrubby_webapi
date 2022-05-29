@@ -67,5 +67,13 @@ namespace scrubby_webapi.Controllers
             return _data.GetTasksBySpaceId(spaceId);
         }
 
+
+        [HttpPost("DeleteTaskByTaskId/{taskId}")]
+         public bool DeleteTaskByTaskId(int taskId)
+        {
+            return _data.DeleteTaskByTaskId(taskId);
+        }
+   
+
     }
 }

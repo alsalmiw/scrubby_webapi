@@ -357,6 +357,13 @@ namespace scrubby_webapi.Services
             return userData;
         }
 
+         public List<ScheduleCollectionsDTO> GetMyTaskedCollectionsByUsername(string? username)
+        {
+            UserModel findUser = GetUserByUserName(username);
+            List<ScheduleCollectionsDTO> Schedule = GetMyTaskedCollectionsByUserId(findUser.Id);
+
+            return Schedule;
+        }
         public List<ScheduleCollectionsDTO> GetMyTaskedCollectionsByUserId(int id)
         {
 
@@ -469,11 +476,17 @@ namespace scrubby_webapi.Services
             return AssignedTasks;
         }
 
+         public List<CollectionsDTO> GetCollectionByUsername(string? username)
+        {
+            UserModel finduser = GetUserByUserName(username);
+          List<CollectionsDTO> collections = GetCollectionByUserId(finduser.Id);
+          return collections;
+        }
         public List<CollectionsDTO> GetCollectionByUserId(int UserId)
         {
             List<CollectionsDTO> SpaceCollectionsDTO = new List<CollectionsDTO>();
             List<SpaceCollectionModel> collections = new List<SpaceCollectionModel>();
-            collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId).ToList();
+            collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted==false).ToList();
 
             if (collections != null)
             {
@@ -496,7 +509,7 @@ namespace scrubby_webapi.Services
         public List<ScheduleCollectionsDTO> GetScheduleCollectionByUserId(int UserId)
         {
             List<ScheduleCollectionsDTO> SpaceCollectionsDTO = new List<ScheduleCollectionsDTO>();
-            List<SpaceCollectionModel> collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId).ToList();
+            List<SpaceCollectionModel> collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted==false).ToList();
 
             if (collections != null)
             {
@@ -860,6 +873,7 @@ namespace scrubby_webapi.Services
         {
            return _depService.GetDependentById(id);
         }
+        
         public List<ScoreBoardPointsDTO> ScoreBoardList(string? username)
         {
 
@@ -954,9 +968,9 @@ namespace scrubby_webapi.Services
             bool result = false;
             if(foundUser != null)
             {
-                foundUser.Coins = NewCoinsAndPoints.Coins;
-                foundUser.Points = NewCoinsAndPoints.Coins;
-                _context.Update<UserDTO>(userInfo);
+                foundUser.Coins += NewCoinsAndPoints.Coins;
+                foundUser.Points += NewCoinsAndPoints.Coins;
+                _context.Update<UserModel>(foundUser);
                 result = _context.SaveChanges() !=0;
                 
                 if (result)

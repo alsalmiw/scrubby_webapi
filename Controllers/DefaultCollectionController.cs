@@ -26,6 +26,11 @@ namespace scrubby_webapi.Models
         {
             return _data.UserDefaultSchedule(username);
         }
+        [HttpGet("GetUserDefaultScheduleByUserId/{id}")]
+        public ScheduleCollectionsDTO GetUserDefaultScheduleByUserId(int id)
+        {
+            return _data.GetUserDefaultScheduleByUserId(id);
+        }
 
         [HttpPost("CreateUserDefaultSchedule")]
          public bool CreateUserDefaultSchedule(DefaultCollectionModel newDefault)

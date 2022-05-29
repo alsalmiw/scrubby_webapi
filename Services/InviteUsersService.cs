@@ -127,7 +127,7 @@ namespace scrubby_webapi.Services
             return result;
         }
 
-        public bool DeleteInvitation(int inviteId)
+        public bool DeleteInvitationByInvitedId(int inviteId)
         {
             bool result = false;
             InviteUsersModel foundInvite = FindInviteByInviteId(inviteId);
@@ -235,20 +235,18 @@ namespace scrubby_webapi.Services
             return userInvites;
         }
 
-         public bool DeleteInvitation (string? invitedUsername, string? inviterUsername)
+         public bool DeleteInvitation (int id)
         {
             bool result = false;
-            List <InviteUsersModel> findInvite = _context.InvitesInfo.Where(invite => invite.InvitedUsername == invitedUsername && invite.InviterUsername == inviterUsername && invite.IsDeleted == false).ToList();
-            if(findInvite != null)
-            {
-                for(int i = 0; i < findInvite.Count; i++)
-                {
-                    findInvite[i].IsDeleted = true;
-                    _context.Update<InviteUsersModel>(findInvite[i]);
+            InviteUsersModel findInvite = _context.InvitesInfo.SingleOrDefault(invite => invite.Id ==id);
+           
+              
+                    findInvite.IsDeleted = true;
+                    _context.Update<InviteUsersModel>(findInvite);
                     _context.SaveChanges();
-                }
+                
       
-                List<SharedSpacesModel> findShared = _context.SharedSpacesInfo.Where(shared => shared.InvitedUsername == invitedUsername && shared.InviterUsername==inviterUsername && shared.IsDeleted == false).ToList();
+                List<SharedSpacesModel> findShared = _context.SharedSpacesInfo.Where(shared => shared.InvitedUsername == findInvite.InvitedUsername && shared.InviterUsername==findInvite.InviterUsername && shared.IsDeleted == false).ToList();
                 if(findShared != null)
                 {
                     for(int j = 0; j < findShared.Count; j++)
@@ -259,8 +257,92 @@ namespace scrubby_webapi.Services
 
                     }
                 }
-            }
+            
             return result;
+        }
+
+          public InvitesDTO GetInvitationInfoByUserId(int id)
+        {
+
+            List<SentInvitesDTO> SentInvites = new List<SentInvitesDTO>();
+            List<RecievedInvitesDTO> RecievedInvites = new List<RecievedInvitesDTO>();
+            InvitesDTO userInvites = new InvitesDTO();
+
+            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(invite => (invite.InviterId == id || invite.InvitedId == id) && invite.IsDeleted != true).ToList();
+
+            if (allInvitesForUser != null)
+            {
+                for (int i = 0; i < allInvitesForUser.Count; i++)
+                {
+                    if (allInvitesForUser[i].InviterId == id)
+                    {
+                        SentInvitesDTO sentInvite = new SentInvitesDTO();
+                        sentInvite.Id = allInvitesForUser[i].Id;
+                        sentInvite.InvitedId = allInvitesForUser[i].InvitedId;
+                        sentInvite.InvitedUsername = allInvitesForUser[i].InvitedUsername;
+                        sentInvite.InvitedFullname = allInvitesForUser[i].InvitedFullname;
+                        sentInvite.InvitedPhoto = allInvitesForUser[i].InvitedPhoto;
+                        sentInvite.IsAccepted = allInvitesForUser[i].IsAccepted;
+                        sentInvite.IsDeleted = allInvitesForUser[i].IsDeleted;
+
+                        SentInvites.Add(sentInvite);
+                    }
+
+
+
+                    if (allInvitesForUser[i].InvitedId == id)
+                    {
+                        RecievedInvitesDTO recievedInvite = new RecievedInvitesDTO();
+                        recievedInvite.Id = allInvitesForUser[i].Id;
+                        recievedInvite.InviterId = allInvitesForUser[i].InviterId;
+                        recievedInvite.InviterUsername = allInvitesForUser[i].InviterUsername;
+                        recievedInvite.InviterFullname = allInvitesForUser[i].InviterFullname;
+                        recievedInvite.InviterPhoto = allInvitesForUser[i].InviterPhoto;
+                        recievedInvite.IsAccepted = allInvitesForUser[i].IsAccepted;
+                        recievedInvite.IsDeleted = allInvitesForUser[i].IsDeleted;
+
+                        RecievedInvites.Add(recievedInvite);
+                    }
+                }
+            }
+            userInvites.SentInvites = SentInvites;
+            userInvites.RecievedInvites = RecievedInvites;
+
+            return userInvites;
+        }
+
+          public List<SentInvitesDTO> GetAcceptedInvitationsbyInviterId(int id)
+        {
+
+            List<SentInvitesDTO> AcceptedSentInvites = new List<SentInvitesDTO>();
+         
+       
+
+            List<InviteUsersModel> allInvitesForUser = _context.InvitesInfo.Where(invite => invite.InviterId == id && invite.IsDeleted != true && invite.IsAccepted==true).ToList();
+
+            if (allInvitesForUser != null)
+            {
+                for (int i = 0; i < allInvitesForUser.Count; i++)
+                {
+                    if (allInvitesForUser[i].InviterId == id)
+                    {
+                        SentInvitesDTO sentInvite = new SentInvitesDTO();
+                        sentInvite.Id = allInvitesForUser[i].Id;
+                        sentInvite.InvitedId = allInvitesForUser[i].InvitedId;
+                        sentInvite.InvitedUsername = allInvitesForUser[i].InvitedUsername;
+                        sentInvite.InvitedFullname = allInvitesForUser[i].InvitedFullname;
+                        sentInvite.InvitedPhoto = allInvitesForUser[i].InvitedPhoto;
+                        sentInvite.IsAccepted = allInvitesForUser[i].IsAccepted;
+                        sentInvite.IsDeleted = allInvitesForUser[i].IsDeleted;
+
+                        AcceptedSentInvites.Add(sentInvite);
+                    }
+
+                }
+            }
+
+                    
+            return AcceptedSentInvites;
         }
     }
 }

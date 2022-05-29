@@ -60,5 +60,24 @@ namespace scrubby_webapi.Services
             return spaceByCollectionIdDTO;
         }
 
+
+         public SpacesDTO GetSpacesDTOByID(int id)
+        {
+            SpacesDTO spaceByCollectionIdDTO = new SpacesDTO();
+            SpaceInfoModel spaces = _context.SpaceInfo.SingleOrDefault(space => space.Id == id);
+
+                    SpacesDTO oneSpace = new SpacesDTO();
+                    oneSpace.Id = spaces.Id;
+                    oneSpace.SpaceName = spaces.SpaceName;
+                    oneSpace.SpaceCategory = spaces.SpaceCategory;
+                    oneSpace.Tasks = _selectedTasks.GetTasksBySpaceId(spaces.Id);
+                    oneSpace.TasksAssigned = _assignedTasksUsers.GetAllAssignedTasksBySpaceId(spaces.Id);
+
+            return oneSpace;
+        }
+
+
+        
+
     }
 }

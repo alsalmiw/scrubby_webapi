@@ -25,7 +25,14 @@ namespace scrubby_webapi.Services
             return _context.SaveChanges() !=0;
         }
         //edit or update
-        
+        public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUsername(string? username)
+        {       
+                UserModel user = _context.UserInfo.SingleOrDefault(user => user.Username == username);
+
+                List<SpaceCollectionModel> UsersCollections = _context.SpaceCollectionInfo.Where(collection => collection.UserId == user.Id && collection.IsDeleted == false).ToList();
+                return UsersCollections;
+        }
+
         public SpaceCollectionModel GetSpaceCollectionById(int Id)
         {
             return _context.SpaceCollectionInfo.SingleOrDefault(item => item.Id == Id);
@@ -33,7 +40,7 @@ namespace scrubby_webapi.Services
 
         public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUserId(int UserId)
         {
-            return _context.SpaceCollectionInfo.Where(item => item.UserId == UserId);
+            return _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted==false);
         }
         public bool DeleteSpaceCollectionById(int Id)
         {
@@ -57,6 +64,8 @@ namespace scrubby_webapi.Services
                     _context.Update<DefaultCollectionModel>(findDefault[i]);
                     result = _context.SaveChanges() != 0;
                 }
+            }else{
+                result=true;
             }
             }
            
@@ -81,7 +90,7 @@ namespace scrubby_webapi.Services
         {
             List<CollectionsDTO> SpaceCollectionsDTO = new List<CollectionsDTO>();
             List<SpaceCollectionModel> collections = new List<SpaceCollectionModel>();
-            collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId).ToList();
+            collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted==false).ToList();
 
             if (collections != null)
             {

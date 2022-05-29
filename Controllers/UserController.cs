@@ -103,6 +103,25 @@ namespace scrubby_webapi.Models
         {
             return _data.UpdateCoinsAndPoints(NewCoinsAndPoints);
         }
+
+        [HttpGet("ScoreBoardList/{username}")]
+        public List<ScoreBoardPointsDTO> ScoreBoardList (string? username){
+           return _data.ScoreBoardList(username);
+        }
+
+
+        [HttpGet("GetCollectionByUsername/{username}")]
+
+         public List<CollectionsDTO> GetCollectionByUsername(string? username)  
+        {
+           return _data.GetCollectionByUsername(username);
+        }
+
+        [HttpGet("GetMyTaskedCollectionsByUsername/{username}")]
+          public List<ScheduleCollectionsDTO> GetMyTaskedCollectionsByUsername(string? username)
+        {
+            return _data.GetMyTaskedCollectionsByUsername(username);
+        }
        
        
     }

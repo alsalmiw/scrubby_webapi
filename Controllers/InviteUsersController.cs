@@ -36,10 +36,10 @@ namespace scrubby_webapi.Controllers
             return _data.DeleteInvite(userId, invitedUsername);
         }
 
-        [HttpPost("DeleteInvitation/{inviteId}")]
-        public bool DeleteInvitation(int inviteId)
+        [HttpPost("DeleteInvitationByInvitedId/{inviteId}")]
+        public bool DeleteInvitationByInvitedId(int inviteId)
         {
-            return _data.DeleteInvitation(inviteId);
+            return _data.DeleteInvitationByInvitedId(inviteId);
         }
 
 
@@ -74,13 +74,17 @@ namespace scrubby_webapi.Controllers
             return _data.DeleteAcceptedInvite(userId, invitedUsername);
         }
 
-        [HttpPost("DeleteInvitation/{invitedUsername}/{inviterUsername}")]
-        public bool DeleteInvitation (string? invitedUsername, string? inviterUsername)
+        [HttpPost("DeleteInvitation/{id}")]
+        public bool DeleteInvitation (int id)
         {
-            return _data.DeleteInvitation(invitedUsername, inviterUsername);
+            return _data.DeleteInvitation(id);
         }
 
-
+        [HttpGet("GetAcceptedInvitationsbyInviterId/{id}")]
+         public List<SentInvitesDTO> GetAcceptedInvitationsbyInviterId(int id)
+        {
+                return _data.GetAcceptedInvitationsbyInviterId(id);
+        }
 
     }
 }

@@ -57,6 +57,18 @@ namespace scrubby_webapi.Controllers
             return _data.GetDependantDTOByChildId(childId);  
         }
 
+         [HttpGet("GetDependantsDTOByUserId/{userId}")]
+        public List< DependentDTO> GetDependantsDTOByUserId (int userId)
+        {
+            return _data.GetDependantsDTOByUserId(userId);  
+        }
+
+        [HttpGet("GetDependantsDTOByUsername/{username}")]
+        public List< DependentDTO> GetDependantsDTOByUsername(string? username)
+        {
+            return _data.GetDependantsDTOByUsername(username);  
+        }
+
           [HttpGet("GetDependantByChildId/{childId}")]
         public DependentModel GetDependantByChildId (int childId)
         {

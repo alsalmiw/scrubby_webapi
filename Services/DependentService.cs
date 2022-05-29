@@ -71,6 +71,30 @@ namespace scrubby_webapi.Services
             return result ? childInfo : null;
         }
 
+          public List< DependentDTO> GetDependantsDTOByUsername(string? username)
+        {
+              List< DependentDTO> childrenDetails = new List< DependentDTO>();
+            UserModel findUser = _context.UserInfo.SingleOrDefault(user => user.Username == username);
+            if(findUser != null)
+            {
+                childrenDetails = GetDependantsDTOByUserId(findUser.Id);
+            }
+            return childrenDetails;
+        }
+        public List< DependentDTO> GetDependantsDTOByUserId (int userId)
+        {
+             List< DependentDTO> childrenDetails = new List< DependentDTO>();
+           List <DependentModel> childrenInfo = GetDependantByUserId(userId).ToList();
+           if(childrenInfo.Count > 0){
+               for(int i = 0; i < childrenInfo.Count; i++){
+                   DependentDTO onChild = new DependentDTO();
+                   onChild = GetDependantDTOByChildId(childrenInfo[i].Id);
+                   childrenDetails.Add(onChild);
+
+               }
+           }
+           return childrenDetails;
+        }
         public DependentDTO GetDependantDTOByChildId(int childId)
         {
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using scrubby_webapi.Models;
+using scrubby_webapi.Models.DTO;
 using scrubby_webapi.Services;
 
 namespace scrubby_webapi.Controllers
@@ -36,6 +37,12 @@ namespace scrubby_webapi.Controllers
         public IEnumerable<SpaceInfoModel> GetSpacesByCollectionID(int id)
         {
             return _data.GetSpacesByCollectionID(id);
+        }
+    
+     [HttpGet("GetSpacesDTOByID/{id}")]
+        public SpacesDTO GetSpacesDTOByID(int id)
+        {
+            return _data.GetSpacesDTOByID(id);
         }
     
 

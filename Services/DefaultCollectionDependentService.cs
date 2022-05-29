@@ -121,26 +121,18 @@ namespace scrubby_webapi.Services
             return _context.TasksInfoStaticAPIInfo.SingleOrDefault(task => task.Id == id);
         }
 
-         public bool CreateChildDefaultSchedule(DefaultCollectionDependentModel newDefault)
+        public bool CreateChildDefaultSchedule(DefaultCollectionDependentModel newDefault)
         {
             bool isRemoved = false;
-               List <DefaultCollectionDependentModel> findAllEntries = _context.DefaultCollectionDependentInfo.Where(collection => collection.ChildId == newDefault.ChildId && collection.IsDeleted==false).ToList();
-           if(findAllEntries.Count>0)
-           {
-                for(int i = 0; i < findAllEntries.Count; i++){
-                findAllEntries[i].IsDefault = false;
-                _context.Update<DefaultCollectionDependentModel>(findAllEntries[i]);
-                                
-                if(i==findAllEntries.Count-1)
-                {
-                     isRemoved = _context.SaveChanges()!=0;
-                }else{ 
-                    _context.SaveChanges();
-                }
-               
-                 }
-           }
-           bool result = false;
+            DefaultCollectionDependentModel findAllEntries = _context.DefaultCollectionDependentInfo.SingleOrDefault(collection => collection.ChildId == newDefault.ChildId && collection.IsDeleted == false);
+            if (findAllEntries == null)
+            {
+                findAllEntries.IsDefault = false;
+                _context.Update<DefaultCollectionDependentModel>(findAllEntries);
+                isRemoved = _context.SaveChanges() != 0;
+            }
+        
+        bool result = false;
             if(isRemoved)
             {
                 _context.DefaultCollectionDependentInfo.AddAsync(newDefault);

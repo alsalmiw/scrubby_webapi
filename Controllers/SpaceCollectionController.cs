@@ -36,7 +36,7 @@ namespace scrubby_webapi.Controllers
             return _data.GetSpaceCollectionByUserId(UserId);
         }
 
-           [HttpGet("GetSpaceCollectionByUsername/{username}")]
+        [HttpGet("GetSpaceCollectionByUsername/{username}")]
         public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUsername(string? username)
         {
             return _data.GetSpaceCollectionByUsername(username);
@@ -61,16 +61,40 @@ namespace scrubby_webapi.Controllers
             return _data.GetAllTasksHistoryForMembers(userId);
         }
 
-         [HttpGet("GetDefaultOptionsByUserId/{id}")]
-          public List<DefaultOptionsDTO> GetDefaultOptionsByUserId(int id)
+        [HttpGet("GetDefaultOptionsByUserId/{id}")]
+        public List<DefaultOptionsDTO> GetDefaultOptionsByUserId(int id)
         {
             return _data.GetDefaultOptionsByUserId(id);
         }
 
-           [HttpGet("GetDefaultOptionsByUsername/{username}")]
-          public List<DefaultOptionsDTO> GetDefaultOptionsByUsername(string? username)
+        [HttpGet("GetDefaultOptionsByUsername/{username}")]
+        public List<DefaultOptionsDTO> GetDefaultOptionsByUsername(string? username)
         {
             return _data.GetDefaultOptionsByUsername(username);
+        }
+
+        [HttpGet("GetCollectionsRoomsByUsername/{username}")]
+         public List<DefaultOptionsDTO> GetCollectionsRoomsByUsername(string? username)
+        {
+            return _data.GetCollectionsRoomsByUsername(username);
+        }
+
+        [HttpGet("GetSharedCollectionsDetailsByUsername/{username}")]
+        public List<CollectionsDTO> GetSharedCollectionsDetailsByUsername(string? username)
+        {
+            return _data.GetSharedCollectionsDetailsByUsername(username);
+        }
+
+        [HttpGet("GetSharedCollectionsDetailsByID/{userId}")]
+        public List<CollectionsDTO> GetSharedCollectionsDetailsByID(int userId)
+        {
+            return _data.GetSharedCollectionsDetailsByID(userId);
+        }
+
+        [HttpGet("GetAllTasksHistoryForMembersByUsername/{username}")]
+        public List<TasksHistoryDTO> GetAllTasksHistoryForMembersByUsername(string? username)
+        {
+            return _data.GetAllTasksHistoryForMembersByUsername(username);
         }
 
     }

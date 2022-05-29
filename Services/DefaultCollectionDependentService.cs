@@ -124,12 +124,15 @@ namespace scrubby_webapi.Services
         public bool CreateChildDefaultSchedule(DefaultCollectionDependentModel newDefault)
         {
             bool isRemoved = false;
-            DefaultCollectionDependentModel findAllEntries = _context.DefaultCollectionDependentInfo.SingleOrDefault(collection => collection.ChildId == newDefault.ChildId && collection.IsDeleted == false);
-            if (findAllEntries == null)
+            DefaultCollectionDependentModel findAllEntries = _context.DefaultCollectionDependentInfo.SingleOrDefault(collection => collection.ChildId == newDefault.ChildId && collection.IsDefault == true && collection.IsDeleted==false);
+            if (findAllEntries != null)
             {
                 findAllEntries.IsDefault = false;
                 _context.Update<DefaultCollectionDependentModel>(findAllEntries);
                 isRemoved = _context.SaveChanges() != 0;
+            }
+            else{
+                isRemoved = true;
             }
         
         bool result = false;

@@ -61,5 +61,17 @@ namespace scrubby_webapi.Controllers
             return _data.GetAllTasksHistoryForMembers(userId);
         }
 
+         [HttpGet("GetDefaultOptionsByUserId/{id}")]
+          public List<DefaultOptionsDTO> GetDefaultOptionsByUserId(int id)
+        {
+            return _data.GetDefaultOptionsByUserId(id);
+        }
+
+           [HttpGet("GetDefaultOptionsByUsername/{username}")]
+          public List<DefaultOptionsDTO> GetDefaultOptionsByUsername(string? username)
+        {
+            return _data.GetDefaultOptionsByUsername(username);
+        }
+
     }
 }

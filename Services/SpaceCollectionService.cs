@@ -22,15 +22,15 @@ namespace scrubby_webapi.Services
         public bool CreateSpaceCollection(SpaceCollectionModel SpaceCollectionToCreate)
         {
             _context.Add(SpaceCollectionToCreate);
-            return _context.SaveChanges() !=0;
+            return _context.SaveChanges() != 0;
         }
         //edit or update
         public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUsername(string? username)
-        {       
-                UserModel user = _context.UserInfo.SingleOrDefault(user => user.Username == username);
+        {
+            UserModel user = _context.UserInfo.SingleOrDefault(user => user.Username == username);
 
-                List<SpaceCollectionModel> UsersCollections = _context.SpaceCollectionInfo.Where(collection => collection.UserId == user.Id && collection.IsDeleted == false).ToList();
-                return UsersCollections;
+            List<SpaceCollectionModel> UsersCollections = _context.SpaceCollectionInfo.Where(collection => collection.UserId == user.Id && collection.IsDeleted == false).ToList();
+            return UsersCollections;
         }
 
         public SpaceCollectionModel GetSpaceCollectionById(int Id)
@@ -40,35 +40,37 @@ namespace scrubby_webapi.Services
 
         public IEnumerable<SpaceCollectionModel> GetSpaceCollectionByUserId(int UserId)
         {
-            return _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted==false);
+            return _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted == false);
         }
         public bool DeleteSpaceCollectionById(int Id)
         {
             SpaceCollectionModel foundSpaceCollection = GetSpaceCollectionById(Id);
             bool result = false;
             bool isDeleted = false;
-            if(foundSpaceCollection != null)
+            if (foundSpaceCollection != null)
             {
                 foundSpaceCollection.IsDeleted = true;
                 _context.Update<SpaceCollectionModel>(foundSpaceCollection);
-                isDeleted =_context.SaveChanges()!=0;
+                isDeleted = _context.SaveChanges() != 0;
             }
             List<DefaultCollectionModel> findDefault = _context.DefaultCollectionInfo.Where(item => item.CollectionId == Id).ToList();
-            if(isDeleted)
+            if (isDeleted)
             {
-                 if(findDefault.Count>0)
-            {
-                for (int i = 0; i < findDefault.Count; i++)
+                if (findDefault.Count > 0)
                 {
-                    findDefault[i].IsDeleted = true;
-                    _context.Update<DefaultCollectionModel>(findDefault[i]);
-                    result = _context.SaveChanges() != 0;
+                    for (int i = 0; i < findDefault.Count; i++)
+                    {
+                        findDefault[i].IsDeleted = true;
+                        _context.Update<DefaultCollectionModel>(findDefault[i]);
+                        result = _context.SaveChanges() != 0;
+                    }
                 }
-            }else{
-                result=true;
+                else
+                {
+                    result = true;
+                }
             }
-            }
-           
+
             return result;
         }
 
@@ -77,11 +79,11 @@ namespace scrubby_webapi.Services
         {
             bool result = false;
             SpaceCollectionModel SpaceCollection = GetSpaceCollectionById(UserId);
-            if(SpaceCollection !=null)
+            if (SpaceCollection != null)
             {
-                SpaceCollection.CollectionName= CollectionName;
+                SpaceCollection.CollectionName = CollectionName;
                 _context.Update<SpaceCollectionModel>(SpaceCollection);
-                result = _context.SaveChanges()!=0;
+                result = _context.SaveChanges() != 0;
             }
             return result;
         }
@@ -90,7 +92,7 @@ namespace scrubby_webapi.Services
         {
             List<CollectionsDTO> SpaceCollectionsDTO = new List<CollectionsDTO>();
             List<SpaceCollectionModel> collections = new List<SpaceCollectionModel>();
-            collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted==false).ToList();
+            collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted == false).ToList();
 
             if (collections != null)
             {
@@ -100,8 +102,8 @@ namespace scrubby_webapi.Services
                     oneCollection.Id = collections[i].Id;
                     oneCollection.CollectionName = collections[i].CollectionName;
                     oneCollection.IsDeleted = collections[i].IsDeleted;
-                   oneCollection.Rooms = _spaceService.GetRoomsByCollectionID(collections[i].Id);
-                  oneCollection.SharedWith = _sharedSpaces.GetSharedCollectionWithByCollectionId(collections[i].Id);
+                    oneCollection.Rooms = _spaceService.GetRoomsByCollectionID(collections[i].Id);
+                    oneCollection.SharedWith = _sharedSpaces.GetSharedCollectionWithByCollectionId(collections[i].Id);
 
                     SpaceCollectionsDTO.Add(oneCollection);
                 }
@@ -120,64 +122,66 @@ namespace scrubby_webapi.Services
 
                 DateTime day = DateTime.Today.AddDays(-d);
                 dates.Add(day.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.sss0Z"));
-                if(d==49){
-                    start=true;
+                if (d == 49)
+                {
+                    start = true;
                 }
             }
 
-            if(start){
-
-           
-
-            List<CollectionsDTO> spaceCollections = GetCollectionByUserId(userId);
-
-
-            if (spaceCollections != null)
+            if (start)
             {
 
-                for (int i = 0; i < spaceCollections.Count; i++)
+
+
+                List<CollectionsDTO> spaceCollections = GetCollectionByUserId(userId);
+
+
+                if (spaceCollections != null)
                 {
-                    for (int j = 0; j < spaceCollections[i].Rooms.Count; j++)
+
+                    for (int i = 0; i < spaceCollections.Count; i++)
                     {
-                        for (int k = 0; k < spaceCollections[i].Rooms[j].TasksAssigned.Count; k++)
+                        for (int j = 0; j < spaceCollections[i].Rooms.Count; j++)
                         {
-                            if (dates.Contains(spaceCollections[i].Rooms[j].TasksAssigned[k].DateScheduled))
+                            for (int k = 0; k < spaceCollections[i].Rooms[j].TasksAssigned.Count; k++)
                             {
-                                TasksHistoryDTO OneTaskDetails = new TasksHistoryDTO();
-                                OneTaskDetails.TaskSpace = spaceCollections[i].CollectionName;
-                                OneTaskDetails.TaskRoom = spaceCollections[i].Rooms[j].SpaceName;
-                                OneTaskDetails.MemberId = spaceCollections[i].Rooms[j].TasksAssigned[k].UserId;
-
-                                OneTaskDetails.IsChild = spaceCollections[i].Rooms[j].TasksAssigned[k].IsChild;
-                                OneTaskDetails.TaskId = spaceCollections[i].Rooms[j].TasksAssigned[k].AssignedTaskId;
-
-                                OneTaskDetails.Name = spaceCollections[i].Rooms[j].TasksAssigned[k].Name;
-                                OneTaskDetails.TaskName = GetTaskNameByTaskID(spaceCollections[i].Rooms[j].TasksAssigned[k].AssignedTaskId, spaceCollections[i].Rooms[j].Tasks);
-                                OneTaskDetails.IsCompleted = spaceCollections[i].Rooms[j].TasksAssigned[k].IsCompleted;
-
-                                OneTaskDetails.DateScheduled = spaceCollections[i].Rooms[j].TasksAssigned[k].DateScheduled;
-                                OneTaskDetails.DateCompleted = spaceCollections[i].Rooms[j].TasksAssigned[k].DateCompleted;
-                                if (spaceCollections[i].Rooms[j].TasksAssigned[k].IsChild == true)
+                                if (dates.Contains(spaceCollections[i].Rooms[j].TasksAssigned[k].DateScheduled))
                                 {
-                                    AssignedTasksChildModel taskChildInfo = _context.AssignedTasksChildInfo.SingleOrDefault(task => task.Id == spaceCollections[i].Rooms[j].TasksAssigned[k].Id);
-                                    OneTaskDetails.IsRequestedApproval = taskChildInfo.IsRequestedApproval;
+                                    TasksHistoryDTO OneTaskDetails = new TasksHistoryDTO();
+                                    OneTaskDetails.TaskSpace = spaceCollections[i].CollectionName;
+                                    OneTaskDetails.TaskRoom = spaceCollections[i].Rooms[j].SpaceName;
+                                    OneTaskDetails.MemberId = spaceCollections[i].Rooms[j].TasksAssigned[k].UserId;
+
+                                    OneTaskDetails.IsChild = spaceCollections[i].Rooms[j].TasksAssigned[k].IsChild;
+                                    OneTaskDetails.TaskId = spaceCollections[i].Rooms[j].TasksAssigned[k].AssignedTaskId;
+
+                                    OneTaskDetails.Name = spaceCollections[i].Rooms[j].TasksAssigned[k].Name;
+                                    OneTaskDetails.TaskName = GetTaskNameByTaskID(spaceCollections[i].Rooms[j].TasksAssigned[k].AssignedTaskId, spaceCollections[i].Rooms[j].Tasks);
+                                    OneTaskDetails.IsCompleted = spaceCollections[i].Rooms[j].TasksAssigned[k].IsCompleted;
+
+                                    OneTaskDetails.DateScheduled = spaceCollections[i].Rooms[j].TasksAssigned[k].DateScheduled;
+                                    OneTaskDetails.DateCompleted = spaceCollections[i].Rooms[j].TasksAssigned[k].DateCompleted;
+                                    if (spaceCollections[i].Rooms[j].TasksAssigned[k].IsChild == true)
+                                    {
+                                        AssignedTasksChildModel taskChildInfo = _context.AssignedTasksChildInfo.SingleOrDefault(task => task.Id == spaceCollections[i].Rooms[j].TasksAssigned[k].Id);
+                                        OneTaskDetails.IsRequestedApproval = taskChildInfo.IsRequestedApproval;
+                                    }
+
+
+                                    AllTasksHistory.Add(OneTaskDetails);
                                 }
 
-
-                                AllTasksHistory.Add(OneTaskDetails);
                             }
-
                         }
                     }
-                }
 
-            }
+                }
             }
             return AllTasksHistory;
 
         }
 
-          public string GetTaskNameByTaskID(int taskId, List<SelectedTasksDTO> tasks)
+        public string GetTaskNameByTaskID(int taskId, List<SelectedTasksDTO> tasks)
         {
 
             string name = "";
@@ -191,6 +195,72 @@ namespace scrubby_webapi.Services
             return name;
         }
 
+
+        public List<DefaultOptionsDTO> GetDefaultOptionsByUsername(string? username)
+        {
+            UserModel user = _context.UserInfo.SingleOrDefault(x => x.Username == username);
+            return GetDefaultOptionsByUserId(user.Id);
+        }
+        public List<DefaultOptionsDTO> GetDefaultOptionsByUserId(int id)
+        {
+
+            List<DefaultOptionsDTO> MyAndInvitedCollections = new List<DefaultOptionsDTO>();
+
+            List<DefaultOptionsDTO> MyCollections = GetDefaultCollectionsByUserId(id);
+            List<DefaultOptionsDTO> InvitedCollections = GetSharedDefaultCollectionsByUserId(id);
+            MyAndInvitedCollections.AddRange(MyCollections);
+            MyAndInvitedCollections.AddRange(InvitedCollections);
+
+            return MyAndInvitedCollections;
+        }
+
+        public List<DefaultOptionsDTO> GetDefaultCollectionsByUserId(int UserId)
+        {
+            List<DefaultOptionsDTO> SpaceCollectionsDTO = new List<DefaultOptionsDTO>();
+            List<SpaceCollectionModel> collections = _context.SpaceCollectionInfo.Where(item => item.UserId == UserId && item.IsDeleted == false).ToList();
+
+            if (collections != null)
+            {
+                for (int i = 0; i < collections.Count; i++)
+                {
+                    DefaultOptionsDTO oneCollection = new DefaultOptionsDTO();
+                    oneCollection.Id = collections[i].Id;
+                    oneCollection.CollectionName = collections[i].CollectionName;
+                    oneCollection.Rooms = GetRoomsByCollectionID(collections[i].Id);
+                    SpaceCollectionsDTO.Add(oneCollection);
+                }
+            }
+
+            return SpaceCollectionsDTO;
+        }
+
+        public List<SpaceInfoModel> GetRoomsByCollectionID(int id)
+        {
+            return _context.SpaceInfo.Where(item => item.CollectionId == id).ToList();
+        }
+
+        public List<DefaultOptionsDTO> GetSharedDefaultCollectionsByUserId(int id)
+        {
+
+            List<DefaultOptionsDTO> sharedCollections = new List<DefaultOptionsDTO>();
+            UserModel findInvited = _context.UserInfo.SingleOrDefault(user => user.Id == id);
+            List<SharedSpacesModel> sharedCollection = _context.SharedSpacesInfo.Where(collection => collection.InvitedUsername == findInvited.Username && (collection.IsDeleted == false && collection.IsAccepted == true)).ToList();
+
+            for (int i = 0; i < sharedCollection.Count; i++)
+            {
+                SpaceCollectionModel findCollection = _context.SpaceCollectionInfo.SingleOrDefault(item => item.Id == sharedCollection[i].CollectionId);
+
+                DefaultOptionsDTO oneCollection = new DefaultOptionsDTO();
+                oneCollection.Id = sharedCollection[i].CollectionId;
+                oneCollection.CollectionName = findCollection.CollectionName;
+                oneCollection.Rooms = GetRoomsByCollectionID(sharedCollection[i].Id);
+
+                sharedCollections.Add(oneCollection);
+            }
+
+            return sharedCollections;
+
+        }
 
 
     }

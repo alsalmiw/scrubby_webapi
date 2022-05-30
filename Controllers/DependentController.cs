@@ -92,6 +92,13 @@ namespace scrubby_webapi.Controllers
         {
             return _data.ChangeDependentAvatarImage(avatar);
         }
+
+           [HttpPost("DeleteChildByChildID/{id}")]
+        public bool DeleteChildByChildID(int id)
+        {
+            return _data.DeleteChildByChildID(id);
+        }
+         
          
 
           

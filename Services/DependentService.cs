@@ -232,6 +232,16 @@ namespace scrubby_webapi.Services
 
 
         }
+
+        public bool DeleteChildByChildID(int id)
+        {
+         
+            DependentModel childInfo = GetDependentById(id);
+            childInfo.IsDeleted = true;
+            _context.Update<DependentModel>(childInfo);
+
+            return _context.SaveChanges() != 0;
+        }
          
 
 

@@ -50,7 +50,7 @@ namespace scrubby_webapi.Services
 
             DefaultCollectionModel findDefault = _context.DefaultCollectionInfo.SingleOrDefault(collection => collection.UserId == findUser.Id && collection.IsDefault==true && collection.IsDeleted==false);
 
-            List<SpaceCollectionModel> collectionsByUserId = _context.SpaceCollectionInfo.Where(collection => collection.UserId == findUser.Id).ToList();
+            List<SpaceCollectionModel> collectionsByUserId = _context.SpaceCollectionInfo.Where(collection => collection.UserId == findUser.Id && collection.IsDeleted==false).ToList();
 
             if(findDefault == null)
             {

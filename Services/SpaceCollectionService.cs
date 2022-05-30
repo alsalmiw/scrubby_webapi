@@ -61,6 +61,7 @@ namespace scrubby_webapi.Services
                     for (int i = 0; i < findDefault.Count; i++)
                     {
                         findDefault[i].IsDeleted = true;
+                        findDefault[i].IsDefault = false;
                         _context.Update<DefaultCollectionModel>(findDefault[i]);
                         result = _context.SaveChanges() != 0;
                     }

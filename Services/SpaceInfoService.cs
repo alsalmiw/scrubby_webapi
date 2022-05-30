@@ -60,6 +60,27 @@ namespace scrubby_webapi.Services
             return spaceByCollectionIdDTO;
         }
 
+         public List<SpacesDTO> GetRoomsBasicInfoByCollectionID(int id)
+        {
+            List<SpacesDTO> spaceByCollectionIdDTO = new List<SpacesDTO>();
+            List<SpaceInfoModel> spaces = _context.SpaceInfo.Where(space => space.CollectionId == id).ToList();
+
+            if (spaces != null)
+            {
+                for (int i = 0; i < spaces.Count; i++)
+                {
+                    SpacesDTO oneSpace = new SpacesDTO();
+                    oneSpace.Id = spaces[i].Id;
+                    oneSpace.SpaceName = spaces[i].SpaceName;
+                    oneSpace.SpaceCategory = spaces[i].SpaceCategory;
+                    spaceByCollectionIdDTO.Add(oneSpace);
+                }
+            }
+
+            return spaceByCollectionIdDTO;
+        }
+
+
 
          public SpacesDTO GetSpacesDTOByID(int id)
         {

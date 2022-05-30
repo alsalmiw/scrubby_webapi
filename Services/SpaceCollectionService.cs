@@ -297,6 +297,7 @@ namespace scrubby_webapi.Services
                     oneCollection.Id = collections[i].Id;
                     oneCollection.CollectionName = collections[i].CollectionName;
                     oneCollection.IsDeleted = collections[i].IsDeleted;
+                    oneCollection.Rooms = _spaceService.GetRoomsBasicInfoByCollectionID(collections[i].Id);
                     oneCollection.SharedWith = GetSharedCollectionWithByCollectionId(collections[i].Id);
 
                     SpaceCollectionsDTO.Add(oneCollection);

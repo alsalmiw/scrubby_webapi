@@ -226,7 +226,7 @@ namespace scrubby_webapi.Services
 
             return GetDefaultCollectionsByUserId(findUser.Id);
         }
-        
+
         public List<DefaultOptionsDTO> GetDefaultCollectionsByUserId(int UserId)
         {
             List<DefaultOptionsDTO> SpaceCollectionsDTO = new List<DefaultOptionsDTO>();
@@ -334,6 +334,22 @@ namespace scrubby_webapi.Services
             return _context.UserInfo.SingleOrDefault(user => user.Username == username);
         }
 
+
+        public CollectionsDTO GetCollectionDTOByCollectionID(int id)
+        {
+            SpaceCollectionModel collections = _context.SpaceCollectionInfo.SingleOrDefault(item => item.Id == id);
+            CollectionsDTO oneCollection = new CollectionsDTO();
+            if (collections != null)
+            {
+                oneCollection.Id = collections.Id;
+                oneCollection.CollectionName = collections.CollectionName;
+                oneCollection.IsDeleted = collections.IsDeleted;
+                oneCollection.Rooms = _spaceService.GetRoomsByCollectionID(collections.Id);
+                oneCollection.SharedWith = _sharedSpaces.GetSharedCollectionWithByCollectionId(collections.Id);
+            }
+
+            return oneCollection;
+        }
 
     }
 }

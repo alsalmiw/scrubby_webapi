@@ -97,5 +97,11 @@ namespace scrubby_webapi.Controllers
             return _data.GetAllTasksHistoryForMembersByUsername(username);
         }
 
+        [HttpGet("GetCollectionDTOByCollectionID/{id}")]
+        public CollectionsDTO GetCollectionDTOByCollectionID(int id)
+        {
+            return _data.GetCollectionDTOByCollectionID(id);
+        }
+
     }
 }

@@ -140,6 +140,9 @@ namespace scrubby_webapi.Services
                      isCompleted=true;
                 }
                  }
+           }
+           else{
+               isCompleted=true;
            }    
                 bool result = false;
                 if(isCompleted)
